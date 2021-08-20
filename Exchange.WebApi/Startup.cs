@@ -10,13 +10,16 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using Exchange.Data.Sqlite;
 using Exchange.Domain.DataInterfaces;
 using Exchange.Domain.ServiceInterfaces;
 using Exchange.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 
 namespace Exchange.WebApi
 {
@@ -49,6 +52,15 @@ namespace Exchange.WebApi
             
             
             services.AddControllers();
+            
+            services.AddSwaggerGen(generationOption =>
+            {
+                generationOption.SwaggerDoc("v1", new OpenApiInfo(){ Title = "Image API", Version = "v1" });
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                generationOption.IncludeXmlComments(xmlPath);
+                
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -58,6 +70,13 @@ namespace Exchange.WebApi
             {
                 app.UseDeveloperExceptionPage();
             }
+            
+            app.UseSwagger();
+
+            app.UseSwaggerUI(swaggerUiOptions =>
+            {
+                swaggerUiOptions.SwaggerEndpoint("/swagger/v1/swagger.json", "Exchange API V1");
+            });
 
             app.UseHttpsRedirection();
 
