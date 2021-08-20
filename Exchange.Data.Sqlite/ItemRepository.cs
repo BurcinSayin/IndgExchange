@@ -1,0 +1,70 @@
+﻿using System.Data;
+using System.Linq;
+using Exchange.Domain.DataInterfaces;
+using Microsoft.Data.Sqlite;
+using Microsoft.EntityFrameworkCore;
+
+namespace Exchange.Data.Sqlite
+{
+    public class ItemRepository:IItemRepository
+    {
+        private ExchangeDataContext _context;
+        
+        public ItemRepository(ExchangeDataContext context)
+        {
+            _context = context;
+            _context.Database?.EnsureCreated();
+        }
+        
+        public IQueryable<Item> GetAll()
+        {
+            return _context.Items.AsNoTracking();
+        }
+
+        public Item Get(int itemId)
+        {
+            return _context.Items.AsNoTracking().FirstOrDefault(item => item.Id == itemId);
+        }
+
+        public Item Add(Item toAdd)
+        {
+            _context.Items.Add(toAdd);
+            return toAdd;
+        }
+
+        public bool Delete(int itemId)
+        {
+            var toDelete = _context.Items.FirstOrDefault(item => item.Id == itemId);
+            if (toDelete != null)
+            {
+                var res = _context.Items.Remove(toDelete);
+                return res.State == EntityState.Deleted;
+            }
+
+            return false;
+        }
+
+        public Item Update(Item toUpdate)
+        {
+            _context.Update(toUpdate);
+            _context.SaveChanges();
+            return toUpdate;
+        }
+
+        public bool MoveItem(int fromId, int toId, int itemId)
+        {
+            var transaction = _context.Database.BeginTransaction(IsolationLevel.ReadCommitted);
+
+
+            
+             
+            _context.Database.ExecuteSqlRaw(
+                "UPDATE Items SET HolderId = {0} WHERE Id = {1} AND HolderId = {2};",toId,fromId,itemId);
+            
+            
+            transaction.Commit();
+
+            return true;
+        }
+    }
+}
