@@ -12,6 +12,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Exchange.Data.Sqlite;
+using Exchange.Domain.DataInterfaces;
+using Exchange.Domain.ServiceInterfaces;
+using Exchange.Services;
+using Microsoft.EntityFrameworkCore;
 
 namespace Exchange.WebApi
 {
@@ -29,6 +34,20 @@ namespace Exchange.WebApi
         {
             //services.AddAuthentication(AzureADDefaults.BearerAuthenticationScheme)
             //    .AddAzureADBearer(options => Configuration.Bind("AzureAd", options));
+            
+            
+            var connection = "Data Source=imageinfo.db";
+            services.AddDbContext<ExchangeDataContext>();
+            
+            
+            services.AddScoped<IItemRepository, ItemRepository>();
+            services.AddScoped<IOwnerRepository, OwnerRepository>();
+            
+            
+            services.AddScoped<IItemReadService, ItemReadService>();
+            services.AddScoped<IItemWriteService, ItemWriteService>();
+            
+            
             services.AddControllers();
         }
 
