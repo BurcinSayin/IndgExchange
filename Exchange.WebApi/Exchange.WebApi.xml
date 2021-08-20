@@ -4,5 +4,38 @@
         <name>Exchange.WebApi</name>
     </assembly>
     <members>
+        <member name="T:Exchange.WebApi.Controllers.ItemsController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Exchange.WebApi.Controllers.ItemsController.#ctor(Exchange.Domain.ServiceInterfaces.IItemWriteService,Exchange.Domain.ServiceInterfaces.IItemReadService)">
+            <summary>
+            
+            </summary>
+            <param name="itemWriteService"></param>
+            <param name="itemReadService"></param>
+        </member>
+        <member name="M:Exchange.WebApi.Controllers.ItemsController.Get(System.Int32)">
+            <summary>
+            Gets the item with the given Id
+            </summary>
+            <param name="id">Item Id to get</param>
+            <returns></returns>
+        </member>
+        <member name="M:Exchange.WebApi.Controllers.ItemsController.GetAll(Exchange.Domain.ServiceInterfaces.Queries.FindItemsWithPagingQuery)">
+            <summary>
+            
+            </summary>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Exchange.WebApi.Controllers.ItemsController.Create(Exchange.Domain.ServiceInterfaces.Commands.CreateItemCommand)">
+            <summary>
+            Creates an Item
+            </summary>
+            <param name="command"></param>
+            <returns></returns>
+        </member>
     </members>
 </doc>

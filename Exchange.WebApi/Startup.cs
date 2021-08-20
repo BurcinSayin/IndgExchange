@@ -39,7 +39,7 @@ namespace Exchange.WebApi
             //    .AddAzureADBearer(options => Configuration.Bind("AzureAd", options));
             
             
-            var connection = "Data Source=imageinfo.db";
+            // var connection = "Data Source=imageinfo.db";
             services.AddDbContext<ExchangeDataContext>();
             
             

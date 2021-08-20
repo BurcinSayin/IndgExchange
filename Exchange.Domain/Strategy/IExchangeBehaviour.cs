@@ -1,7 +1,9 @@
-﻿namespace Exchange.Domain.Strategy
+﻿
+namespace Exchange.Domain.Strategy
 {
     public interface IExchangeBehaviour
     {
-        
+        public void ExecuteCommand(IBehaviourCommand command);
     }
+
 }

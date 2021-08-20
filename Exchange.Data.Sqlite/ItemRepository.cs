@@ -29,6 +29,7 @@ namespace Exchange.Data.Sqlite
         public Item Add(Item toAdd)
         {
             _context.Items.Add(toAdd);
+            _context.SaveChanges();
             return toAdd;
         }
 
@@ -38,7 +39,7 @@ namespace Exchange.Data.Sqlite
             if (toDelete != null)
             {
                 var res = _context.Items.Remove(toDelete);
-                return res.State == EntityState.Deleted;
+                return (_context.SaveChanges() > 0);
             }
 
             return false;
