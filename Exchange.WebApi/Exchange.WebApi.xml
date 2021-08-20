@@ -37,6 +37,25 @@
             <param name="command"></param>
             <returns></returns>
         </member>
+        <member name="T:Exchange.WebApi.Controllers.TokenController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Exchange.WebApi.Controllers.TokenController.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            
+            </summary>
+            <param name="config"></param>
+            <param name="readService"></param>
+        </member>
+        <member name="M:Exchange.WebApi.Controllers.TokenController.GetToken(Exchange.Domain.Model.UserInfo)">
+            <summary>
+            Get Auth Token
+            </summary>
+            <param name="userData"></param>
+            <returns></returns>
+        </member>
         <member name="T:Exchange.WebApi.Program">
             <summary>
             

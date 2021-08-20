@@ -48,7 +48,7 @@ namespace Exchange.Services
 
 
             var count = fullData.Count();
-            var result = fullData.Skip((query.PageNumber - 1) * query.PageSize).Take(query.PageSize)
+            var result = fullData.OrderBy(it=>it.Id).Skip((query.PageNumber - 1) * query.PageSize).Take(query.PageSize)
                 .Select(it =>new ItemInfo()
                 {
                     Id = it.Id,

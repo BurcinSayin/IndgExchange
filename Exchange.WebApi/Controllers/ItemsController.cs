@@ -5,6 +5,7 @@ using Exchange.Domain.Model;
 using Exchange.Domain.ServiceInterfaces;
 using Exchange.Domain.ServiceInterfaces.Commands;
 using Exchange.Domain.ServiceInterfaces.Queries;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Exchange.WebApi.Controllers
@@ -12,6 +13,7 @@ namespace Exchange.WebApi.Controllers
     /// <summary>
     /// 
     /// </summary>
+    //[Authorize]
     [ApiController]
     [Route("[controller]")]
     public class ItemsController : ControllerBase
