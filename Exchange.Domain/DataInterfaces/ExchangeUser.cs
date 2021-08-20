@@ -2,7 +2,7 @@
 
 namespace Exchange.Domain.DataInterfaces
 {
-    public class Owner
+    public class ExchangeUser
     {
         
         public int Id { get; set; }

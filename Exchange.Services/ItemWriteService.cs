@@ -9,20 +9,20 @@ namespace Exchange.Services
     public class ItemWriteService:IItemWriteService
     {
         private IItemRepository _itemRepository;
-        private IOwnerRepository _ownerRepository;
+        private IExchangeUserRepository _userRepository;
 
-        public ItemWriteService(IItemRepository itemRepository, IOwnerRepository ownerRepository)
+        public ItemWriteService(IItemRepository itemRepository, IExchangeUserRepository ownerRepository)
         {
             _itemRepository = itemRepository;
-            _ownerRepository = ownerRepository;
+            _userRepository = ownerRepository;
         }
 
         public ItemInfo CreateItem(CreateItemCommand createCommand)
         {
-            Owner itemOwner = null;
+            ExchangeUser itemOwner = null;
             if (createCommand.OwnerId.HasValue)
             {
-                itemOwner = _ownerRepository.Get(createCommand.OwnerId.Value);
+                itemOwner = _userRepository.Get(createCommand.OwnerId.Value);
             }
 
             Item toCreate = new Item()

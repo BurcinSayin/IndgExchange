@@ -2,6 +2,7 @@
 using Moq;
 using NUnit.Framework;
 using System;
+using Exchange.Domain.DataInterfaces;
 
 namespace Exchange.Data.Sqlite.Tests
 {
@@ -10,12 +11,20 @@ namespace Exchange.Data.Sqlite.Tests
     {
         private ExchangeDataContext testDataContext;
 
-        [SetUp]
-        public void SetUp()
-        {
 
+        [OneTimeSetUp]
+        public void InitTestDb()
+        {
             testDataContext = new ExchangeDataContext();
+
+            // testDataContext.ExchangeUsers.Add(new Owner());
         }
+        
+        
+        // [SetUp]
+        // public void SetUp()
+        // {
+        // }
 
         private ItemRepository CreateItemRepository()
         {

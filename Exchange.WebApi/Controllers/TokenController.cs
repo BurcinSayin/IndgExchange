@@ -26,7 +26,6 @@ namespace Exchange.WebApi.Controllers
         /// 
         /// </summary>
         /// <param name="config"></param>
-        /// <param name="readService"></param>
         public TokenController(IConfiguration config)
         {
             _configuration = config;

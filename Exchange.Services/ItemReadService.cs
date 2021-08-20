@@ -21,12 +21,7 @@ namespace Exchange.Services
         {
             var item = _itemRepository.Get(itemId);
 
-            return new ItemInfo()
-            {
-                Id = item.Id,
-                ItemName = item.ItemName,
-                Owner = item.Holder != null ? item.Holder.Name : null
-            };
+            return item.ToItemInfo();
         }
 
         public PagedList<ItemInfo> FindItems(FindItemsWithPagingQuery query)
@@ -49,12 +44,7 @@ namespace Exchange.Services
 
             var count = fullData.Count();
             var result = fullData.OrderBy(it=>it.Id).Skip((query.PageNumber - 1) * query.PageSize).Take(query.PageSize)
-                .Select(it =>new ItemInfo()
-                {
-                    Id = it.Id,
-                    ItemName = it.ItemName,
-                    Owner = it.Holder != null ? it.Holder.Name : null
-                })
+                .Select(it =>ItemInfo.MapToInfo(it))
                 .ToList();
 
             return new PagedList<ItemInfo>(result, query.PageNumber, query.PageSize, count);

@@ -60,11 +60,14 @@ namespace Exchange.WebApi
             
             
             services.AddScoped<IItemRepository, ItemRepository>();
-            services.AddScoped<IOwnerRepository, OwnerRepository>();
+            services.AddScoped<IExchangeUserRepository, ExchangeUserRepository>();
             
             
             services.AddScoped<IItemReadService, ItemReadService>();
             services.AddScoped<IItemWriteService, ItemWriteService>();
+            
+            services.AddScoped<IExchangeUserReadService, ExchangeUserReadService>();
+            services.AddScoped<IExchangeUserWriteService, ExchangeUserWriteService>();
             
             
             services.AddControllers();
@@ -76,7 +79,7 @@ namespace Exchange.WebApi
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 generationOption.IncludeXmlComments(xmlPath);
                 
-                generationOption.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme {
+                generationOption.AddSecurityDefinition("Jwt Token", new OpenApiSecurityScheme {
                     In = ParameterLocation.Header, 
                     Description = "Please insert JWT with Bearer into field",
                     Name = "Authorization",

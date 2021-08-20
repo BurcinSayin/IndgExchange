@@ -6,7 +6,7 @@ namespace Exchange.Data.Sqlite
     public class ExchangeDataContext:DbContext
     {
         public virtual DbSet<Item> Items { get; set; }
-        public virtual DbSet<Owner> Owners { get; set; }
+        public virtual DbSet<ExchangeUser> ExchangeUsers { get; set; }
 
         // private string DbPath { get; set; }
         

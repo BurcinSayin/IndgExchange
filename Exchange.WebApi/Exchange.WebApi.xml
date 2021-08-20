@@ -4,6 +4,39 @@
         <name>Exchange.WebApi</name>
     </assembly>
     <members>
+        <member name="T:Exchange.WebApi.Controllers.ExchangeUserController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Exchange.WebApi.Controllers.ExchangeUserController.#ctor(Exchange.Domain.ServiceInterfaces.IExchangeUserReadService,Exchange.Domain.ServiceInterfaces.IExchangeUserWriteService)">
+            <summary>
+            
+            </summary>
+            <param name="userReadService"></param>
+            <param name="userWriteService"></param>
+        </member>
+        <member name="M:Exchange.WebApi.Controllers.ExchangeUserController.Get(System.Int32)">
+            <summary>
+            Gets the Exchange User with the given Id
+            </summary>
+            <param name="id">User Id to get</param>
+            <returns></returns>
+        </member>
+        <member name="M:Exchange.WebApi.Controllers.ExchangeUserController.GetAll(Exchange.Domain.ServiceInterfaces.Queries.FindUsersWithPagingQuery)">
+            <summary>
+            
+            </summary>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Exchange.WebApi.Controllers.ExchangeUserController.Create(Exchange.Domain.ServiceInterfaces.Commands.CreateExchangeUserCommand)">
+            <summary>
+            Creates an Exchange User
+            </summary>
+            <param name="command"></param>
+            <returns></returns>
+        </member>
         <member name="T:Exchange.WebApi.Controllers.ItemsController">
             <summary>
             
@@ -47,7 +80,6 @@
             
             </summary>
             <param name="config"></param>
-            <param name="readService"></param>
         </member>
         <member name="M:Exchange.WebApi.Controllers.TokenController.GetToken(Exchange.Domain.Model.UserInfo)">
             <summary>

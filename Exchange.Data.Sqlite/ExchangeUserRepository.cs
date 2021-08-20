@@ -4,39 +4,39 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Exchange.Data.Sqlite
 {
-    public class OwnerRepository:IOwnerRepository
+    public class ExchangeUserRepository:IExchangeUserRepository
     {
         private ExchangeDataContext _context;
         
-        public OwnerRepository(ExchangeDataContext context)
+        public ExchangeUserRepository(ExchangeDataContext context)
         {
             _context = context;
             _context.Database?.EnsureCreated();
         }
         
-        public IQueryable<Owner> GetAll()
+        public IQueryable<ExchangeUser> GetAll()
         {
-            return _context.Owners.AsNoTracking();
+            return _context.ExchangeUsers.AsNoTracking();
         }
 
-        public Owner Get(int ownerId)
+        public ExchangeUser Get(int userId)
         {
-            return _context.Owners.AsNoTracking().FirstOrDefault(owner => owner.Id == ownerId);
+            return _context.ExchangeUsers.AsNoTracking().FirstOrDefault(usr => usr.Id == userId);
         }
 
-        public Owner Add(Owner toAdd)
+        public ExchangeUser Add(ExchangeUser toAdd)
         {
-            _context.Owners.Add(toAdd);
+            _context.ExchangeUsers.Add(toAdd);
             _context.SaveChanges();
             return toAdd;
         }
 
-        public bool Delete(int ownerId)
+        public bool Delete(int userId)
         {
-            var toDelete = _context.Owners.FirstOrDefault(owner => owner.Id == ownerId);
+            var toDelete = _context.ExchangeUsers.FirstOrDefault(usr => usr.Id == userId);
             if (toDelete != null)
             {
-                var res = _context.Owners.Remove(toDelete);
+                var res = _context.ExchangeUsers.Remove(toDelete);
                 return (_context.SaveChanges() > 0);
             }
 
@@ -44,7 +44,7 @@ namespace Exchange.Data.Sqlite
         }
 
         //TODO: may need to fix this
-        public Owner Update(Owner toUpdate)
+        public ExchangeUser Update(ExchangeUser toUpdate)
         {
             _context.Update(toUpdate);
             _context.SaveChanges();

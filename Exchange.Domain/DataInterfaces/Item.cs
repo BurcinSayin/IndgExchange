@@ -5,6 +5,6 @@
         public int Id { get; set; }
         public string ItemName { get; set; }
         
-        public Owner Holder { get; set; }
+        public ExchangeUser Holder { get; set; }
     }
 }
