@@ -4,6 +4,6 @@
     {
         void AddBehaviour(IExchangeBehaviour toAdd);
 
-        void HandleCommand(IBehaviourCommand command);
+        // void HandleCommand(IBehaviourCommand command);
     }
 }
