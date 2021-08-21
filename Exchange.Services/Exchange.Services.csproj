@@ -12,4 +12,8 @@
       <Compile Remove="CreateItemStrategy.cs" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Response" />
+    </ItemGroup>
+
 </Project>
