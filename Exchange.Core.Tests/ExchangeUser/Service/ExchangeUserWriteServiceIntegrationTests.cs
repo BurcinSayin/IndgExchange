@@ -2,6 +2,7 @@
 using Exchange.Services;
 using NUnit.Framework;
 using System;
+using Exchange.Core.ExchangeUser.Service;
 using Exchange.Data.Sqlite;
 using Exchange.Domain.ExchangeUser.Command;
 

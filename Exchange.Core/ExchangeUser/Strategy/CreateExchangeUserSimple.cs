@@ -1,17 +1,15 @@
 ﻿using Exchange.Domain.DataInterfaces;
 using Exchange.Domain.ExchangeUser.Command;
-using Exchange.Domain.ExchangeUser.Entity;
 using Exchange.Domain.ExchangeUser.Strategy;
 
-
-namespace Exchange.Services.ConcreteStrategy
+namespace Exchange.Core.ExchangeUser.Strategy
 {
     public class CreateExchangeUserSimple:ICreateExchangeUserStategy
     {
-        public ExchangeUser Create(IItemRepository itemRepository, IExchangeUserRepository exchangeUserRepository,
+        public Domain.ExchangeUser.Entity.ExchangeUser Create(IItemRepository itemRepository, IExchangeUserRepository exchangeUserRepository,
             CreateExchangeUserCommand command)
         {
-            ExchangeUser toCreate = new ExchangeUser()
+            Domain.ExchangeUser.Entity.ExchangeUser toCreate = new Domain.ExchangeUser.Entity.ExchangeUser()
             {
                 Name = command.UserName
             };

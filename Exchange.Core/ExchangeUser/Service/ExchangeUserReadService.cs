@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Linq;
+using Exchange.Core.Shared;
 using Exchange.Domain.Common.Response;
 using Exchange.Domain.DataInterfaces;
 using Exchange.Domain.ExchangeUser.Query;
 using Exchange.Domain.ExchangeUser.Response;
 using Exchange.Domain.ExchangeUser.Service;
-using Exchange.Domain.Model;
 
-namespace Exchange.Services
+namespace Exchange.Core.ExchangeUser.Service
 {
     public class ExchangeUserReadService:IExchangeUserReadService
     {

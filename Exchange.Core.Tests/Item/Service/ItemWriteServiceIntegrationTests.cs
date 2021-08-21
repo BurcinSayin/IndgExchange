@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Exchange.Core.Item.Service;
 using Exchange.Data.Sqlite;
 using Exchange.Domain.Item.Command;
 using NUnit.Framework;

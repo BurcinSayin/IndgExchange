@@ -1,13 +1,12 @@
 ﻿using Exchange.Domain.DataInterfaces;
 using Exchange.Domain.Item.Command;
-using Exchange.Domain.Item.Entity;
 using Exchange.Domain.Item.Strategy;
 
-namespace Exchange.Services.ConcreteStrategy
+namespace Exchange.Core.Item.Strategy
 {
     public class UpdateItemWithTransaction:IUpdateItemStrategy
     {
-        public Item Update(IItemRepository itemRepository, IExchangeUserRepository exchangeUserRepository, UpdateItemCommand command)
+        public Domain.Item.Entity.Item Update(IItemRepository itemRepository, IExchangeUserRepository exchangeUserRepository, UpdateItemCommand command)
         {
             var transaction = itemRepository.BeginTransaction();
 

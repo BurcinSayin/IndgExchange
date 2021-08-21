@@ -3,15 +3,17 @@ using Exchange.Services;
 using Moq;
 using NUnit.Framework;
 using System;
-using Exchange.Domain.ExchangeUser.Query;
+using Exchange.Core.Item.Service;
+using Exchange.Domain.Item.Command;
 
 namespace Exchange.Services.Tests
 {
     [TestFixture]
-    public class ExchangeUserReadServiceTests
+    public class ItemWriteServiceTests
     {
         private MockRepository mockRepository;
 
+        private Mock<IItemRepository> mockItemRepository;
         private Mock<IExchangeUserRepository> mockExchangeUserRepository;
 
         [SetUp]
@@ -19,41 +21,27 @@ namespace Exchange.Services.Tests
         {
             this.mockRepository = new MockRepository(MockBehavior.Strict);
 
+            this.mockItemRepository = this.mockRepository.Create<IItemRepository>();
             this.mockExchangeUserRepository = this.mockRepository.Create<IExchangeUserRepository>();
         }
 
-        private ExchangeUserReadService CreateService()
+        private ItemWriteService CreateService()
         {
-            return new ExchangeUserReadService(
+            return new ItemWriteService(
+                this.mockItemRepository.Object,
                 this.mockExchangeUserRepository.Object);
         }
 
         [Test]
-        public void GetItem_StateUnderTest_ExpectedBehavior()
+        public void CreateItem_StateUnderTest_ExpectedBehavior()
         {
             // Arrange
             var service = this.CreateService();
-            int id = 0;
+            CreateItemCommand createCommand = null;
 
             // Act
-            var result = service.GetItem(
-                id);
-
-            // Assert
-            Assert.Fail();
-            this.mockRepository.VerifyAll();
-        }
-
-        [Test]
-        public void FindItems_StateUnderTest_ExpectedBehavior()
-        {
-            // Arrange
-            var service = this.CreateService();
-            FindUsersWithPagingQuery query = null;
-
-            // Act
-            var result = service.FindItems(
-                query);
+            var result = service.CreateItem(
+                createCommand);
 
             // Assert
             Assert.Fail();

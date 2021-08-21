@@ -3,16 +3,16 @@ using Exchange.Services;
 using Moq;
 using NUnit.Framework;
 using System;
-using Exchange.Domain.ExchangeUser.Command;
+using Exchange.Core.ExchangeUser.Service;
+using Exchange.Domain.ExchangeUser.Query;
 
 namespace Exchange.Services.Tests
 {
     [TestFixture]
-    public class ExchangeUserWriteServiceTests
+    public class ExchangeUserReadServiceTests
     {
         private MockRepository mockRepository;
 
-        private Mock<IItemRepository> mockItemRepository;
         private Mock<IExchangeUserRepository> mockExchangeUserRepository;
 
         [SetUp]
@@ -20,26 +20,41 @@ namespace Exchange.Services.Tests
         {
             this.mockRepository = new MockRepository(MockBehavior.Strict);
 
-            this.mockItemRepository = this.mockRepository.Create<IItemRepository>();
             this.mockExchangeUserRepository = this.mockRepository.Create<IExchangeUserRepository>();
         }
 
-        private ExchangeUserWriteService CreateService()
+        private ExchangeUserReadService CreateService()
         {
-            return new ExchangeUserWriteService(this.mockItemRepository.Object,
+            return new ExchangeUserReadService(
                 this.mockExchangeUserRepository.Object);
         }
 
         [Test]
-        public void CreateExchangeUser_StateUnderTest_ExpectedBehavior()
+        public void GetItem_StateUnderTest_ExpectedBehavior()
         {
             // Arrange
             var service = this.CreateService();
-            CreateExchangeUserCommand command = null;
+            int id = 0;
 
             // Act
-            var result = service.CreateExchangeUser(
-                command);
+            var result = service.GetItem(
+                id);
+
+            // Assert
+            Assert.Fail();
+            this.mockRepository.VerifyAll();
+        }
+
+        [Test]
+        public void FindItems_StateUnderTest_ExpectedBehavior()
+        {
+            // Arrange
+            var service = this.CreateService();
+            FindUsersWithPagingQuery query = null;
+
+            // Act
+            var result = service.FindItems(
+                query);
 
             // Assert
             Assert.Fail();

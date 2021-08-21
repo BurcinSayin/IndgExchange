@@ -1,12 +1,12 @@
-﻿using Exchange.Domain.DataInterfaces;
+﻿using Exchange.Core.ExchangeUser.Strategy;
+using Exchange.Core.Shared;
+using Exchange.Domain.DataInterfaces;
 using Exchange.Domain.ExchangeUser.Command;
 using Exchange.Domain.ExchangeUser.Response;
 using Exchange.Domain.ExchangeUser.Service;
 using Exchange.Domain.ExchangeUser.Strategy;
-using Exchange.Domain.Model;
-using Exchange.Services.ConcreteStrategy;
 
-namespace Exchange.Services
+namespace Exchange.Core.ExchangeUser.Service
 {
     public class ExchangeUserWriteService:IExchangeUserWriteService
     {

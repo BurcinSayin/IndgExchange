@@ -2,7 +2,7 @@
 using Exchange.Domain.Item.Command;
 using Exchange.Domain.Item.Strategy;
 
-namespace Exchange.Services.ConcreteStrategy
+namespace Exchange.Core.Item.Strategy
 {
     public class DeleteItemSimple:IDeleteItemStrategy
     {

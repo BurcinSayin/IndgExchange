@@ -3,12 +3,13 @@ using Exchange.Services;
 using Moq;
 using NUnit.Framework;
 using System;
-using Exchange.Domain.Item.Command;
+using Exchange.Core.ExchangeUser.Service;
+using Exchange.Domain.ExchangeUser.Command;
 
 namespace Exchange.Services.Tests
 {
     [TestFixture]
-    public class ItemWriteServiceTests
+    public class ExchangeUserWriteServiceTests
     {
         private MockRepository mockRepository;
 
@@ -24,23 +25,22 @@ namespace Exchange.Services.Tests
             this.mockExchangeUserRepository = this.mockRepository.Create<IExchangeUserRepository>();
         }
 
-        private ItemWriteService CreateService()
+        private ExchangeUserWriteService CreateService()
         {
-            return new ItemWriteService(
-                this.mockItemRepository.Object,
+            return new ExchangeUserWriteService(this.mockItemRepository.Object,
                 this.mockExchangeUserRepository.Object);
         }
 
         [Test]
-        public void CreateItem_StateUnderTest_ExpectedBehavior()
+        public void CreateExchangeUser_StateUnderTest_ExpectedBehavior()
         {
             // Arrange
             var service = this.CreateService();
-            CreateItemCommand createCommand = null;
+            CreateExchangeUserCommand command = null;
 
             // Act
-            var result = service.CreateItem(
-                createCommand);
+            var result = service.CreateExchangeUser(
+                command);
 
             // Assert
             Assert.Fail();

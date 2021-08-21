@@ -1,12 +1,12 @@
-﻿using Exchange.Domain.DataInterfaces;
+﻿using Exchange.Core.Item.Strategy;
+using Exchange.Core.Shared;
+using Exchange.Domain.DataInterfaces;
 using Exchange.Domain.Item.Command;
 using Exchange.Domain.Item.Response;
 using Exchange.Domain.Item.Service;
 using Exchange.Domain.Item.Strategy;
-using Exchange.Domain.Model;
-using Exchange.Services.ConcreteStrategy;
 
-namespace Exchange.Services
+namespace Exchange.Core.Item.Service
 {
     public class ItemWriteService:IItemWriteService
     {
