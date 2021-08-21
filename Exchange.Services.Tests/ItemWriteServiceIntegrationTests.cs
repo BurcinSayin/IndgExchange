@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Exchange.Data.Sqlite;
-using Exchange.Domain.ServiceInterfaces.Commands;
+using Exchange.Domain.Item.Command;
 using NUnit.Framework;
 
 namespace Exchange.Services.Tests

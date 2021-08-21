@@ -1,6 +1,7 @@
 ﻿using System.Data;
 using System.Linq;
 using Exchange.Domain.DataInterfaces;
+using Exchange.Domain.Item.Entity;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;

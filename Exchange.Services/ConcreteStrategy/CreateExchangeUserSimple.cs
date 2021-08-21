@@ -1,7 +1,8 @@
 ﻿using Exchange.Domain.DataInterfaces;
-using Exchange.Domain.ServiceInterfaces.Commands;
-using Exchange.Domain.Strategy;
-using Exchange.Domain.Strategy.ExchangeUser;
+using Exchange.Domain.ExchangeUser.Command;
+using Exchange.Domain.ExchangeUser.Entity;
+using Exchange.Domain.ExchangeUser.Strategy;
+
 
 namespace Exchange.Services.ConcreteStrategy
 {

@@ -3,7 +3,7 @@ using Exchange.Services;
 using Moq;
 using NUnit.Framework;
 using System;
-using Exchange.Domain.ServiceInterfaces.Commands;
+using Exchange.Domain.Item.Command;
 
 namespace Exchange.Services.Tests
 {

@@ -1,10 +1,9 @@
 ﻿using Exchange.Domain.DataInterfaces;
+using Exchange.Domain.ExchangeUser.Command;
+using Exchange.Domain.ExchangeUser.Response;
+using Exchange.Domain.ExchangeUser.Service;
+using Exchange.Domain.ExchangeUser.Strategy;
 using Exchange.Domain.Model;
-using Exchange.Domain.ServiceInterfaces;
-using Exchange.Domain.ServiceInterfaces.Commands;
-using Exchange.Domain.Strategy;
-using Exchange.Domain.Strategy.ExchangeUser;
-using Exchange.Domain.Strategy.Item;
 using Exchange.Services.ConcreteStrategy;
 
 namespace Exchange.Services

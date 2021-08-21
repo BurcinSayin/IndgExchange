@@ -4,12 +4,12 @@ namespace Exchange.Domain.DataInterfaces
 {
     public interface IExchangeUserRepository
     {
-        IQueryable<ExchangeUser> GetAll();
-        ExchangeUser Get(int userId);
-        ExchangeUser Add(ExchangeUser toAdd);
+        IQueryable<ExchangeUser.Entity.ExchangeUser> GetAll();
+        ExchangeUser.Entity.ExchangeUser Get(int userId);
+        ExchangeUser.Entity.ExchangeUser Add(ExchangeUser.Entity.ExchangeUser toAdd);
         bool Delete(int userId);
-        ExchangeUser Update(ExchangeUser toUpdate);
-        ExchangeUser FindById(int userId, IDataTransaction transaction);
+        ExchangeUser.Entity.ExchangeUser Update(ExchangeUser.Entity.ExchangeUser toUpdate);
+        ExchangeUser.Entity.ExchangeUser FindById(int userId, IDataTransaction transaction);
         
         IDataTransaction BeginTransaction();
     }

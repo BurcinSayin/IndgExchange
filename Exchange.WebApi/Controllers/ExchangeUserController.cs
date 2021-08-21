@@ -1,8 +1,10 @@
 ﻿using System;
+using Exchange.Domain.Common.Response;
+using Exchange.Domain.ExchangeUser.Command;
+using Exchange.Domain.ExchangeUser.Query;
+using Exchange.Domain.ExchangeUser.Response;
+using Exchange.Domain.ExchangeUser.Service;
 using Exchange.Domain.Model;
-using Exchange.Domain.ServiceInterfaces;
-using Exchange.Domain.ServiceInterfaces.Commands;
-using Exchange.Domain.ServiceInterfaces.Queries;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Exchange.WebApi.Controllers

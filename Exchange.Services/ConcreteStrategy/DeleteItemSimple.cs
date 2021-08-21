@@ -1,6 +1,6 @@
 ﻿using Exchange.Domain.DataInterfaces;
-using Exchange.Domain.ServiceInterfaces.Commands;
-using Exchange.Domain.Strategy.Item;
+using Exchange.Domain.Item.Command;
+using Exchange.Domain.Item.Strategy;
 
 namespace Exchange.Services.ConcreteStrategy
 {

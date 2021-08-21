@@ -9,7 +9,7 @@
             
             </summary>
         </member>
-        <member name="M:Exchange.WebApi.Controllers.ExchangeUserController.#ctor(Exchange.Domain.ServiceInterfaces.IExchangeUserReadService,Exchange.Domain.ServiceInterfaces.IExchangeUserWriteService)">
+        <member name="M:Exchange.WebApi.Controllers.ExchangeUserController.#ctor(Exchange.Domain.ExchangeUser.Service.IExchangeUserReadService,Exchange.Domain.ExchangeUser.Service.IExchangeUserWriteService)">
             <summary>
             
             </summary>
@@ -23,14 +23,14 @@
             <param name="id">User Id to get</param>
             <returns></returns>
         </member>
-        <member name="M:Exchange.WebApi.Controllers.ExchangeUserController.GetAll(Exchange.Domain.ServiceInterfaces.Queries.FindUsersWithPagingQuery)">
+        <member name="M:Exchange.WebApi.Controllers.ExchangeUserController.GetAll(Exchange.Domain.ExchangeUser.Query.FindUsersWithPagingQuery)">
             <summary>
             
             </summary>
             <param name="query"></param>
             <returns></returns>
         </member>
-        <member name="M:Exchange.WebApi.Controllers.ExchangeUserController.Create(Exchange.Domain.ServiceInterfaces.Commands.CreateExchangeUserCommand)">
+        <member name="M:Exchange.WebApi.Controllers.ExchangeUserController.Create(Exchange.Domain.ExchangeUser.Command.CreateExchangeUserCommand)">
             <summary>
             Creates an Exchange User
             </summary>
@@ -42,7 +42,7 @@
             
             </summary>
         </member>
-        <member name="M:Exchange.WebApi.Controllers.ItemsController.#ctor(Exchange.Domain.ServiceInterfaces.IItemWriteService,Exchange.Domain.ServiceInterfaces.IItemReadService)">
+        <member name="M:Exchange.WebApi.Controllers.ItemsController.#ctor(Exchange.Domain.Item.Service.IItemWriteService,Exchange.Domain.Item.Service.IItemReadService)">
             <summary>
             
             </summary>
@@ -56,21 +56,21 @@
             <param name="id">Item Id to get</param>
             <returns></returns>
         </member>
-        <member name="M:Exchange.WebApi.Controllers.ItemsController.GetAll(Exchange.Domain.ServiceInterfaces.Queries.FindItemsWithPagingQuery)">
+        <member name="M:Exchange.WebApi.Controllers.ItemsController.GetAll(Exchange.Domain.Item.Query.FindItemsWithPagingQuery)">
             <summary>
             
             </summary>
             <param name="query"></param>
             <returns></returns>
         </member>
-        <member name="M:Exchange.WebApi.Controllers.ItemsController.Create(Exchange.Domain.ServiceInterfaces.Commands.CreateItemCommand)">
+        <member name="M:Exchange.WebApi.Controllers.ItemsController.Create(Exchange.Domain.Item.Command.CreateItemCommand)">
             <summary>
             Creates an Item
             </summary>
             <param name="command"></param>
             <returns></returns>
         </member>
-        <member name="M:Exchange.WebApi.Controllers.ItemsController.Update(Exchange.Domain.ServiceInterfaces.Commands.UpdateItemCommand)">
+        <member name="M:Exchange.WebApi.Controllers.ItemsController.Update(Exchange.Domain.Item.Command.UpdateItemCommand)">
             <summary>
             
             </summary>
@@ -88,7 +88,7 @@
             </summary>
             <param name="config"></param>
         </member>
-        <member name="M:Exchange.WebApi.Controllers.TokenController.GetToken(Exchange.Domain.ServiceInterfaces.Commands.CreateTokenCommand)">
+        <member name="M:Exchange.WebApi.Controllers.TokenController.GetToken(Exchange.Domain.Common.Command.CreateTokenCommand)">
             <summary>
             
             </summary>

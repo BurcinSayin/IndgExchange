@@ -3,7 +3,7 @@ using Exchange.Services;
 using NUnit.Framework;
 using System;
 using Exchange.Data.Sqlite;
-using Exchange.Domain.ServiceInterfaces.Commands;
+using Exchange.Domain.ExchangeUser.Command;
 
 namespace Exchange.Services.Tests
 {

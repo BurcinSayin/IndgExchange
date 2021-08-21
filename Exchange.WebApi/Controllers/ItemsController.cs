@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Exchange.Domain.Common.Response;
+using Exchange.Domain.Item.Command;
+using Exchange.Domain.Item.Query;
+using Exchange.Domain.Item.Response;
+using Exchange.Domain.Item.Service;
 using Exchange.Domain.Model;
-using Exchange.Domain.ServiceInterfaces;
-using Exchange.Domain.ServiceInterfaces.Commands;
-using Exchange.Domain.ServiceInterfaces.Queries;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
