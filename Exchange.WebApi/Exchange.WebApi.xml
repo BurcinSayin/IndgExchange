@@ -70,6 +70,13 @@
             <param name="command"></param>
             <returns></returns>
         </member>
+        <member name="M:Exchange.WebApi.Controllers.ItemsController.Update(Exchange.Domain.ServiceInterfaces.Commands.UpdateItemCommand)">
+            <summary>
+            
+            </summary>
+            <param name="command"></param>
+            <returns></returns>
+        </member>
         <member name="T:Exchange.WebApi.Controllers.TokenController">
             <summary>
             

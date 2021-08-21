@@ -9,9 +9,8 @@ namespace Exchange.Domain.DataInterfaces
         Item Add(Item toAdd);
         bool Delete(int itemId);
         Item Update(Item toUpdate);
-
-
-        bool MoveItem(int from, int to, int itemId);
+        
         IDataTransaction BeginTransaction();
+        Item FindById(int commandItemId, IDataTransaction transaction);
     }
 }

@@ -52,9 +52,9 @@ namespace Exchange.WebApi.Controllers
         /// <param name="query"></param>
         /// <returns></returns>
         [HttpGet]
-        public PagedList<ItemInfo> GetAll([FromQuery] FindItemsWithPagingQuery query)
+        public ActionResult<PagedList<ItemInfo>> GetAll([FromQuery] FindItemsWithPagingQuery query)
         {
-            return _itemReadService.FindItems(query);
+            return Ok(_itemReadService.FindItems(query));
         }
         
         /// <summary>
@@ -63,12 +63,39 @@ namespace Exchange.WebApi.Controllers
         /// <param name="command"></param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult Create(CreateItemCommand command)
+        public ActionResult<ItemInfo> Create(CreateItemCommand command)
         {
             try
             {
                 var resultItem = _itemWriteService.CreateItem(command);
                 return this.CreatedAtAction("Get",new {id = resultItem.Id},resultItem);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="command"></param>
+        /// <returns></returns>
+        [HttpPut]
+        public ActionResult<ItemInfo> Update(UpdateItemCommand command)
+        {
+            var updatedItem = _itemWriteService.UpdateItem(command);
+
+            return Ok(updatedItem);
+        }
+
+        [HttpDelete("{id}")]
+        public ActionResult Delete(int id)
+        {
+            try
+            {
+                _itemWriteService.DeleteItem(new DeleteItemCommand(){ItemId = id});
+                return NoContent();
             }
             catch (Exception ex)
             {

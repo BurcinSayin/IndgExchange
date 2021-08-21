@@ -53,25 +53,30 @@ namespace Exchange.Data.Sqlite
             return toUpdate;
         }
 
-        public bool MoveItem(int fromId, int toId, int itemId)
-        {
-            var transaction = _context.Database.BeginTransaction(IsolationLevel.ReadCommitted);
-
-
-            
-             
-            _context.Database.ExecuteSqlRaw(
-                "UPDATE Items SET HolderId = {0} WHERE Id = {1} AND HolderId = {2};",toId,fromId,itemId);
-            
-            
-            transaction.Commit();
-
-            return true;
-        }
+        // public bool MoveItem(int fromId, int toId, int itemId)
+        // {
+        //     var transaction = _context.Database.BeginTransaction(IsolationLevel.ReadCommitted);
+        //
+        //
+        //     
+        //      
+        //     _context.Database.ExecuteSqlRaw(
+        //         "UPDATE Items SET HolderId = {0} WHERE Id = {1} AND HolderId = {2};",toId,fromId,itemId);
+        //     
+        //     
+        //     transaction.Commit();
+        //
+        //     return true;
+        // }
 
         public IDataTransaction BeginTransaction()
         {
             return new ExchangeSqliteTransaction(_context.Database.BeginTransaction(IsolationLevel.RepeatableRead));
+        }
+
+        public Item FindById(int itemId, IDataTransaction transaction)
+        {
+            return _context.Items.FirstOrDefault(it => it.Id == itemId);
         }
     }
 }

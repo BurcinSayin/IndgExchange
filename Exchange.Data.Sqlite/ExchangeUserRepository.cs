@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Data;
+using System.Linq;
 using Exchange.Domain.DataInterfaces;
 using Microsoft.EntityFrameworkCore;
 
@@ -54,6 +55,11 @@ namespace Exchange.Data.Sqlite
         public ExchangeUser FindById(int userId, IDataTransaction transaction)
         {
             return _context.ExchangeUsers.FirstOrDefault(usr => usr.Id == userId);
+        }
+
+        public IDataTransaction BeginTransaction()
+        {
+            return new ExchangeSqliteTransaction(_context.Database.BeginTransaction(IsolationLevel.RepeatableRead));
         }
     }
 }

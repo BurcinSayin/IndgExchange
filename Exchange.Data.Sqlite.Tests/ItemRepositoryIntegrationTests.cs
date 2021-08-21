@@ -32,23 +32,23 @@ namespace Exchange.Data.Sqlite.Tests
         }
 
        
-        [Test]
-        public void MoveItem_StateUnderTest_ExpectedBehavior()
-        {
-            // Arrange
-            var itemRepository = this.CreateItemRepository();
-            int fromId = 1;
-            int toId = 2;
-            int itemId = 1;
-
-            // Act
-            var result = itemRepository.MoveItem(
-                fromId,
-                toId,
-                itemId);
-
-            // Assert
-            Assert.Pass();
-        }
+        // [Test]
+        // public void MoveItem_StateUnderTest_ExpectedBehavior()
+        // {
+        //     // Arrange
+        //     var itemRepository = this.CreateItemRepository();
+        //     int fromId = 1;
+        //     int toId = 2;
+        //     int itemId = 1;
+        //
+        //     // Act
+        //     var result = itemRepository.MoveItem(
+        //         fromId,
+        //         toId,
+        //         itemId);
+        //
+        //     // Assert
+        //     Assert.Pass();
+        // }
     }
 }

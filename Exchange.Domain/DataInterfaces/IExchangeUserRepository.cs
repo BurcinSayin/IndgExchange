@@ -10,5 +10,7 @@ namespace Exchange.Domain.DataInterfaces
         bool Delete(int userId);
         ExchangeUser Update(ExchangeUser toUpdate);
         ExchangeUser FindById(int userId, IDataTransaction transaction);
+        
+        IDataTransaction BeginTransaction();
     }
 }

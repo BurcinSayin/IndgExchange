@@ -6,5 +6,7 @@ namespace Exchange.Domain.ServiceInterfaces
     public interface IItemWriteService
     {
         ItemInfo CreateItem(CreateItemCommand createCommand);
+        ItemInfo UpdateItem(UpdateItemCommand command);
+        void DeleteItem(DeleteItemCommand command);
     }
 }
