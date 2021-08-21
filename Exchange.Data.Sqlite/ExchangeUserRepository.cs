@@ -50,5 +50,10 @@ namespace Exchange.Data.Sqlite
             _context.SaveChanges();
             return toUpdate;
         }
+
+        public ExchangeUser FindById(int userId, IDataTransaction transaction)
+        {
+            return _context.ExchangeUsers.FirstOrDefault(usr => usr.Id == userId);
+        }
     }
 }

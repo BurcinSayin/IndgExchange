@@ -5,6 +5,7 @@ using System.Text;
 using Exchange.Domain.DataInterfaces;
 using Exchange.Domain.Model;
 using Exchange.Domain.ServiceInterfaces;
+using Exchange.Domain.ServiceInterfaces.Commands;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -38,12 +39,12 @@ namespace Exchange.WebApi.Controllers
         /// <param name="userData"></param>
         /// <returns></returns>
         [HttpPost]
-        public IActionResult GetToken(UserInfo userData)
+        public IActionResult GetToken(CreateTokenCommand tokenCommand)
         {
-            if (userData != null && userData.UserName != null && userData.Password != null)
+            if (tokenCommand != null && tokenCommand.UserName != null && tokenCommand.Password != null)
             {
-                bool passCheck = userData.UserName.Equals("admin", StringComparison.InvariantCultureIgnoreCase)
-                                 && userData.Password.Equals("admin", StringComparison.InvariantCultureIgnoreCase);
+                bool passCheck = tokenCommand.UserName.Equals("admin", StringComparison.InvariantCultureIgnoreCase)
+                                 && tokenCommand.Password.Equals("admin", StringComparison.InvariantCultureIgnoreCase);
 
                 if (passCheck)
                 {

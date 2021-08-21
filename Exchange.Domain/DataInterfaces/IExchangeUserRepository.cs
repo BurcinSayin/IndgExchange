@@ -9,5 +9,6 @@ namespace Exchange.Domain.DataInterfaces
         ExchangeUser Add(ExchangeUser toAdd);
         bool Delete(int userId);
         ExchangeUser Update(ExchangeUser toUpdate);
+        ExchangeUser FindById(int userId, IDataTransaction transaction);
     }
 }

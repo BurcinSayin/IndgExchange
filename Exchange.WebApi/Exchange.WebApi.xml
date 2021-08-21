@@ -81,7 +81,7 @@
             </summary>
             <param name="config"></param>
         </member>
-        <member name="M:Exchange.WebApi.Controllers.TokenController.GetToken(Exchange.Domain.Model.UserInfo)">
+        <member name="M:Exchange.WebApi.Controllers.TokenController.GetToken(Exchange.Domain.ServiceInterfaces.Commands.CreateTokenCommand)">
             <summary>
             Get Auth Token
             </summary>

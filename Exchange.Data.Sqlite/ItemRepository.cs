@@ -3,6 +3,7 @@ using System.Linq;
 using Exchange.Domain.DataInterfaces;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace Exchange.Data.Sqlite
 {
@@ -66,6 +67,11 @@ namespace Exchange.Data.Sqlite
             transaction.Commit();
 
             return true;
+        }
+
+        public IDataTransaction BeginTransaction()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

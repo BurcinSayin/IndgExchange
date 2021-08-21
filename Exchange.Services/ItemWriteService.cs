@@ -11,10 +11,10 @@ namespace Exchange.Services
         private IItemRepository _itemRepository;
         private IExchangeUserRepository _userRepository;
 
-        public ItemWriteService(IItemRepository itemRepository, IExchangeUserRepository ownerRepository)
+        public ItemWriteService(IItemRepository itemRepository, IExchangeUserRepository userRepository)
         {
             _itemRepository = itemRepository;
-            _userRepository = ownerRepository;
+            _userRepository = userRepository;
         }
 
         public ItemInfo CreateItem(CreateItemCommand createCommand)

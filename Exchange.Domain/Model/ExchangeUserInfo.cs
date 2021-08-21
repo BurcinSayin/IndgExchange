@@ -18,7 +18,7 @@ namespace Exchange.Domain.Model
             {
                 Id = toMap.Id,
                 Name = toMap.Name,
-                ItemList = toMap.ItemList.Select(ItemInfo.MapToInfo).ToList()
+                ItemList = toMap.ItemList != null ? toMap.ItemList.Select(ItemInfo.MapToInfo).ToList() : null
             };
         }
     }

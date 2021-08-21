@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Exchange.Data.Sqlite", "Exc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Exchange.Data.Sqlite.Tests", "Exchange.Data.Sqlite.Tests\Exchange.Data.Sqlite.Tests.csproj", "{388C15B7-14FC-49AA-A005-B92780CB5770}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exchange.Services.Tests", "Exchange.Services.Tests\Exchange.Services.Tests.csproj", "{1CEA3624-8C80-4E41-9FA4-6FD912ADD904}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{388C15B7-14FC-49AA-A005-B92780CB5770}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{388C15B7-14FC-49AA-A005-B92780CB5770}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{388C15B7-14FC-49AA-A005-B92780CB5770}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1CEA3624-8C80-4E41-9FA4-6FD912ADD904}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CEA3624-8C80-4E41-9FA4-6FD912ADD904}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1CEA3624-8C80-4E41-9FA4-6FD912ADD904}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1CEA3624-8C80-4E41-9FA4-6FD912ADD904}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

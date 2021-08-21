@@ -12,5 +12,6 @@ namespace Exchange.Domain.DataInterfaces
 
 
         bool MoveItem(int from, int to, int itemId);
+        IDataTransaction BeginTransaction();
     }
 }

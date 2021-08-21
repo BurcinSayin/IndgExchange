@@ -23,6 +23,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace Exchange.WebApi
 {
@@ -72,49 +73,60 @@ namespace Exchange.WebApi
             
             services.AddControllers();
             
-            services.AddSwaggerGen(generationOption =>
-            {
-                generationOption.SwaggerDoc("v1", new OpenApiInfo(){ Title = "Image API", Version = "v1" });
-                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-                generationOption.IncludeXmlComments(xmlPath);
-                
-                generationOption.AddSecurityDefinition("Jwt Token", new OpenApiSecurityScheme {
-                    In = ParameterLocation.Header, 
-                    Description = "Please insert JWT with Bearer into field",
-                    Name = "Authorization",
-                    Type = SecuritySchemeType.ApiKey ,
-                    BearerFormat = "Bearer "
-                });
-                
-                generationOption.AddSecurityRequirement(new OpenApiSecurityRequirement {
-                    { 
-                        new OpenApiSecurityScheme 
-                        { 
-                            Reference = new OpenApiReference 
-                            { 
-                                Type = ReferenceType.SecurityScheme,
-                                Id = "Bearer" 
-                            } 
-                        },
-                        new string[] { } 
-                    } 
-                });
-            });
+            services.AddSwaggerGen(SetSwaggerOptions);
             
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(SetJwtOptions);
+        }
+
+        private static void SetSwaggerOptions(SwaggerGenOptions generationOption)
+        {
+            generationOption.SwaggerDoc("v1", new OpenApiInfo() { Title = "Image API", Version = "v1" });
+            var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+            //var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+            
+
+            foreach (var xmlDocFile in Directory.GetFiles(AppContext.BaseDirectory,"Exchange.*.xml"))
             {
-                options.RequireHttpsMetadata = false;
-                options.SaveToken = true;
-                options.TokenValidationParameters = new TokenValidationParameters()
-                {
-                    ValidateIssuer = true,
-                    ValidateAudience = true,
-                    ValidAudience = Configuration["Jwt:Audience"],
-                    ValidIssuer = Configuration["Jwt:Issuer"],
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
-                };
+                generationOption.IncludeXmlComments(xmlDocFile);
+            }
+
+            generationOption.AddSecurityDefinition("Jwt Token", new OpenApiSecurityScheme
+            {
+                In = ParameterLocation.Header,
+                Description = "Please insert JWT with Bearer into field",
+                Name = "Authorization",
+                Type = SecuritySchemeType.ApiKey,
+                BearerFormat = "Bearer "
             });
+
+            generationOption.AddSecurityRequirement(new OpenApiSecurityRequirement
+            {
+                {
+                    new OpenApiSecurityScheme
+                    {
+                        Reference = new OpenApiReference
+                        {
+                            Type = ReferenceType.SecurityScheme,
+                            Id = "Bearer"
+                        }
+                    },
+                    new string[] { }
+                }
+            });
+        }
+
+        private void SetJwtOptions(JwtBearerOptions options)
+        {
+            options.RequireHttpsMetadata = false;
+            options.SaveToken = true;
+            options.TokenValidationParameters = new TokenValidationParameters()
+            {
+                ValidateIssuer = true,
+                ValidateAudience = true,
+                ValidAudience = Configuration["Jwt:Audience"],
+                ValidIssuer = Configuration["Jwt:Issuer"],
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
+            };
         }
 
         /// <summary>
