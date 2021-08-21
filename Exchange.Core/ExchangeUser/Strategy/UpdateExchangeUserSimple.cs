@@ -4,7 +4,7 @@ using Exchange.Domain.ExchangeUser.Strategy;
 
 namespace Exchange.Core.ExchangeUser.Strategy
 {
-    public class UpdateExchangeUserStrategy:IUpdateExchangeUserStrategy
+    public class UpdateExchangeUserSimple:IUpdateExchangeUserStrategy
     {
         public Domain.ExchangeUser.Entity.ExchangeUser Update(IItemRepository itemRepository, IExchangeUserRepository exchangeUserRepository,
             UpdateExchangeUserCommand command)

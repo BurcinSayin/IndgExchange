@@ -4,7 +4,7 @@ using Exchange.Domain.ExchangeUser.Strategy;
 
 namespace Exchange.Core.ExchangeUser.Strategy
 {
-    public class DeleteExchangeUserStrategy:IDeleteExchangeUserStrategy
+    public class DeleteExchangeUserSimple:IDeleteExchangeUserStrategy
     {
         public bool Delete(IItemRepository itemRepository, IExchangeUserRepository exchangeUserRepository,
             DeleteExchangeUserCommand command)
