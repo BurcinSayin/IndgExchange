@@ -12,6 +12,7 @@ namespace Exchange.Services.Tests
     {
         private MockRepository mockRepository;
 
+        private Mock<IItemRepository> mockItemRepository;
         private Mock<IExchangeUserRepository> mockExchangeUserRepository;
 
         [SetUp]
@@ -19,12 +20,13 @@ namespace Exchange.Services.Tests
         {
             this.mockRepository = new MockRepository(MockBehavior.Strict);
 
+            this.mockItemRepository = this.mockRepository.Create<IItemRepository>();
             this.mockExchangeUserRepository = this.mockRepository.Create<IExchangeUserRepository>();
         }
 
         private ExchangeUserWriteService CreateService()
         {
-            return new ExchangeUserWriteService(
+            return new ExchangeUserWriteService(this.mockItemRepository.Object,
                 this.mockExchangeUserRepository.Object);
         }
 

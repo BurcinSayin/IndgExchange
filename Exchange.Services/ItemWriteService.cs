@@ -3,6 +3,7 @@ using Exchange.Domain.Model;
 using Exchange.Domain.ServiceInterfaces;
 using Exchange.Domain.ServiceInterfaces.Commands;
 using Exchange.Domain.Strategy;
+using Exchange.Services.ConcreteStrategy;
 
 namespace Exchange.Services
 {
@@ -11,34 +12,18 @@ namespace Exchange.Services
         private IItemRepository _itemRepository;
         private IExchangeUserRepository _userRepository;
 
+        private ICreateItemStrategy itemCreator;
+
         public ItemWriteService(IItemRepository itemRepository, IExchangeUserRepository userRepository)
         {
             _itemRepository = itemRepository;
             _userRepository = userRepository;
+            itemCreator = new CreateItemWithTransaction();
         }
 
         public ItemInfo CreateItem(CreateItemCommand createCommand)
         {
-            ExchangeUser itemOwner = null;
-            if (createCommand.OwnerId.HasValue)
-            {
-                itemOwner = _userRepository.Get(createCommand.OwnerId.Value);
-            }
-
-            Item toCreate = new Item()
-            {
-                Holder = itemOwner,
-                ItemName = createCommand.ItemName
-            };
-
-            var retVal = _itemRepository.Add(toCreate);
-
-            return new ItemInfo()
-            {
-                Id = retVal.Id,
-                ItemName = retVal.ItemName,
-                Owner = retVal.Holder?.Name
-            };
+            return itemCreator.Create(_itemRepository,_userRepository, createCommand).ToItemInfo();
         }
     }
 

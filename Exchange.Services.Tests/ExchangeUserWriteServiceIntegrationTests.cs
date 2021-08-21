@@ -19,7 +19,7 @@ namespace Exchange.Services.Tests
             ExchangeDataContext testDbContext = new ExchangeDataContext();
 
 
-            testService = new ExchangeUserWriteService(new ExchangeUserRepository(testDbContext));
+            testService = new ExchangeUserWriteService( new ItemRepository(testDbContext),new ExchangeUserRepository(testDbContext));
         }
 
 

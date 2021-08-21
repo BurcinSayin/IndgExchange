@@ -24,14 +24,5 @@
             Item Name
             </summary>
         </member>
-        <member name="M:Exchange.Domain.Strategy.ICreateItemStrategy.CreateItem(Exchange.Domain.DataInterfaces.IItemRepository,Exchange.Domain.DataInterfaces.IExchangeUserRepository,Exchange.Domain.ServiceInterfaces.Commands.CreateItemCommand)">
-            <summary>
-            
-            </summary>
-            <param name="itemRepository"></param>
-            <param name="exchangeUserRepository"></param>
-            <param name="command">Create command parameters</param>
-            <returns>Created Item</returns>
-        </member>
     </members>
 </doc>

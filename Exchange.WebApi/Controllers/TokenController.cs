@@ -34,9 +34,9 @@ namespace Exchange.WebApi.Controllers
         }
         
         /// <summary>
-        /// Get Auth Token
+        /// 
         /// </summary>
-        /// <param name="userData"></param>
+        /// <param name="tokenCommand"></param>
         /// <returns></returns>
         [HttpPost]
         public IActionResult GetToken(CreateTokenCommand tokenCommand)

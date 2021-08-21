@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Exchange.Domain.DataInterfaces;
+﻿using Exchange.Domain.DataInterfaces;
 using Exchange.Domain.ServiceInterfaces.Commands;
 using Exchange.Domain.Strategy;
 
-namespace Exchange.Services
+namespace Exchange.Services.ConcreteStrategy
 {
     class CreateItemWithTransaction:ICreateItemStrategy
     {
-        public Item CreateItem(IItemRepository itemRepository, IExchangeUserRepository exchangeUserRepository,
+        public Item Create(IItemRepository itemRepository, IExchangeUserRepository exchangeUserRepository,
             CreateItemCommand command)
         {
             var transaction = itemRepository.BeginTransaction();

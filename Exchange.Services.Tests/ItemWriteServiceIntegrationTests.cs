@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Exchange.Data.Sqlite;
+using Exchange.Domain.ServiceInterfaces.Commands;
 using NUnit.Framework;
 
 namespace Exchange.Services.Tests
@@ -19,6 +20,31 @@ namespace Exchange.Services.Tests
         }
 
 
+        [Test]
+        public void CreateItem_ItemWithoutOwner_Success()
+        {
+            var command = new CreateItemCommand()
+            {
+                ItemName = "TestItesm"
+            };
+            var res = testService.CreateItem(command);
+            
+            Assert.Greater(res.Id,0);
+        }
+        
+        
+        [Test]
+        public void CreateItem_WithOwner_Fail()
+        {
+            var command = new CreateItemCommand()
+            {
+                ItemName = "TestItesm",
+                OwnerId = 1
+            };
+            var res = testService.CreateItem(command);
+            
+            Assert.Greater(res.Id,0);
+        }
 
     }
 }

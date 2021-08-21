@@ -71,7 +71,7 @@ namespace Exchange.Data.Sqlite
 
         public IDataTransaction BeginTransaction()
         {
-            throw new System.NotImplementedException();
+            return new ExchangeSqliteTransaction(_context.Database.BeginTransaction(IsolationLevel.RepeatableRead));
         }
     }
 }
