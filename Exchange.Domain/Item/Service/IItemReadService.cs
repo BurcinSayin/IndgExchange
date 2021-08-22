@@ -6,7 +6,7 @@ namespace Exchange.Domain.Item.Service
 {
     public interface IItemReadService
     {
-        ItemInfo GetItem(int itemId);
-        PagedList<ItemInfo> FindItems(FindItemsWithPagingQuery query);
+        ItemInfo GetItem(GetItemQuery query);
+        PagedList<ItemInfo> GetItems(GetItemsWithPagingQuery query);
     }
 }

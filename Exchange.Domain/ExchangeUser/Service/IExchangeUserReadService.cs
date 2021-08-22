@@ -6,7 +6,7 @@ namespace Exchange.Domain.ExchangeUser.Service
 {
     public interface IExchangeUserReadService
     {
-        ExchangeUserInfo GetItem(int id);
-        PagedList<ExchangeUserInfo> FindItems(FindUsersWithPagingQuery query);
+        ExchangeUserInfo GetExchangeUser(GetUserQuery query);
+        PagedList<ExchangeUserInfo> GetExchangeUsers(GetUsersWithPagingQuery query);
     }
 }

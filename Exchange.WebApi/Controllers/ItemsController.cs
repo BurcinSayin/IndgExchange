@@ -43,7 +43,7 @@ namespace Exchange.WebApi.Controllers
         [HttpGet("{id}")]
         public ActionResult<ItemInfo> Get(int id)
         {
-            var retVal = _itemReadService.GetItem(id);
+            var retVal = _itemReadService.GetItem(new GetItemQuery(){ItemId = id});
 
             return Ok(retVal);
         }
@@ -54,9 +54,9 @@ namespace Exchange.WebApi.Controllers
         /// <param name="query"></param>
         /// <returns></returns>
         [HttpGet]
-        public ActionResult<PagedList<ItemInfo>> GetAll([FromQuery] FindItemsWithPagingQuery query)
+        public ActionResult<PagedList<ItemInfo>> GetAll([FromQuery] GetItemsWithPagingQuery query)
         {
-            return Ok(_itemReadService.FindItems(query));
+            return Ok(_itemReadService.GetItems(query));
         }
         
         /// <summary>

@@ -18,14 +18,14 @@ namespace Exchange.Core.Item.Service
             _itemRepository = itemRepository;
         }
 
-        public ItemInfo GetItem(int itemId)
+        public ItemInfo GetItem(GetItemQuery query)
         {
-            var item = _itemRepository.Get(itemId);
+            var item = _itemRepository.Get(query.ItemId);
 
             return item.ToItemInfo();
         }
 
-        public PagedList<ItemInfo> FindItems(FindItemsWithPagingQuery query)
+        public PagedList<ItemInfo> GetItems(GetItemsWithPagingQuery query)
         {
             var fullData = _itemRepository.GetAll();
 

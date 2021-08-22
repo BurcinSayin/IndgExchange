@@ -1,12 +1,11 @@
-﻿using Exchange.Domain.DataInterfaces;
-using Exchange.Services;
+﻿using Exchange.Core.Item.Service;
+using Exchange.Domain.DataInterfaces;
 using Moq;
 using NUnit.Framework;
 using System;
-using Exchange.Core.Item.Service;
 using Exchange.Domain.Item.Command;
 
-namespace Exchange.Services.Tests
+namespace Exchange.Core.Tests.Item.Service
 {
     [TestFixture]
     public class ItemWriteServiceTests
@@ -42,6 +41,38 @@ namespace Exchange.Services.Tests
             // Act
             var result = service.CreateItem(
                 createCommand);
+
+            // Assert
+            Assert.Fail();
+            this.mockRepository.VerifyAll();
+        }
+
+        [Test]
+        public void UpdateItem_StateUnderTest_ExpectedBehavior()
+        {
+            // Arrange
+            var service = this.CreateService();
+            UpdateItemCommand command = null;
+
+            // Act
+            var result = service.UpdateItem(
+                command);
+
+            // Assert
+            Assert.Fail();
+            this.mockRepository.VerifyAll();
+        }
+
+        [Test]
+        public void DeleteItem_StateUnderTest_ExpectedBehavior()
+        {
+            // Arrange
+            var service = this.CreateService();
+            DeleteItemCommand command = null;
+
+            // Act
+            service.DeleteItem(
+                command);
 
             // Assert
             Assert.Fail();

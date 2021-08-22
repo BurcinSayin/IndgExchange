@@ -34,11 +34,10 @@ namespace Exchange.Services.Tests
         {
             // Arrange
             var service = this.CreateService();
-            int itemId = 0;
+            GetItemQuery query = new GetItemQuery();
 
             // Act
-            var result = service.GetItem(
-                itemId);
+            var result = service.GetItem(query);
 
             // Assert
             Assert.Fail();
@@ -46,14 +45,14 @@ namespace Exchange.Services.Tests
         }
 
         [Test]
-        public void FindItems_StateUnderTest_ExpectedBehavior()
+        public void GetItems_StateUnderTest_ExpectedBehavior()
         {
             // Arrange
             var service = this.CreateService();
-            FindItemsWithPagingQuery query = null;
+            GetItemsWithPagingQuery query = null;
 
             // Act
-            var result = service.FindItems(
+            var result = service.GetItems(
                 query);
 
             // Assert

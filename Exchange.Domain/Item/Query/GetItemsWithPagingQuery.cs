@@ -1,6 +1,6 @@
 ﻿namespace Exchange.Domain.Item.Query
 {
-    public class FindItemsWithPagingQuery
+    public class GetItemsWithPagingQuery
     {
         public string ItemName { get; set; }
         public int? OwnerId { get; set; } = null;

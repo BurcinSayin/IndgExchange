@@ -19,12 +19,12 @@ namespace Exchange.Core.ExchangeUser.Service
         }
 
 
-        public ExchangeUserInfo GetItem(int id)
+        public ExchangeUserInfo GetExchangeUser(GetUserQuery query)
         {
-            return _exchangeUserRepository.Get(id).ToExchangeUserInfo();
+            return _exchangeUserRepository.Get(query.ExchangeUserId).ToExchangeUserInfo();
         }
 
-        public PagedList<ExchangeUserInfo> FindItems(FindUsersWithPagingQuery query)
+        public PagedList<ExchangeUserInfo> GetExchangeUsers(GetUsersWithPagingQuery query)
         {
             var resultList = _exchangeUserRepository.GetAll();
 

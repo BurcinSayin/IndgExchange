@@ -4,7 +4,7 @@ using Exchange.Domain.Item.Strategy;
 
 namespace Exchange.Core.Item.Strategy
 {
-    class CreateItemWithTransaction:ICreateItemStrategy
+    public class CreateItemWithTransaction:ICreateItemStrategy
     {
         public Domain.Item.Entity.Item Create(IItemRepository itemRepository, IExchangeUserRepository exchangeUserRepository,
             CreateItemCommand command)

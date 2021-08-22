@@ -63,5 +63,23 @@ namespace Exchange.Core.Tests.ExchangeUser.Strategy
             Assert.Fail();
             this.mockRepository.VerifyAll();
         }
+
+        [Test]
+        public void Create_AllOk_CallRepoAdd()
+        {
+            var createExchangeUserSimple = this.CreateCreateExchangeUserSimple();
+            CreateExchangeUserCommand command = new CreateExchangeUserCommand()
+            {
+                UserName = "Test User"
+            };
+
+            var result = createExchangeUserSimple.Create(
+                mockItemRepository.Object,
+                mockExchangeUserRepository.Object,
+                command);
+
+            Assert.Fail();
+            this.mockRepository.VerifyAll();
+        }
     }
 }

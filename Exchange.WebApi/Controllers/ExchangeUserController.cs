@@ -40,7 +40,7 @@ namespace Exchange.WebApi.Controllers
         [HttpGet("{id}")]
         public ActionResult<ExchangeUserInfo> Get(int id)
         {
-            var retVal = _userReadService.GetItem(id);
+            var retVal = _userReadService.GetExchangeUser(new GetUserQuery(){ExchangeUserId = id});
 
             return Ok(retVal);
         }
@@ -51,9 +51,9 @@ namespace Exchange.WebApi.Controllers
         /// <param name="query"></param>
         /// <returns></returns>
         [HttpGet]
-        public PagedList<ExchangeUserInfo> GetAll([FromQuery] FindUsersWithPagingQuery query)
+        public PagedList<ExchangeUserInfo> GetAll([FromQuery] GetUsersWithPagingQuery query)
         {
-            return _userReadService.FindItems(query);
+            return _userReadService.GetExchangeUsers(query);
         }
         
         /// <summary>

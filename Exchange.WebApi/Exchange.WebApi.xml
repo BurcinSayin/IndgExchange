@@ -23,7 +23,7 @@
             <param name="id">User Id to get</param>
             <returns></returns>
         </member>
-        <member name="M:Exchange.WebApi.Controllers.ExchangeUserController.GetAll(Exchange.Domain.ExchangeUser.Query.FindUsersWithPagingQuery)">
+        <member name="M:Exchange.WebApi.Controllers.ExchangeUserController.GetAll(Exchange.Domain.ExchangeUser.Query.GetUsersWithPagingQuery)">
             <summary>
             
             </summary>
@@ -56,7 +56,7 @@
             <param name="id">Item Id to get</param>
             <returns></returns>
         </member>
-        <member name="M:Exchange.WebApi.Controllers.ItemsController.GetAll(Exchange.Domain.Item.Query.FindItemsWithPagingQuery)">
+        <member name="M:Exchange.WebApi.Controllers.ItemsController.GetAll(Exchange.Domain.Item.Query.GetItemsWithPagingQuery)">
             <summary>
             
             </summary>

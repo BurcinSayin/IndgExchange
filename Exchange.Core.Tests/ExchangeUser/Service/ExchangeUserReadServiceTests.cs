@@ -34,11 +34,10 @@ namespace Exchange.Services.Tests
         {
             // Arrange
             var service = this.CreateService();
-            int id = 0;
+            GetUserQuery query = new GetUserQuery();
 
             // Act
-            var result = service.GetItem(
-                id);
+            var result = service.GetExchangeUser(query);
 
             // Assert
             Assert.Fail();
@@ -50,11 +49,10 @@ namespace Exchange.Services.Tests
         {
             // Arrange
             var service = this.CreateService();
-            FindUsersWithPagingQuery query = null;
+            GetUsersWithPagingQuery query = null;
 
             // Act
-            var result = service.FindItems(
-                query);
+            var result = service.GetExchangeUsers(query);
 
             // Assert
             Assert.Fail();
