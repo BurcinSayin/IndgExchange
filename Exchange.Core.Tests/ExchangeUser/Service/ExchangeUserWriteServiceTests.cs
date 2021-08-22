@@ -46,5 +46,38 @@ namespace Exchange.Services.Tests
             Assert.Fail();
             this.mockRepository.VerifyAll();
         }
+        
+        // [Test]
+        // public void Create_NullCommand_ValidationException()
+        // {
+        //     // Arrange
+        //     var createExchangeUserSimple = this.CreateCreateExchangeUserSimple();
+        //     CreateExchangeUserCommand command = null;
+        //
+        //     // Act
+        //     var result = createExchangeUserSimple.Create(
+        //         mockItemRepository.Object,
+        //         mockExchangeUserRepository.Object,
+        //         command);
+        //
+        //     // Assert
+        //     Assert.Fail();
+        //     this.mockRepository.VerifyAll();
+        // }
+        //
+        // [Test]
+        // public void Create_EmptyUserName_ValidationException()
+        // {
+        //     var createExchangeUserSimple = this.CreateCreateExchangeUserSimple();
+        //     CreateExchangeUserCommand command = null;
+        //
+        //     var result = createExchangeUserSimple.Create(
+        //         mockItemRepository.Object,
+        //         mockExchangeUserRepository.Object,
+        //         command);
+        //
+        //     Assert.Fail();
+        //     this.mockRepository.VerifyAll();
+        // }
     }
 }

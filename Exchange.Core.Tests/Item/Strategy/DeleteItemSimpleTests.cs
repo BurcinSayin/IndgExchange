@@ -2,6 +2,7 @@
 using Moq;
 using NUnit.Framework;
 using System;
+using Exchange.Core.Shared;
 using Exchange.Domain.DataInterfaces;
 using Exchange.Domain.Item.Command;
 
@@ -30,7 +31,7 @@ namespace Exchange.Core.Tests.Item.Strategy
         }
 
         [Test]
-        public void Delete_AlOk_Success()
+        public void Delete_AllOk_Success()
         {
             var deleteItemSimple = this.CreateDeleteItemSimple();
             DeleteItemCommand command = new DeleteItemCommand()
@@ -49,6 +50,31 @@ namespace Exchange.Core.Tests.Item.Strategy
 
             // Assert
             Assert.IsTrue(result);
+            this.mockRepository.VerifyAll();
+        }
+        
+        [Test]
+        public void Delete_NotExistItem_ThrowNotFound()
+        {
+            var deleteItemSimple = this.CreateDeleteItemSimple();
+            DeleteItemCommand command = new DeleteItemCommand()
+            {
+                ItemId = 42
+            };
+
+            mockItemRepository.Setup(ir => ir.Delete(It.IsAny<int>())).Returns(false);
+            
+
+            var ex = Assert.Throws<NotFoundException>(() =>
+            {
+                deleteItemSimple.Delete(
+                    mockItemRepository.Object,
+                    mockExchangeUserRepository.Object,
+                    command);
+            });
+
+            // Assert
+            Assert.IsInstanceOf<NotFoundException>(ex);
             this.mockRepository.VerifyAll();
         }
     }

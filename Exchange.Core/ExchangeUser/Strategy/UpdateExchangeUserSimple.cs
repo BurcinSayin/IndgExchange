@@ -1,4 +1,5 @@
-﻿using Exchange.Domain.DataInterfaces;
+﻿using Exchange.Core.Shared;
+using Exchange.Domain.DataInterfaces;
 using Exchange.Domain.ExchangeUser.Command;
 using Exchange.Domain.ExchangeUser.Strategy;
 
@@ -10,6 +11,10 @@ namespace Exchange.Core.ExchangeUser.Strategy
             UpdateExchangeUserCommand command)
         {
             var targetExchangeUser = exchangeUserRepository.Get(command.ExchangeUserId);
+            if (targetExchangeUser == null)
+            {
+                throw new NotFoundException("Exchange User Not Found.");
+            }
 
             targetExchangeUser.Name = command.Name;
 

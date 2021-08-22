@@ -1,4 +1,5 @@
-﻿using Exchange.Domain.DataInterfaces;
+﻿using Exchange.Core.Shared;
+using Exchange.Domain.DataInterfaces;
 using Exchange.Domain.Item.Command;
 using Exchange.Domain.Item.Strategy;
 
@@ -8,7 +9,14 @@ namespace Exchange.Core.Item.Strategy
     {
         public bool Delete(IItemRepository itemRepository, IExchangeUserRepository exchangeUserRepository, DeleteItemCommand command)
         {
-            return itemRepository.Delete(command.ItemId);
+            bool retVal = itemRepository.Delete(command.ItemId);
+            
+            if (!retVal)
+            {
+                throw new NotFoundException("Item Not Found.");
+            }
+
+            return true;
         }
     }
 }

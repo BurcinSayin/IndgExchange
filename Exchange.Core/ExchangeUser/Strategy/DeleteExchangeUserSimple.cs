@@ -1,4 +1,5 @@
-﻿using Exchange.Domain.DataInterfaces;
+﻿using Exchange.Core.Shared;
+using Exchange.Domain.DataInterfaces;
 using Exchange.Domain.ExchangeUser.Command;
 using Exchange.Domain.ExchangeUser.Strategy;
 
@@ -9,7 +10,14 @@ namespace Exchange.Core.ExchangeUser.Strategy
         public bool Delete(IItemRepository itemRepository, IExchangeUserRepository exchangeUserRepository,
             DeleteExchangeUserCommand command)
         {
-            return exchangeUserRepository.Delete(command.ExchangeUserId);
+            bool retVal = exchangeUserRepository.Delete(command.ExchangeUserId);
+
+            if (!retVal)
+            {
+                throw new NotFoundException("Exchange User Not Found.");
+            }
+
+            return true;
         }
     }
 }

@@ -2,6 +2,7 @@
 using Moq;
 using NUnit.Framework;
 using System;
+using Exchange.Core.Shared;
 using Exchange.Domain.DataInterfaces;
 using Exchange.Domain.ExchangeUser.Command;
 
@@ -30,11 +31,16 @@ namespace Exchange.Core.Tests.ExchangeUser.Strategy
         }
 
         [Test]
-        public void Delete_StateUnderTest_ExpectedBehavior()
+        public void Delete_AllOk_Success()
         {
             // Arrange
             var deleteExchangeUserSimple = this.CreateDeleteExchangeUserSimple();
-            DeleteExchangeUserCommand command = null;
+            DeleteExchangeUserCommand command = new DeleteExchangeUserCommand()
+            {
+                ExchangeUserId = 42
+            };
+            mockExchangeUserRepository.Setup(ur => ur.Delete(It.IsAny<int>()))
+                .Returns(true);
 
             // Act
             var result = deleteExchangeUserSimple.Delete(
@@ -43,7 +49,32 @@ namespace Exchange.Core.Tests.ExchangeUser.Strategy
                 command);
 
             // Assert
-            Assert.Fail();
+            Assert.IsTrue(result);
+            this.mockRepository.VerifyAll();
+        }
+        
+        [Test]
+        public void Delete_NotExistItem_ThrowNotFound()
+        {
+            // Arrange
+            var deleteExchangeUserSimple = this.CreateDeleteExchangeUserSimple();
+            DeleteExchangeUserCommand command = new DeleteExchangeUserCommand()
+            {
+                ExchangeUserId = 42
+            };
+            mockExchangeUserRepository.Setup(ur => ur.Delete(It.IsAny<int>()))
+                .Returns(false);
+
+            var ex = Assert.Throws<NotFoundException>(() =>
+            {
+                deleteExchangeUserSimple.Delete(
+                    mockItemRepository.Object,
+                    mockExchangeUserRepository.Object,
+                    command);
+            });
+
+            // Assert
+            Assert.IsInstanceOf<NotFoundException>(ex);
             this.mockRepository.VerifyAll();
         }
     }
