@@ -11,7 +11,8 @@ namespace Exchange.Core.Tests.Item.Strategy
     public class DeleteItemSimpleTests
     {
         private MockRepository mockRepository;
-
+        private Mock<IItemRepository> mockItemRepository;
+        private Mock<IExchangeUserRepository> mockExchangeUserRepository;
 
 
         [SetUp]
@@ -19,7 +20,8 @@ namespace Exchange.Core.Tests.Item.Strategy
         {
             this.mockRepository = new MockRepository(MockBehavior.Strict);
 
-
+            mockItemRepository = mockRepository.Create<IItemRepository>();
+            mockExchangeUserRepository = mockRepository.Create<IExchangeUserRepository>();
         }
 
         private DeleteItemSimple CreateDeleteItemSimple()
@@ -28,22 +30,25 @@ namespace Exchange.Core.Tests.Item.Strategy
         }
 
         [Test]
-        public void Delete_StateUnderTest_ExpectedBehavior()
+        public void Delete_AlOk_Success()
         {
-            // Arrange
             var deleteItemSimple = this.CreateDeleteItemSimple();
-            IItemRepository itemRepository = null;
-            IExchangeUserRepository exchangeUserRepository = null;
-            DeleteItemCommand command = null;
+            DeleteItemCommand command = new DeleteItemCommand()
+            {
+                ItemId = 42
+            };
+
+            mockItemRepository.Setup(ir => ir.Delete(It.IsAny<int>())).Returns(true);
+            
 
             // Act
             var result = deleteItemSimple.Delete(
-                itemRepository,
-                exchangeUserRepository,
+                mockItemRepository.Object,
+                mockExchangeUserRepository.Object,
                 command);
 
             // Assert
-            Assert.Fail();
+            Assert.IsTrue(result);
             this.mockRepository.VerifyAll();
         }
     }
