@@ -3,6 +3,7 @@ using Exchange.Services;
 using NUnit.Framework;
 using System;
 using Exchange.Core.ExchangeUser.Service;
+using Exchange.Core.ExchangeUser.Strategy;
 using Exchange.Data.Sqlite;
 using Exchange.Domain.ExchangeUser.Command;
 
@@ -19,8 +20,12 @@ namespace Exchange.Services.Tests
         {
             ExchangeDataContext testDbContext = new ExchangeDataContext();
 
+            ExchangeUserWriteStrategySet strategySet = new ExchangeUserWriteStrategySet(
+                new CreateExchangeUserSimple(),
+                new UpdateExchangeUserSimple(),
+                new DeleteExchangeUserSimple());
 
-            testService = new ExchangeUserWriteService( new ItemRepository(testDbContext),new ExchangeUserRepository(testDbContext));
+            testService = new ExchangeUserWriteService(strategySet, new ItemRepository(testDbContext),new ExchangeUserRepository(testDbContext));
         }
 
 

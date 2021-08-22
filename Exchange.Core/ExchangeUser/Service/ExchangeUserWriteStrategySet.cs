@@ -1,7 +1,9 @@
-﻿using Exchange.Domain.DataInterfaces;
+﻿using Exchange.Core.ExchangeUser.Validator;
+using Exchange.Domain.DataInterfaces;
 using Exchange.Domain.ExchangeUser.Command;
 using Exchange.Domain.ExchangeUser.Strategy;
 using Exchange.Domain.Item.Command;
+using FluentValidation;
 
 namespace Exchange.Core.ExchangeUser.Service
 {

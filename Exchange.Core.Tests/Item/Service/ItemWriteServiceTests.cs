@@ -5,6 +5,7 @@ using NUnit.Framework;
 using System;
 using Exchange.Domain.Item.Command;
 using Exchange.Domain.Item.Strategy;
+using FluentValidation;
 
 namespace Exchange.Core.Tests.Item.Service
 {
@@ -46,51 +47,124 @@ namespace Exchange.Core.Tests.Item.Service
         }
 
         [Test]
-        public void CreateItem_StateUnderTest_ExpectedBehavior()
+        public void CreateItem_AllOk_Success()
         {
             // Arrange
             var service = this.CreateService();
-            CreateItemCommand createCommand = null;
+            CreateItemCommand createCommand = new CreateItemCommand()
+            {
+                ItemName = "test"
+            };
+            mockCreateStrategy.Setup(stategy => stategy.Create(It.IsAny<IItemRepository>(),
+                It.IsAny<IExchangeUserRepository>(),
+                It.IsAny<CreateItemCommand>())).Returns(new Domain.Item.Entity.Item());
 
             // Act
-            var result = service.CreateItem(
-                createCommand);
+            var result = service.CreateItem(createCommand);
 
             // Assert
-            Assert.Fail();
+            Assert.NotNull(result);
             this.mockRepository.VerifyAll();
+        }
+        
+        [Test]
+        public void CreateItem_InvalidCommand_ThrowValidationEx()
+        {
+            // Arrange
+            var service = this.CreateService();
+            CreateItemCommand createCommand = new CreateItemCommand();
+
+            // Act
+            var ex =Assert.Throws<ValidationException>(() =>
+            {
+                service.CreateItem(createCommand);
+            });
+
+            // Assert
+            Assert.IsInstanceOf<ValidationException>(ex);
+            mockRepository.VerifyAll();
         }
 
         [Test]
-        public void UpdateItem_StateUnderTest_ExpectedBehavior()
+        public void UpdateItem_AllOk_Success()
         {
             // Arrange
             var service = this.CreateService();
-            UpdateItemCommand command = null;
+            UpdateItemCommand command = new UpdateItemCommand()
+            {
+                ItemId = 42,
+                ItemName = "Test"
+            };
+            mockUpdateStratgy.Setup(stategy => stategy.Update(It.IsAny<IItemRepository>(),
+                It.IsAny<IExchangeUserRepository>(),
+                It.IsAny<UpdateItemCommand>())).Returns(new Domain.Item.Entity.Item());
 
             // Act
-            var result = service.UpdateItem(
-                command);
+            var result = service.UpdateItem(command);
 
             // Assert
-            Assert.Fail();
+            Assert.NotNull(result);
             this.mockRepository.VerifyAll();
+        }
+        
+        [Test]
+        public void UpdateItem_InvalidCommand_ThrowValidationEx()
+        {
+            // Arrange
+            var service = this.CreateService();
+            UpdateItemCommand command = new UpdateItemCommand();
+
+            // Act
+            var ex =Assert.Throws<ValidationException>(() =>
+            {
+                service.UpdateItem(command);
+            });
+
+            // Assert
+            Assert.IsInstanceOf<ValidationException>(ex);
+            mockRepository.VerifyAll();
         }
 
         [Test]
-        public void DeleteItem_StateUnderTest_ExpectedBehavior()
+        public void DeleteItem_AllOk_Success()
         {
             // Arrange
             var service = this.CreateService();
-            DeleteItemCommand command = null;
+            DeleteItemCommand command = new DeleteItemCommand()
+            {
+                ItemId = 42
+            };
+            mockDeleteStrategy.Setup(stategy => stategy.Delete(It.IsAny<IItemRepository>(),
+                It.IsAny<IExchangeUserRepository>(),
+                It.IsAny<DeleteItemCommand>())).Returns(true);
 
             // Act
-            service.DeleteItem(
-                command);
+            service.DeleteItem(command);
 
             // Assert
-            Assert.Fail();
+            Assert.Pass("Delete completed successfully");
             this.mockRepository.VerifyAll();
+        }
+        
+        [Test]
+        public void DeleteItem_InvalidCommand_ThrowValidationEx()
+        {
+            // Arrange
+            var service = this.CreateService();
+            DeleteItemCommand command = new DeleteItemCommand()
+            {
+                ItemId = -1
+            };
+
+            // Act
+            var ex =Assert.Throws<ValidationException>(() =>
+            {
+                service.DeleteItem(command);
+            });
+
+            // Assert
+            Assert.IsInstanceOf<ValidationException>(ex);
+            mockRepository.VerifyAll();
         }
     }
 }

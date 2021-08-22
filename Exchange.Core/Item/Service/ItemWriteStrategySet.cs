@@ -1,7 +1,9 @@
-﻿using Exchange.Domain.DataInterfaces;
+﻿using Exchange.Core.Item.Validator;
+using Exchange.Domain.DataInterfaces;
 using Exchange.Domain.Item.Command;
 using Exchange.Domain.Item.Response;
 using Exchange.Domain.Item.Strategy;
+using FluentValidation;
 
 namespace Exchange.Core.Item.Service
 {
@@ -20,16 +22,25 @@ namespace Exchange.Core.Item.Service
 
         public Domain.Item.Entity.Item Create(IItemRepository itemRepository, IExchangeUserRepository userRepository, CreateItemCommand createCommand)
         {
+            CreateItemCommandValidator validator = new CreateItemCommandValidator();
+            validator.ValidateAndThrow(createCommand);
+            
             return createStrategy.Create(itemRepository, userRepository, createCommand);
         }
 
         public Domain.Item.Entity.Item Update(IItemRepository itemRepository, IExchangeUserRepository userRepository, UpdateItemCommand command)
         {
+            UpdateItemCommandValidator validator = new UpdateItemCommandValidator();
+            validator.ValidateAndThrow(command);
+            
             return updateStratgy.Update(itemRepository, userRepository, command);
         }
 
         public bool Delete(IItemRepository itemRepository, IExchangeUserRepository userRepository, DeleteItemCommand command)
         {
+            DeleteItemCommandValidator validator = new DeleteItemCommandValidator();
+            validator.ValidateAndThrow(command);
+            
             return deleteStrategy.Delete(itemRepository, userRepository, command);
         }
     }
