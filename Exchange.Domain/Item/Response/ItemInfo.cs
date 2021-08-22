@@ -10,6 +10,10 @@
 
         public static ItemInfo MapToInfo(Entity.Item toMap)
         {
+            if (toMap == null)
+            {
+                return null;
+            }
             return new ItemInfo()
             {
                 Id = toMap.Id,

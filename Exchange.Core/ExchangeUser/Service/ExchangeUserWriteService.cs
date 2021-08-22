@@ -22,6 +22,8 @@ namespace Exchange.Core.ExchangeUser.Service
             _exchangeUserRepository = userRepository;
             _itemRepository = itemRepository;
             createStrategy = new CreateExchangeUserSimple();
+            updateStratgy = new UpdateExchangeUserSimple();
+            deleteStrategy = new DeleteExchangeUserSimple();
         }
 
 

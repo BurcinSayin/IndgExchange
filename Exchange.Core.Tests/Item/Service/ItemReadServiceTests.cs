@@ -3,8 +3,13 @@ using Exchange.Services;
 using Moq;
 using NUnit.Framework;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using Exchange.Core.Item.Service;
+using Exchange.Data.Sqlite;
+using Exchange.Domain.Item.Entity;
 using Exchange.Domain.Item.Query;
+using FluentValidation;
 
 namespace Exchange.Services.Tests
 {
@@ -18,46 +23,107 @@ namespace Exchange.Services.Tests
         [SetUp]
         public void SetUp()
         {
-            this.mockRepository = new MockRepository(MockBehavior.Strict);
+            mockRepository = new MockRepository(MockBehavior.Strict);
 
-            this.mockItemRepository = this.mockRepository.Create<IItemRepository>();
+            mockItemRepository = mockRepository.Create<IItemRepository>();
         }
 
         private ItemReadService CreateService()
         {
-            return new ItemReadService(
-                this.mockItemRepository.Object);
+            return new ItemReadService(mockItemRepository.Object);
         }
 
         [Test]
-        public void GetItem_StateUnderTest_ExpectedBehavior()
+        public void GetItem_AllOk_Success()
         {
             // Arrange
-            var service = this.CreateService();
-            GetItemQuery query = new GetItemQuery();
+            var service = CreateService();
+            GetItemQuery query = new GetItemQuery()
+            {
+                ItemId = 42
+            };
+            mockItemRepository.Setup(ir => ir.Get(It.IsAny<int>()))
+                .Returns(new Item()
+                {
+                    Id = query.ItemId
+                });
 
             // Act
             var result = service.GetItem(query);
 
             // Assert
-            Assert.Fail();
-            this.mockRepository.VerifyAll();
+            Assert.AreEqual(query.ItemId,result.Id);
+            mockRepository.VerifyAll();
+        }
+        
+        [Test]
+        public void GetItem_InvalidQuery_ValidationException()
+        {
+            // Arrange
+            var service = CreateService();
+            GetItemQuery query = new GetItemQuery()
+            {
+                ItemId = 0
+            };
+
+            var ex =Assert.Throws<ValidationException>(() =>
+            {
+                service.GetItem(query);
+            });
+
+            // Assert
+            Assert.IsInstanceOf<ValidationException>(ex);
+            mockRepository.VerifyAll();
         }
 
         [Test]
-        public void GetItems_StateUnderTest_ExpectedBehavior()
+        public void GetItems_AllOk_Success()
         {
-            // Arrange
-            var service = this.CreateService();
-            GetItemsWithPagingQuery query = null;
+            var service = CreateService();
+            GetItemsWithPagingQuery query = new GetItemsWithPagingQuery()
+            {
+                PageNumber = 1,
+                PageSize = 10
+            };
+            List<Item> mockResponse = new List<Item>();
+            for (int i = 0; i < 15; i++)
+            {
+                mockResponse.Add(new Item()
+                {
+                    Id = i+1
+                });
+            }
+            mockItemRepository.Setup(ir => ir.GetAll()).Returns(mockResponse.AsQueryable());
 
-            // Act
-            var result = service.GetItems(
-                query);
+            var result = service.GetItems(query);
+
+            Assert.AreEqual(15,result.TotalCount);
+            Assert.AreEqual(1,result.PageIndex);
+            Assert.IsTrue(result.HasNextPage);
+            CollectionAssert.IsNotEmpty(result.Results);
+            Assert.AreEqual(10,result.Results.Count);
+            mockRepository.VerifyAll();
+        }
+
+        [Test]
+        public void GetItems_InvalidQuery_ValidationException()
+        {
+            var service = CreateService();
+            GetItemsWithPagingQuery query = new GetItemsWithPagingQuery()
+            {
+                PageNumber = 1,
+                PageSize = 10,
+                OwnerId = -1
+            };
+            
+            var ex =Assert.Throws<ValidationException>(() =>
+            {
+                service.GetItems(query);
+            });
 
             // Assert
-            Assert.Fail();
-            this.mockRepository.VerifyAll();
+            Assert.IsInstanceOf<ValidationException>(ex);
+            mockRepository.VerifyAll();
         }
     }
 }

@@ -6,7 +6,6 @@ using Exchange.Domain.Item.Command;
 using Exchange.Domain.Item.Query;
 using Exchange.Domain.Item.Response;
 using Exchange.Domain.Item.Service;
-using Exchange.Domain.Model;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

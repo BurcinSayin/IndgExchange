@@ -9,7 +9,7 @@ namespace Exchange.Core.ExchangeUser.Strategy
         public bool Delete(IItemRepository itemRepository, IExchangeUserRepository exchangeUserRepository,
             DeleteExchangeUserCommand command)
         {
-            throw new System.NotImplementedException();
+            return exchangeUserRepository.Delete(command.ExchangeUserId);
         }
     }
 }

@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Linq;
+using Exchange.Core.Item.Validator;
 using Exchange.Core.Shared;
 using Exchange.Domain.Common.Response;
 using Exchange.Domain.DataInterfaces;
 using Exchange.Domain.Item.Query;
 using Exchange.Domain.Item.Response;
 using Exchange.Domain.Item.Service;
+using FluentValidation;
 
 namespace Exchange.Core.Item.Service
 {
@@ -20,6 +22,10 @@ namespace Exchange.Core.Item.Service
 
         public ItemInfo GetItem(GetItemQuery query)
         {
+            GetItemQueryValidator validator = new GetItemQueryValidator();
+            
+            validator.ValidateAndThrow(query);
+            
             var item = _itemRepository.Get(query.ItemId);
 
             return item.ToItemInfo();
@@ -27,8 +33,11 @@ namespace Exchange.Core.Item.Service
 
         public PagedList<ItemInfo> GetItems(GetItemsWithPagingQuery query)
         {
-            var fullData = _itemRepository.GetAll();
 
+            GetItemsWithPagingQueryValidator validator = new GetItemsWithPagingQueryValidator();
+            validator.ValidateAndThrow(query);
+            
+            var fullData = _itemRepository.GetAll();
             
             if (query.OwnerId.HasValue)
             {

@@ -14,6 +14,11 @@ namespace Exchange.Domain.ExchangeUser.Response
 
         public static ExchangeUserInfo MapToInfo(Entity.ExchangeUser toMap)
         {
+            if (toMap == null)
+            {
+                return null;
+            }
+            
             return new ExchangeUserInfo()
             {
                 Id = toMap.Id,

@@ -2,6 +2,6 @@
 {
     public class DeleteExchangeUserCommand
     {
-        
+        public int ExchangeUserId { get; set; }
     }
 }

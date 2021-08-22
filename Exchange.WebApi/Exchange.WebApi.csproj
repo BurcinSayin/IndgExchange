@@ -18,9 +18,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Exchange.Core\Exchange.Core.csproj" />
     <ProjectReference Include="..\Exchange.Data.Sqlite\Exchange.Data.Sqlite.csproj" />
     <ProjectReference Include="..\Exchange.Domain\Exchange.Domain.csproj" />
-    <ProjectReference Include="..\Exchange.Services\Exchange.Services.csproj" />
   </ItemGroup>
 
 </Project>

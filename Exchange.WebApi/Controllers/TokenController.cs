@@ -4,7 +4,6 @@ using System.Security.Claims;
 using System.Text;
 using Exchange.Domain.Common.Command;
 using Exchange.Domain.DataInterfaces;
-using Exchange.Domain.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;

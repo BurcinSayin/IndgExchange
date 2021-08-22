@@ -9,7 +9,11 @@ namespace Exchange.Core.ExchangeUser.Strategy
         public Domain.ExchangeUser.Entity.ExchangeUser Update(IItemRepository itemRepository, IExchangeUserRepository exchangeUserRepository,
             UpdateExchangeUserCommand command)
         {
-            throw new System.NotImplementedException();
+            var targetExchangeUser = exchangeUserRepository.Get(command.ExchangeUserId);
+
+            targetExchangeUser.Name = command.Name;
+
+            return exchangeUserRepository.Update(targetExchangeUser);
         }
     }
 }
