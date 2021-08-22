@@ -44,7 +44,7 @@ namespace Exchange.Core.Tests.Item.Strategy
             mockExchangeUserRepository.Setup(ur => ur.FindById(It.IsAny<int>(), It.IsAny<IDataTransaction>())).Returns(
                 new Domain.ExchangeUser.Entity.ExchangeUser()
                 {
-                    Id = 42,
+                    Id = command.OwnerId.Value,
                     Name = "Douglas Adams",
                     ItemList = null
                 }
@@ -60,10 +60,8 @@ namespace Exchange.Core.Tests.Item.Strategy
                 command);
 
             
-
-            this.mockRepository.VerifyAll();
-            // Assert
             Assert.AreEqual(repoResult,result);
+            this.mockRepository.VerifyAll();
         }
         
         [Test]

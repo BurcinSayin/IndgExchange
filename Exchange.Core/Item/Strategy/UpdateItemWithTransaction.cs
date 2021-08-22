@@ -1,4 +1,5 @@
-﻿using Exchange.Domain.DataInterfaces;
+﻿using Exchange.Core.Shared;
+using Exchange.Domain.DataInterfaces;
 using Exchange.Domain.Item.Command;
 using Exchange.Domain.Item.Strategy;
 
@@ -11,6 +12,12 @@ namespace Exchange.Core.Item.Strategy
             var transaction = itemRepository.BeginTransaction();
 
             var targetItem = itemRepository.FindById(command.ItemId, transaction);
+
+            if (targetItem == null)
+            {
+                transaction.Rollback();
+                throw new NotFoundException("Item Not Found.");
+            }
 
             if (command.HolderId.HasValue)
             {
