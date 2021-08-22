@@ -13,32 +13,36 @@ namespace Exchange.Core.Item.Service
         private IItemRepository _itemRepository;
         private IExchangeUserRepository _userRepository;
 
-        private ICreateItemStrategy createStrategy;
-        private IUpdateItemStrategy updateStratgy;
-        private IDeleteItemStrategy deleteStrategy;
+        // private ICreateItemStrategy createStrategy;
+        // private IUpdateItemStrategy updateStratgy;
+        // private IDeleteItemStrategy deleteStrategy;
 
-        public ItemWriteService(IItemRepository itemRepository, IExchangeUserRepository userRepository)
+        private ItemWriteStrategySet _writeStrategySet;
+
+        public ItemWriteService(ItemWriteStrategySet strategySet,IItemRepository itemRepository, IExchangeUserRepository userRepository)
         {
             _itemRepository = itemRepository;
             _userRepository = userRepository;
-            createStrategy = new CreateItemWithTransaction();
-            updateStratgy = new UpdateItemWithTransaction();
-            deleteStrategy = new DeleteItemSimple();
+            // createStrategy = new CreateItemWithTransaction();
+            // updateStratgy = new UpdateItemWithTransaction();
+            // deleteStrategy = new DeleteItemSimple();
+
+            _writeStrategySet = strategySet;
         }
 
         public ItemInfo CreateItem(CreateItemCommand createCommand)
         {
-            return createStrategy.Create(_itemRepository,_userRepository, createCommand).ToItemInfo();
+            return _writeStrategySet.Create(_itemRepository,_userRepository, createCommand).ToItemInfo();
         }
 
         public ItemInfo UpdateItem(UpdateItemCommand command)
         {
-            return updateStratgy.Update(_itemRepository,_userRepository, command).ToItemInfo();
+            return _writeStrategySet.Update(_itemRepository,_userRepository, command).ToItemInfo();
         }
 
         public void DeleteItem(DeleteItemCommand command)
         {
-            deleteStrategy.Delete(_itemRepository, _userRepository, command);
+            _writeStrategySet.Delete(_itemRepository, _userRepository, command);
         }
     }
 

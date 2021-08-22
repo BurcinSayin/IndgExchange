@@ -16,13 +16,18 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Exchange.Core.ExchangeUser.Service;
+using Exchange.Core.ExchangeUser.Strategy;
 using Exchange.Core.Item.Service;
+using Exchange.Core.Item.Strategy;
 using Exchange.Data.Sqlite;
 using Exchange.Domain.DataInterfaces;
 using Exchange.Domain.ExchangeUser.Service;
+using Exchange.Domain.ExchangeUser.Strategy;
 using Exchange.Domain.Item.Service;
+using Exchange.Domain.Item.Strategy;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
@@ -62,6 +67,7 @@ namespace Exchange.WebApi
             services.AddDbContext<ExchangeDataContext>();
             
             
+            
             services.AddScoped<IItemRepository, ItemRepository>();
             services.AddScoped<IExchangeUserRepository, ExchangeUserRepository>();
             
@@ -72,6 +78,17 @@ namespace Exchange.WebApi
             services.AddScoped<IExchangeUserReadService, ExchangeUserReadService>();
             services.AddScoped<IExchangeUserWriteService, ExchangeUserWriteService>();
             
+            services.AddTransient<ItemWriteStrategySet>();
+            services.AddScoped<ICreateItemStrategy, CreateItemWithTransaction>();
+            services.AddScoped<IUpdateItemStrategy, UpdateItemWithTransaction>();
+            services.AddScoped<IDeleteItemStrategy, DeleteItemSimple>();
+            
+            services.AddTransient<ExchangeUserWriteStrategySet>();
+            services.AddScoped<ICreateExchangeUserStategy, CreateExchangeUserSimple>();
+            services.AddScoped<IUpdateExchangeUserStrategy, UpdateExchangeUserSimple>();
+            services.AddScoped<IDeleteExchangeUserStrategy, DeleteExchangeUserSimple>();
+            
+
             
             services.AddControllers();
             

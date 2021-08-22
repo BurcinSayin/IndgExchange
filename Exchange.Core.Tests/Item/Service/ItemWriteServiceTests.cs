@@ -4,6 +4,7 @@ using Moq;
 using NUnit.Framework;
 using System;
 using Exchange.Domain.Item.Command;
+using Exchange.Domain.Item.Strategy;
 
 namespace Exchange.Core.Tests.Item.Service
 {
@@ -14,6 +15,10 @@ namespace Exchange.Core.Tests.Item.Service
 
         private Mock<IItemRepository> mockItemRepository;
         private Mock<IExchangeUserRepository> mockExchangeUserRepository;
+        
+        private Mock<ICreateItemStrategy> mockCreateStrategy;
+        private Mock<IUpdateItemStrategy> mockUpdateStratgy;
+        private Mock<IDeleteItemStrategy> mockDeleteStrategy;
 
         [SetUp]
         public void SetUp()
@@ -22,11 +27,20 @@ namespace Exchange.Core.Tests.Item.Service
 
             this.mockItemRepository = this.mockRepository.Create<IItemRepository>();
             this.mockExchangeUserRepository = this.mockRepository.Create<IExchangeUserRepository>();
+            mockCreateStrategy = mockRepository.Create<ICreateItemStrategy>();
+            mockUpdateStratgy = mockRepository.Create<IUpdateItemStrategy>();
+            mockDeleteStrategy = mockRepository.Create<IDeleteItemStrategy>();
         }
 
         private ItemWriteService CreateService()
         {
+            ItemWriteStrategySet strategySet = new ItemWriteStrategySet(
+                mockCreateStrategy.Object,
+                mockUpdateStratgy.Object,
+                mockDeleteStrategy.Object
+                );
             return new ItemWriteService(
+                strategySet,
                 this.mockItemRepository.Object,
                 this.mockExchangeUserRepository.Object);
         }

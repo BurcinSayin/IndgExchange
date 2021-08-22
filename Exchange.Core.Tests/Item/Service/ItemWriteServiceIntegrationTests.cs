@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Exchange.Core.Item.Service;
+﻿using Exchange.Core.Item.Service;
+using Exchange.Core.Item.Strategy;
 using Exchange.Data.Sqlite;
 using Exchange.Domain.Item.Command;
 using NUnit.Framework;
 
-namespace Exchange.Services.Tests
+namespace Exchange.Core.Tests.Item.Service
 {
     class ItemWriteServiceIntegrationTests
     {
@@ -16,8 +14,13 @@ namespace Exchange.Services.Tests
         [OneTimeSetUp]
         public void InitDb()
         {
+            ItemWriteStrategySet strategySet = new ItemWriteStrategySet(
+                new CreateItemWithTransaction(),
+                new UpdateItemWithTransaction(),
+                new DeleteItemSimple()
+            );
             ExchangeDataContext testDbContext = new ExchangeDataContext();
-            testService = new ItemWriteService(new ItemRepository(testDbContext) ,new ExchangeUserRepository(testDbContext));
+            testService = new ItemWriteService(strategySet,new ItemRepository(testDbContext) ,new ExchangeUserRepository(testDbContext));
         }
 
 
