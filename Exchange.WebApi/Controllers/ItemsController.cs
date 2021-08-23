@@ -38,7 +38,7 @@ namespace Exchange.WebApi.Controllers
         /// Gets the item with the given Id
         /// </summary>
         /// <param name="id">Item Id to get</param>
-        /// <returns></returns>
+        /// <returns>Item</returns>
         [HttpGet("{id}")]
         public ActionResult<ItemInfo> Get(int id)
         {
@@ -48,10 +48,10 @@ namespace Exchange.WebApi.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Get List of item matching query with desired pagination
         /// </summary>
         /// <param name="query"></param>
-        /// <returns></returns>
+        /// <returns>List of items with paging data</returns>
         [HttpGet]
         public ActionResult<PagedList<ItemInfo>> GetAll([FromQuery] GetItemsWithPagingQuery query)
         {
@@ -78,7 +78,7 @@ namespace Exchange.WebApi.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Update Item
         /// </summary>
         /// <param name="command"></param>
         /// <returns></returns>

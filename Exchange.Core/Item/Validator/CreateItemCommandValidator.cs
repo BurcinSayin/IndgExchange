@@ -1,9 +1,10 @@
-﻿using Exchange.Domain.Item.Command;
+﻿using Exchange.Core.Shared;
+using Exchange.Domain.Item.Command;
 using FluentValidation;
 
 namespace Exchange.Core.Item.Validator
 {
-    public class CreateItemCommandValidator:AbstractValidator<CreateItemCommand>
+    public class CreateItemCommandValidator:AbstractExchangeValidator<CreateItemCommand>
     {
         public CreateItemCommandValidator()
         {

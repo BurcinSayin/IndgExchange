@@ -35,7 +35,7 @@ namespace Exchange.WebApi.Controllers
         /// Gets the Exchange User with the given Id
         /// </summary>
         /// <param name="id">User Id to get</param>
-        /// <returns></returns>
+        /// <returns>Exchange User</returns>
         [HttpGet("{id}")]
         public ActionResult<ExchangeUserInfo> Get(int id)
         {
@@ -45,10 +45,10 @@ namespace Exchange.WebApi.Controllers
         }
         
         /// <summary>
-        /// 
+        /// Gets Exchange users matching query
         /// </summary>
         /// <param name="query"></param>
-        /// <returns></returns>
+        /// <returns>List of Exchange users with pagination</returns>
         [HttpGet]
         public PagedList<ExchangeUserInfo> GetAll([FromQuery] GetUsersWithPagingQuery query)
         {
@@ -59,13 +59,32 @@ namespace Exchange.WebApi.Controllers
         /// Creates an Exchange User
         /// </summary>
         /// <param name="command"></param>
-        /// <returns></returns>
+        /// <returns>Created Exchange User</returns>
         [HttpPost]
         public ActionResult Create(CreateExchangeUserCommand command)
         {
             try
             {
                 var resultItem = _userWriteService.CreateExchangeUser(command);
+                return this.CreatedAtAction("Get",new {id = resultItem.Id},resultItem);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        
+        /// <summary>
+        /// Updates Exchange User
+        /// </summary>
+        /// <param name="command"></param>
+        /// <returns>Updated Exchange User</returns>
+        [HttpPut]
+        public ActionResult Update(UpdateExchangeUserCommand command)
+        {
+            try
+            {
+                var resultItem = _userWriteService.UpdateExchangeUser(command);
                 return this.CreatedAtAction("Get",new {id = resultItem.Id},resultItem);
             }
             catch (Exception ex)

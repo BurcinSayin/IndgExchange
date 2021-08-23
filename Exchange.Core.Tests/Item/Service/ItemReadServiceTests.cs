@@ -111,18 +111,22 @@ namespace Exchange.Services.Tests
             var service = CreateService();
             GetItemsWithPagingQuery query = new GetItemsWithPagingQuery()
             {
-                PageNumber = 1,
-                PageSize = 10,
-                OwnerId = -1
+                PageSize = -1
             };
             
-            var ex =Assert.Throws<ValidationException>(() =>
+            var nullException =Assert.Throws<ValidationException>(() =>
+            {
+                service.GetItems(null);
+            });
+            var propException =Assert.Throws<ValidationException>(() =>
             {
                 service.GetItems(query);
             });
 
             // Assert
-            Assert.IsInstanceOf<ValidationException>(ex);
+            Assert.IsInstanceOf<ValidationException>(nullException);
+            Assert.IsInstanceOf<ValidationException>(propException);
+            Console.WriteLine(nullException.Message);
             mockRepository.VerifyAll();
         }
     }

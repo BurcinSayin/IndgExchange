@@ -1,9 +1,10 @@
-﻿using Exchange.Domain.Item.Query;
+﻿using Exchange.Core.Shared;
+using Exchange.Domain.Item.Query;
 using FluentValidation;
 
 namespace Exchange.Core.Item.Validator
 {
-    public class GetItemQueryValidator:AbstractValidator<GetItemQuery>
+    public class GetItemQueryValidator:AbstractExchangeValidator<GetItemQuery>
     {
         public GetItemQueryValidator()
         {

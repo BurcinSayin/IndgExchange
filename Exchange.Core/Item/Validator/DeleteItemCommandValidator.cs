@@ -1,9 +1,10 @@
-﻿using Exchange.Domain.Item.Command;
+﻿using Exchange.Core.Shared;
+using Exchange.Domain.Item.Command;
 using FluentValidation;
 
 namespace Exchange.Core.Item.Validator
 {
-    public class DeleteItemCommandValidator:AbstractValidator<DeleteItemCommand>
+    public class DeleteItemCommandValidator:AbstractExchangeValidator<DeleteItemCommand>
     {
 
         public DeleteItemCommandValidator()
