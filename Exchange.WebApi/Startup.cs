@@ -17,12 +17,16 @@ using System.Text;
 using System.Threading.Tasks;
 using Exchange.Core.Item.Service;
 using Exchange.Core.Item.Strategy;
+using Exchange.Core.ItemTransaction.Service;
+using Exchange.Core.ItemTransaction.Strategy;
 using Exchange.Core.User.Service;
 using Exchange.Core.User.Strategy;
 using Exchange.Data.Sqlite;
 using Exchange.Domain.DataInterfaces;
 using Exchange.Domain.Item.Service;
 using Exchange.Domain.Item.Strategy;
+using Exchange.Domain.ItemTransaction.Service;
+using Exchange.Domain.ItemTransaction.Strategy;
 using Exchange.Domain.User.Service;
 using Exchange.Domain.User.Strategy;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -70,6 +74,7 @@ namespace Exchange.WebApi
             
             services.AddScoped<IItemRepository, ItemRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IItemTransactionRepository, ItemTransactionRepository>();
             
             
             services.AddScoped<IItemReadService, ItemReadService>();
@@ -77,6 +82,10 @@ namespace Exchange.WebApi
             
             services.AddScoped<IUserReadService, UserReadService>();
             services.AddScoped<IUserWriteService, UserWriteService>();
+            
+            services.AddScoped<IItemTransactionReadService, ItemTransactionReadService>();
+            services.AddScoped<IItemTransactionWriteService, ItemTransactionWriteService>();
+            services.AddScoped<ICreateItemTransactionStrategy, CreateItemTransactionWithTransaction>();
             
             services.AddTransient<ItemWriteStrategySet>();
             services.AddScoped<ICreateItemStrategy, CreateItemWithTransaction>();

@@ -1,5 +1,6 @@
 ﻿using Exchange.Domain.DataInterfaces;
 using Exchange.Domain.Item.Entity;
+using Exchange.Domain.ItemTransaction.Entity;
 using Exchange.Domain.User.Entity;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,6 +10,8 @@ namespace Exchange.Data.Sqlite
     {
         public virtual DbSet<Item> Items { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        
+        public virtual DbSet<ItemTransaction> ItemTransactions { get; set; }
 
         // private string DbPath { get; set; }
         

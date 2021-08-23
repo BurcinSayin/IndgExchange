@@ -10,8 +10,8 @@ namespace Exchange.Domain.DataInterfaces
         User.Entity.User Add(User.Entity.User toAdd);
         bool Delete(int userId);
         User.Entity.User Update(User.Entity.User toUpdate);
-        User.Entity.User FindById(int userId, IDataTransaction transaction);
         
         IDataTransaction BeginTransaction();
+        User.Entity.User FindById(int userId, IDataTransaction transaction);
     }
 }

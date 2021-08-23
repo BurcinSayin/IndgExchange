@@ -44,6 +44,18 @@
             <param name="command"></param>
             <returns></returns>
         </member>
+        <member name="T:Exchange.WebApi.Controllers.ItemTransactionsController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Exchange.WebApi.Controllers.ItemTransactionsController.#ctor(Exchange.Domain.ItemTransaction.Service.IItemTransactionReadService,Exchange.Domain.ItemTransaction.Service.IItemTransactionWriteService)">
+            <summary>
+            
+            </summary>
+            <param name="readService"></param>
+            <param name="writeService"></param>
+        </member>
         <member name="T:Exchange.WebApi.Controllers.TokenController">
             <summary>
             

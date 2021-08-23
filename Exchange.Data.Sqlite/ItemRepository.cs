@@ -49,26 +49,10 @@ namespace Exchange.Data.Sqlite
 
         public Item Update(Item toUpdate)
         {
-            _context.Update(toUpdate);
+            _context.Items.Update(toUpdate);
             _context.SaveChanges();
             return toUpdate;
         }
-
-        // public bool MoveItem(int fromId, int toId, int itemId)
-        // {
-        //     var transaction = _context.Database.BeginTransaction(IsolationLevel.ReadCommitted);
-        //
-        //
-        //     
-        //      
-        //     _context.Database.ExecuteSqlRaw(
-        //         "UPDATE Items SET HolderId = {0} WHERE Id = {1} AND HolderId = {2};",toId,fromId,itemId);
-        //     
-        //     
-        //     transaction.Commit();
-        //
-        //     return true;
-        // }
 
         public IDataTransaction BeginTransaction()
         {
