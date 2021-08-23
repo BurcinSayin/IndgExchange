@@ -5,7 +5,7 @@ namespace Exchange.Domain.Item.Strategy
 {
     public interface IDeleteItemStrategy
     {
-        bool Delete(IItemRepository itemRepository, IExchangeUserRepository exchangeUserRepository,DeleteItemCommand command);
+        bool Delete(IItemRepository itemRepository, IUserRepository userRepository,DeleteItemCommand command);
     }
 
 }

@@ -4,16 +4,6 @@
         <name>Exchange.Domain</name>
     </assembly>
     <members>
-        <member name="T:Exchange.Domain.ExchangeUser.Command.CreateExchangeUserCommand">
-            <summary>
-            Create Exchange User Command
-            </summary>
-        </member>
-        <member name="P:Exchange.Domain.ExchangeUser.Command.CreateExchangeUserCommand.UserName">
-            <summary>
-            User name to create
-            </summary>
-        </member>
         <member name="P:Exchange.Domain.Item.Command.CreateItemCommand.OwnerId">
             <summary>
             User Id of owner
@@ -22,6 +12,16 @@
         <member name="P:Exchange.Domain.Item.Command.CreateItemCommand.ItemName">
             <summary>
             Item Name
+            </summary>
+        </member>
+        <member name="T:Exchange.Domain.User.Command.CreateUserCommand">
+            <summary>
+            Create Exchange User Command
+            </summary>
+        </member>
+        <member name="P:Exchange.Domain.User.Command.CreateUserCommand.UserName">
+            <summary>
+            User name to create
             </summary>
         </member>
     </members>

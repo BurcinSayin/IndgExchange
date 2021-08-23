@@ -20,7 +20,7 @@ namespace Exchange.Core.Tests.Item.Service
                 new DeleteItemSimple()
             );
             ExchangeDataContext testDbContext = new ExchangeDataContext();
-            testService = new ItemWriteService(strategySet,new ItemRepository(testDbContext) ,new ExchangeUserRepository(testDbContext));
+            testService = new ItemWriteService(strategySet,new ItemRepository(testDbContext) ,new UserRepository(testDbContext));
         }
 
 

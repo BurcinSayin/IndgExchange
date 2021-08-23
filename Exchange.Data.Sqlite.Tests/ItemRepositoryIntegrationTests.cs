@@ -17,7 +17,7 @@ namespace Exchange.Data.Sqlite.Tests
         {
             testDataContext = new ExchangeDataContext();
 
-            // testDataContext.ExchangeUsers.Add(new Owner());
+            // testDataContext.Users.Add(new Owner());
         }
         
         

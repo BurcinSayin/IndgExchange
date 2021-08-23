@@ -4,39 +4,6 @@
         <name>Exchange.WebApi</name>
     </assembly>
     <members>
-        <member name="T:Exchange.WebApi.Controllers.ExchangeUserController">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:Exchange.WebApi.Controllers.ExchangeUserController.#ctor(Exchange.Domain.ExchangeUser.Service.IExchangeUserReadService,Exchange.Domain.ExchangeUser.Service.IExchangeUserWriteService)">
-            <summary>
-            
-            </summary>
-            <param name="userReadService"></param>
-            <param name="userWriteService"></param>
-        </member>
-        <member name="M:Exchange.WebApi.Controllers.ExchangeUserController.Get(System.Int32)">
-            <summary>
-            Gets the Exchange User with the given Id
-            </summary>
-            <param name="id">User Id to get</param>
-            <returns></returns>
-        </member>
-        <member name="M:Exchange.WebApi.Controllers.ExchangeUserController.GetAll(Exchange.Domain.ExchangeUser.Query.GetUsersWithPagingQuery)">
-            <summary>
-            
-            </summary>
-            <param name="query"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Exchange.WebApi.Controllers.ExchangeUserController.Create(Exchange.Domain.ExchangeUser.Command.CreateExchangeUserCommand)">
-            <summary>
-            Creates an Exchange User
-            </summary>
-            <param name="command"></param>
-            <returns></returns>
-        </member>
         <member name="T:Exchange.WebApi.Controllers.ItemsController">
             <summary>
             
@@ -54,14 +21,14 @@
             Gets the item with the given Id
             </summary>
             <param name="id">Item Id to get</param>
-            <returns></returns>
+            <returns>Item</returns>
         </member>
         <member name="M:Exchange.WebApi.Controllers.ItemsController.GetAll(Exchange.Domain.Item.Query.GetItemsWithPagingQuery)">
             <summary>
-            
+            Get List of item matching query with desired pagination
             </summary>
             <param name="query"></param>
-            <returns></returns>
+            <returns>List of items with paging data</returns>
         </member>
         <member name="M:Exchange.WebApi.Controllers.ItemsController.Create(Exchange.Domain.Item.Command.CreateItemCommand)">
             <summary>
@@ -72,7 +39,7 @@
         </member>
         <member name="M:Exchange.WebApi.Controllers.ItemsController.Update(Exchange.Domain.Item.Command.UpdateItemCommand)">
             <summary>
-            
+            Update Item
             </summary>
             <param name="command"></param>
             <returns></returns>
@@ -94,6 +61,46 @@
             </summary>
             <param name="tokenCommand"></param>
             <returns></returns>
+        </member>
+        <member name="T:Exchange.WebApi.Controllers.UserController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Exchange.WebApi.Controllers.UserController.#ctor(Exchange.Domain.User.Service.IUserReadService,Exchange.Domain.User.Service.IUserWriteService)">
+            <summary>
+            
+            </summary>
+            <param name="userReadService"></param>
+            <param name="userWriteService"></param>
+        </member>
+        <member name="M:Exchange.WebApi.Controllers.UserController.Get(System.Int32)">
+            <summary>
+            Gets the Exchange User with the given Id
+            </summary>
+            <param name="id">User Id to get</param>
+            <returns>Exchange User</returns>
+        </member>
+        <member name="M:Exchange.WebApi.Controllers.UserController.GetAll(Exchange.Domain.User.Query.GetUsersWithPagingQuery)">
+            <summary>
+            Gets Exchange users matching query
+            </summary>
+            <param name="query"></param>
+            <returns>List of Exchange users with pagination</returns>
+        </member>
+        <member name="M:Exchange.WebApi.Controllers.UserController.Create(Exchange.Domain.User.Command.CreateUserCommand)">
+            <summary>
+            Creates an Exchange User
+            </summary>
+            <param name="command"></param>
+            <returns>Created Exchange User</returns>
+        </member>
+        <member name="M:Exchange.WebApi.Controllers.UserController.Update(Exchange.Domain.User.Command.UpdateUserCommand)">
+            <summary>
+            Updates Exchange User
+            </summary>
+            <param name="command"></param>
+            <returns>Updated Exchange User</returns>
         </member>
         <member name="T:Exchange.WebApi.Program">
             <summary>

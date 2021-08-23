@@ -7,7 +7,7 @@ namespace Exchange.Core.Item.Strategy
 {
     public class DeleteItemSimple:IDeleteItemStrategy
     {
-        public bool Delete(IItemRepository itemRepository, IExchangeUserRepository exchangeUserRepository, DeleteItemCommand command)
+        public bool Delete(IItemRepository itemRepository, IUserRepository userRepository, DeleteItemCommand command)
         {
             bool retVal = itemRepository.Delete(command.ItemId);
             

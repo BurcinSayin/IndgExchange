@@ -16,4 +16,8 @@
       <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.9" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Remove="exchange.db" />
+    </ItemGroup>
+
 </Project>

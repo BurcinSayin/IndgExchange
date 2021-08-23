@@ -15,4 +15,9 @@
       </None>
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Transaction\Entity" />
+      <Folder Include="User" />
+    </ItemGroup>
+
 </Project>

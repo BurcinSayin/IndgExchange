@@ -14,7 +14,7 @@ namespace Exchange.Core.Tests.Item.Strategy
         private MockRepository mockRepository;
 
         private Mock<IItemRepository> mockItemRepository;
-        private Mock<IExchangeUserRepository> mockExchangeUserRepository;
+        private Mock<IUserRepository> mockUserRepository;
         private Mock<IDataTransaction> mockTransaction;
         
 
@@ -24,7 +24,7 @@ namespace Exchange.Core.Tests.Item.Strategy
             this.mockRepository = new MockRepository(MockBehavior.Strict);
 
             mockItemRepository = mockRepository.Create<IItemRepository>();
-            mockExchangeUserRepository = mockRepository.Create<IExchangeUserRepository>();
+            mockUserRepository = mockRepository.Create<IUserRepository>();
             mockTransaction = mockRepository.Create<IDataTransaction>();
         }
 
@@ -41,8 +41,8 @@ namespace Exchange.Core.Tests.Item.Strategy
             var repoResult = new Domain.Item.Entity.Item() { Id = 333 };
 
             mockItemRepository.Setup(ir => ir.BeginTransaction()).Returns(mockTransaction.Object);
-            mockExchangeUserRepository.Setup(ur => ur.FindById(It.IsAny<int>(), It.IsAny<IDataTransaction>())).Returns(
-                new Domain.ExchangeUser.Entity.ExchangeUser()
+            mockUserRepository.Setup(ur => ur.FindById(It.IsAny<int>(), It.IsAny<IDataTransaction>())).Returns(
+                new Domain.User.Entity.User()
                 {
                     Id = command.OwnerId.Value,
                     Name = "Douglas Adams",
@@ -56,7 +56,7 @@ namespace Exchange.Core.Tests.Item.Strategy
 
             var result = createItemWithTransaction.Create(
                 mockItemRepository.Object,
-                mockExchangeUserRepository.Object,
+                mockUserRepository.Object,
                 command);
 
             
@@ -72,7 +72,7 @@ namespace Exchange.Core.Tests.Item.Strategy
 
             
             mockItemRepository.Setup(ir => ir.BeginTransaction()).Returns(mockTransaction.Object);
-            mockExchangeUserRepository.Setup(ur => ur.FindById(It.IsAny<int>(), It.IsAny<IDataTransaction>())).Returns(
+            mockUserRepository.Setup(ur => ur.FindById(It.IsAny<int>(), It.IsAny<IDataTransaction>())).Returns(
                 () => null
             );
             Domain.Item.Entity.Item addedObject = null;
@@ -84,7 +84,7 @@ namespace Exchange.Core.Tests.Item.Strategy
 
             var result = createItemWithTransaction.Create(
                 mockItemRepository.Object,
-                mockExchangeUserRepository.Object,
+                mockUserRepository.Object,
                 command);
 
             

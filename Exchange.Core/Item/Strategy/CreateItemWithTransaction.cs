@@ -6,15 +6,15 @@ namespace Exchange.Core.Item.Strategy
 {
     public class CreateItemWithTransaction:ICreateItemStrategy
     {
-        public Domain.Item.Entity.Item Create(IItemRepository itemRepository, IExchangeUserRepository exchangeUserRepository,
+        public Domain.Item.Entity.Item Create(IItemRepository itemRepository, IUserRepository userRepository,
             CreateItemCommand command)
         {
             var transaction = itemRepository.BeginTransaction();
 
-            Domain.ExchangeUser.Entity.ExchangeUser itemOwner = null;
+            Domain.User.Entity.User itemOwner = null;
             if (command.OwnerId.HasValue)
             {
-                itemOwner = exchangeUserRepository.FindById(command.OwnerId.Value, transaction);
+                itemOwner = userRepository.FindById(command.OwnerId.Value, transaction);
             }
 
             Domain.Item.Entity.Item toCreate = new Domain.Item.Entity.Item()

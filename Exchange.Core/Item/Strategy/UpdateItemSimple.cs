@@ -7,7 +7,7 @@ namespace Exchange.Core.Item.Strategy
 {
     public class UpdateItemSimple:IUpdateItemStrategy
     {
-        public Domain.Item.Entity.Item Update(IItemRepository itemRepository, IExchangeUserRepository exchangeUserRepository, UpdateItemCommand command)
+        public Domain.Item.Entity.Item Update(IItemRepository itemRepository, IUserRepository userRepository, UpdateItemCommand command)
         {
             var targetItem = itemRepository.Get(command.ItemId);
 
@@ -18,7 +18,7 @@ namespace Exchange.Core.Item.Strategy
 
             if (command.HolderId.HasValue)
             {
-                targetItem.Holder = exchangeUserRepository.Get(command.HolderId.Value);
+                targetItem.Holder = userRepository.Get(command.HolderId.Value);
             }
 
             targetItem.ItemName = command.ItemName;

@@ -13,7 +13,7 @@ namespace Exchange.Core.Tests.Item.Strategy
     {
         private MockRepository mockRepository;
         private Mock<IItemRepository> mockItemRepository;
-        private Mock<IExchangeUserRepository> mockExchangeUserRepository;
+        private Mock<IUserRepository> mockUserRepository;
 
 
         [SetUp]
@@ -22,7 +22,7 @@ namespace Exchange.Core.Tests.Item.Strategy
             this.mockRepository = new MockRepository(MockBehavior.Strict);
 
             mockItemRepository = mockRepository.Create<IItemRepository>();
-            mockExchangeUserRepository = mockRepository.Create<IExchangeUserRepository>();
+            mockUserRepository = mockRepository.Create<IUserRepository>();
         }
 
         private DeleteItemSimple CreateDeleteItemSimple()
@@ -45,7 +45,7 @@ namespace Exchange.Core.Tests.Item.Strategy
             // Act
             var result = deleteItemSimple.Delete(
                 mockItemRepository.Object,
-                mockExchangeUserRepository.Object,
+                mockUserRepository.Object,
                 command);
 
             // Assert
@@ -69,7 +69,7 @@ namespace Exchange.Core.Tests.Item.Strategy
             {
                 deleteItemSimple.Delete(
                     mockItemRepository.Object,
-                    mockExchangeUserRepository.Object,
+                    mockUserRepository.Object,
                     command);
             });
 

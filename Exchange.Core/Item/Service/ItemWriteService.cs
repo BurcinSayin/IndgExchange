@@ -13,7 +13,7 @@ namespace Exchange.Core.Item.Service
     public class ItemWriteService:IItemWriteService
     {
         private IItemRepository _itemRepository;
-        private IExchangeUserRepository _userRepository;
+        private IUserRepository _userRepository;
 
         // private ICreateItemStrategy createStrategy;
         // private IUpdateItemStrategy updateStratgy;
@@ -21,7 +21,7 @@ namespace Exchange.Core.Item.Service
 
         private ItemWriteStrategySet _writeStrategySet;
 
-        public ItemWriteService(ItemWriteStrategySet strategySet,IItemRepository itemRepository, IExchangeUserRepository userRepository)
+        public ItemWriteService(ItemWriteStrategySet strategySet,IItemRepository itemRepository, IUserRepository userRepository)
         {
             _itemRepository = itemRepository;
             _userRepository = userRepository;

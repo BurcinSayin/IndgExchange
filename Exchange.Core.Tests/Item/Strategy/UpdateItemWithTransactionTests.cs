@@ -14,7 +14,7 @@ namespace Exchange.Core.Tests.Item.Strategy
         private MockRepository mockRepository;
 
         private Mock<IItemRepository> mockItemRepository;
-        private Mock<IExchangeUserRepository> mockExchangeUserRepository;
+        private Mock<IUserRepository> mockUserRepository;
         private Mock<IDataTransaction> mockTransaction;
 
         [SetUp]
@@ -23,7 +23,7 @@ namespace Exchange.Core.Tests.Item.Strategy
             this.mockRepository = new MockRepository(MockBehavior.Strict);
 
             mockItemRepository = mockRepository.Create<IItemRepository>();
-            mockExchangeUserRepository = mockRepository.Create<IExchangeUserRepository>();
+            mockUserRepository = mockRepository.Create<IUserRepository>();
             mockTransaction = mockRepository.Create<IDataTransaction>();
         }
 
@@ -46,8 +46,8 @@ namespace Exchange.Core.Tests.Item.Strategy
             mockItemRepository.Setup(ir => ir.BeginTransaction()).Returns(mockTransaction.Object);
             mockItemRepository.Setup(ir => ir.FindById(It.IsAny<int>(), It.IsAny<IDataTransaction>()))
                 .Returns(new Domain.Item.Entity.Item(){Id = command.ItemId});
-            mockExchangeUserRepository.Setup(ur => ur.FindById(It.IsAny<int>(), It.IsAny<IDataTransaction>())).Returns(
-                new Domain.ExchangeUser.Entity.ExchangeUser()
+            mockUserRepository.Setup(ur => ur.FindById(It.IsAny<int>(), It.IsAny<IDataTransaction>())).Returns(
+                new Domain.User.Entity.User()
                 {
                     Id = command.HolderId.Value,
                     Name = "Douglas Adams",
@@ -63,7 +63,7 @@ namespace Exchange.Core.Tests.Item.Strategy
             // Act
             var result = updateItemWithTransaction.Update(
                 mockItemRepository.Object,
-                mockExchangeUserRepository.Object,
+                mockUserRepository.Object,
                 command);
 
             Assert.AreEqual(command.ItemId,updatedItem.Id);
@@ -94,7 +94,7 @@ namespace Exchange.Core.Tests.Item.Strategy
             {
                 updateItemWithTransaction.Update(
                     mockItemRepository.Object,
-                    mockExchangeUserRepository.Object,
+                    mockUserRepository.Object,
                     command);
             });
 

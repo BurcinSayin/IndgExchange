@@ -1,5 +1,5 @@
-﻿using Exchange.Domain.ExchangeUser.Response;
-using Exchange.Domain.Item.Response;
+﻿using Exchange.Domain.Item.Response;
+using Exchange.Domain.User.Response;
 
 namespace Exchange.Core.Shared
 {
@@ -10,9 +10,9 @@ namespace Exchange.Core.Shared
             return ItemInfo.MapToInfo(source);
         }
         
-        public static ExchangeUserInfo ToExchangeUserInfo(this Domain.ExchangeUser.Entity.ExchangeUser source)
+        public static UserInfo ToUserInfo(this Domain.User.Entity.User source)
         {
-            return ExchangeUserInfo.MapToInfo(source);
+            return UserInfo.MapToInfo(source);
         }
     }
 }

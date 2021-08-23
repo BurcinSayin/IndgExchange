@@ -15,7 +15,7 @@ namespace Exchange.Core.Tests.Item.Service
         private MockRepository mockRepository;
 
         private Mock<IItemRepository> mockItemRepository;
-        private Mock<IExchangeUserRepository> mockExchangeUserRepository;
+        private Mock<IUserRepository> mockUserRepository;
         
         private Mock<ICreateItemStrategy> mockCreateStrategy;
         private Mock<IUpdateItemStrategy> mockUpdateStratgy;
@@ -27,7 +27,7 @@ namespace Exchange.Core.Tests.Item.Service
             this.mockRepository = new MockRepository(MockBehavior.Strict);
 
             this.mockItemRepository = this.mockRepository.Create<IItemRepository>();
-            this.mockExchangeUserRepository = this.mockRepository.Create<IExchangeUserRepository>();
+            this.mockUserRepository = this.mockRepository.Create<IUserRepository>();
             mockCreateStrategy = mockRepository.Create<ICreateItemStrategy>();
             mockUpdateStratgy = mockRepository.Create<IUpdateItemStrategy>();
             mockDeleteStrategy = mockRepository.Create<IDeleteItemStrategy>();
@@ -43,7 +43,7 @@ namespace Exchange.Core.Tests.Item.Service
             return new ItemWriteService(
                 strategySet,
                 this.mockItemRepository.Object,
-                this.mockExchangeUserRepository.Object);
+                this.mockUserRepository.Object);
         }
 
         [Test]
@@ -56,7 +56,7 @@ namespace Exchange.Core.Tests.Item.Service
                 ItemName = "test"
             };
             mockCreateStrategy.Setup(stategy => stategy.Create(It.IsAny<IItemRepository>(),
-                It.IsAny<IExchangeUserRepository>(),
+                It.IsAny<IUserRepository>(),
                 It.IsAny<CreateItemCommand>())).Returns(new Domain.Item.Entity.Item());
 
             // Act
@@ -96,7 +96,7 @@ namespace Exchange.Core.Tests.Item.Service
                 ItemName = "Test"
             };
             mockUpdateStratgy.Setup(stategy => stategy.Update(It.IsAny<IItemRepository>(),
-                It.IsAny<IExchangeUserRepository>(),
+                It.IsAny<IUserRepository>(),
                 It.IsAny<UpdateItemCommand>())).Returns(new Domain.Item.Entity.Item());
 
             // Act
@@ -135,7 +135,7 @@ namespace Exchange.Core.Tests.Item.Service
                 ItemId = 42
             };
             mockDeleteStrategy.Setup(stategy => stategy.Delete(It.IsAny<IItemRepository>(),
-                It.IsAny<IExchangeUserRepository>(),
+                It.IsAny<IUserRepository>(),
                 It.IsAny<DeleteItemCommand>())).Returns(true);
 
             // Act

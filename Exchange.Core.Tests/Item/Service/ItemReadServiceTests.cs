@@ -1,17 +1,14 @@
-﻿using Exchange.Domain.DataInterfaces;
-using Exchange.Services;
-using Moq;
-using NUnit.Framework;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Exchange.Core.Item.Service;
-using Exchange.Data.Sqlite;
-using Exchange.Domain.Item.Entity;
+using Exchange.Domain.DataInterfaces;
 using Exchange.Domain.Item.Query;
 using FluentValidation;
+using Moq;
+using NUnit.Framework;
 
-namespace Exchange.Services.Tests
+namespace Exchange.Core.Tests.Item.Service
 {
     [TestFixture]
     public class ItemReadServiceTests
@@ -43,7 +40,7 @@ namespace Exchange.Services.Tests
                 ItemId = 42
             };
             mockItemRepository.Setup(ir => ir.Get(It.IsAny<int>()))
-                .Returns(new Item()
+                .Returns(new Domain.Item.Entity.Item()
                 {
                     Id = query.ItemId
                 });
@@ -85,10 +82,10 @@ namespace Exchange.Services.Tests
                 PageNumber = 1,
                 PageSize = 10
             };
-            List<Item> mockResponse = new List<Item>();
+            List<Domain.Item.Entity.Item> mockResponse = new List<Domain.Item.Entity.Item>();
             for (int i = 0; i < 15; i++)
             {
-                mockResponse.Add(new Item()
+                mockResponse.Add(new Domain.Item.Entity.Item()
                 {
                     Id = i+1
                 });

@@ -15,16 +15,16 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using Exchange.Core.ExchangeUser.Service;
-using Exchange.Core.ExchangeUser.Strategy;
 using Exchange.Core.Item.Service;
 using Exchange.Core.Item.Strategy;
+using Exchange.Core.User.Service;
+using Exchange.Core.User.Strategy;
 using Exchange.Data.Sqlite;
 using Exchange.Domain.DataInterfaces;
-using Exchange.Domain.ExchangeUser.Service;
-using Exchange.Domain.ExchangeUser.Strategy;
 using Exchange.Domain.Item.Service;
 using Exchange.Domain.Item.Strategy;
+using Exchange.Domain.User.Service;
+using Exchange.Domain.User.Strategy;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection.Extensions;
@@ -69,24 +69,24 @@ namespace Exchange.WebApi
             
             
             services.AddScoped<IItemRepository, ItemRepository>();
-            services.AddScoped<IExchangeUserRepository, ExchangeUserRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
             
             
             services.AddScoped<IItemReadService, ItemReadService>();
             services.AddScoped<IItemWriteService, ItemWriteService>();
             
-            services.AddScoped<IExchangeUserReadService, ExchangeUserReadService>();
-            services.AddScoped<IExchangeUserWriteService, ExchangeUserWriteService>();
+            services.AddScoped<IUserReadService, UserReadService>();
+            services.AddScoped<IUserWriteService, UserWriteService>();
             
             services.AddTransient<ItemWriteStrategySet>();
             services.AddScoped<ICreateItemStrategy, CreateItemWithTransaction>();
             services.AddScoped<IUpdateItemStrategy, UpdateItemWithTransaction>();
             services.AddScoped<IDeleteItemStrategy, DeleteItemSimple>();
             
-            services.AddTransient<ExchangeUserWriteStrategySet>();
-            services.AddScoped<ICreateExchangeUserStategy, CreateExchangeUserSimple>();
-            services.AddScoped<IUpdateExchangeUserStrategy, UpdateExchangeUserSimple>();
-            services.AddScoped<IDeleteExchangeUserStrategy, DeleteExchangeUserSimple>();
+            services.AddTransient<UserWriteStrategySet>();
+            services.AddScoped<ICreateUserStrategy, CreateUserSimple>();
+            services.AddScoped<IUpdateUserStrategy, UpdateUserSimple>();
+            services.AddScoped<IDeleteUserStrategy, DeleteUserSimple>();
             
 
             

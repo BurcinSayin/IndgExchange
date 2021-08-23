@@ -15,7 +15,7 @@ namespace Exchange.Core.Tests.Item.Strategy
         private MockRepository mockRepository;
 
         private Mock<IItemRepository> mockItemRepository;
-        private Mock<IExchangeUserRepository> mockExchangeUserRepository;
+        private Mock<IUserRepository> mockUserRepository;
 
         [SetUp]
         public void SetUp()
@@ -23,7 +23,7 @@ namespace Exchange.Core.Tests.Item.Strategy
             this.mockRepository = new MockRepository(MockBehavior.Strict);
 
             mockItemRepository = mockRepository.Create<IItemRepository>();
-            mockExchangeUserRepository = mockRepository.Create<IExchangeUserRepository>();
+            mockUserRepository = mockRepository.Create<IUserRepository>();
         }
 
         private UpdateItemSimple CreateUpdateItemSimple()
@@ -47,8 +47,8 @@ namespace Exchange.Core.Tests.Item.Strategy
             {
                 Id = command.ItemId
             });
-            mockExchangeUserRepository.Setup(ur => ur.Get(It.IsAny<int>())).Returns(
-                new Domain.ExchangeUser.Entity.ExchangeUser()
+            mockUserRepository.Setup(ur => ur.Get(It.IsAny<int>())).Returns(
+                new Domain.User.Entity.User()
                 {
                     Id = command.HolderId.Value
                 });
@@ -61,7 +61,7 @@ namespace Exchange.Core.Tests.Item.Strategy
             // Act
             var result = updateItemSimple.Update(
                 mockItemRepository.Object,
-                mockExchangeUserRepository.Object,
+                mockUserRepository.Object,
                 command);
 
             // Assert
@@ -89,7 +89,7 @@ namespace Exchange.Core.Tests.Item.Strategy
             {
                 updateItemSimple.Update(
                     mockItemRepository.Object,
-                    mockExchangeUserRepository.Object,
+                    mockUserRepository.Object,
                     command);
             });
             

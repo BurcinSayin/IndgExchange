@@ -23,4 +23,8 @@
     <ProjectReference Include="..\Exchange.Domain\Exchange.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="exchange.db" />
+  </ItemGroup>
+
 </Project>

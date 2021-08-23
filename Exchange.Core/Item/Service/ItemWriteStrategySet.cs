@@ -20,7 +20,7 @@ namespace Exchange.Core.Item.Service
             this.createStrategy = createStrategy;
         }
 
-        public Domain.Item.Entity.Item Create(IItemRepository itemRepository, IExchangeUserRepository userRepository, CreateItemCommand createCommand)
+        public Domain.Item.Entity.Item Create(IItemRepository itemRepository, IUserRepository userRepository, CreateItemCommand createCommand)
         {
             CreateItemCommandValidator validator = new CreateItemCommandValidator();
             validator.ValidateAndThrow(createCommand);
@@ -28,7 +28,7 @@ namespace Exchange.Core.Item.Service
             return createStrategy.Create(itemRepository, userRepository, createCommand);
         }
 
-        public Domain.Item.Entity.Item Update(IItemRepository itemRepository, IExchangeUserRepository userRepository, UpdateItemCommand command)
+        public Domain.Item.Entity.Item Update(IItemRepository itemRepository, IUserRepository userRepository, UpdateItemCommand command)
         {
             UpdateItemCommandValidator validator = new UpdateItemCommandValidator();
             validator.ValidateAndThrow(command);
@@ -36,7 +36,7 @@ namespace Exchange.Core.Item.Service
             return updateStratgy.Update(itemRepository, userRepository, command);
         }
 
-        public bool Delete(IItemRepository itemRepository, IExchangeUserRepository userRepository, DeleteItemCommand command)
+        public bool Delete(IItemRepository itemRepository, IUserRepository userRepository, DeleteItemCommand command)
         {
             DeleteItemCommandValidator validator = new DeleteItemCommandValidator();
             validator.ValidateAndThrow(command);

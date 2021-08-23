@@ -1,6 +1,6 @@
 ﻿using Exchange.Domain.DataInterfaces;
-using Exchange.Domain.ExchangeUser.Entity;
 using Exchange.Domain.Item.Entity;
+using Exchange.Domain.User.Entity;
 using Microsoft.EntityFrameworkCore;
 
 namespace Exchange.Data.Sqlite
@@ -8,7 +8,7 @@ namespace Exchange.Data.Sqlite
     public class ExchangeDataContext:DbContext
     {
         public virtual DbSet<Item> Items { get; set; }
-        public virtual DbSet<ExchangeUser> ExchangeUsers { get; set; }
+        public virtual DbSet<User> Users { get; set; }
 
         // private string DbPath { get; set; }
         

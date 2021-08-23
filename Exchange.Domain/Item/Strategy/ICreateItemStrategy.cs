@@ -5,6 +5,6 @@ namespace Exchange.Domain.Item.Strategy
 {
     public interface ICreateItemStrategy
     {
-        Entity.Item Create(IItemRepository itemRepository, IExchangeUserRepository exchangeUserRepository,CreateItemCommand command);
+        Entity.Item Create(IItemRepository itemRepository, IUserRepository userRepository,CreateItemCommand command);
     }
 }
