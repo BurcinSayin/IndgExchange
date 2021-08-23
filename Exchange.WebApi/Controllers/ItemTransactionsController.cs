@@ -44,7 +44,7 @@ namespace Exchange.WebApi.Controllers
         [HttpGet]
         public ActionResult<PagedList<ItemTransactionInfo>> GetAll([FromQuery] GetItemTransactionsWithPagingQuery query)
         {
-            return Ok(_readService.GetTransactionItems(query));
+            return Ok(_readService.GetItemTransactions(query));
         }
         
 

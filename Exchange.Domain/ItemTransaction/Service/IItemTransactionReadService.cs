@@ -7,6 +7,6 @@ namespace Exchange.Domain.ItemTransaction.Service
     public interface IItemTransactionReadService
     {
         ItemTransactionInfo GetItemTransaction(GetItemTransactionQuery query);
-        PagedList<ItemTransactionInfo> GetTransactionItems(GetItemTransactionsWithPagingQuery query);
+        PagedList<ItemTransactionInfo> GetItemTransactions(GetItemTransactionsWithPagingQuery query);
     }
 }

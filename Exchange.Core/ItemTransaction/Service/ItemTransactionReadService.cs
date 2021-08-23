@@ -28,7 +28,7 @@ namespace Exchange.Core.ItemTransaction.Service
             return _transactionRepository.Get(query.ItemTransactionId).ToItemTransactionInfo();
         }
 
-        public PagedList<ItemTransactionInfo> GetTransactionItems(GetItemTransactionsWithPagingQuery query)
+        public PagedList<ItemTransactionInfo> GetItemTransactions(GetItemTransactionsWithPagingQuery query)
         {
             GetItemTransactionsWithPagingQueryValidator validator = new GetItemTransactionsWithPagingQueryValidator();
             validator.ValidateAndThrow(query);
@@ -37,12 +37,20 @@ namespace Exchange.Core.ItemTransaction.Service
 
             if (query.GivingUserId.HasValue)
             {
-                fullData = fullData.Where(tr => tr.GivingUserId != null && tr.GivingUserId == query.GivingUserId);
+                fullData = fullData.Where(tr => tr.GivingUserId == query.GivingUserId);
             }
             
             if (query.TakingUserId.HasValue)
             {
                 fullData = fullData.Where(tr => tr.TakingUserId == query.TakingUserId.Value);
+            }
+            if (query.GivenItemId.HasValue)
+            {
+                fullData = fullData.Where(tr => tr.GivenItemId == query.GivenItemId.Value);
+            }
+            if (query.ExchangedItemId.HasValue)
+            {
+                fullData = fullData.Where(tr => tr.ExchangedItemId == query.ExchangedItemId.Value);
             }
             
             var count = fullData.Count();
