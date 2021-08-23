@@ -38,13 +38,15 @@ namespace Exchange.Core.Tests.User.Strategy
             {
                 UserName = "Test User"
             };
+            mockUserRepository.Setup(ur => ur.Add(It.IsAny<Domain.User.Entity.User>()))
+                .Returns(new Domain.User.Entity.User());
 
             var result = createUserSimple.Create(
                 mockItemRepository.Object,
                 mockUserRepository.Object,
                 command);
 
-            Assert.Fail();
+            Assert.NotNull(result);
             this.mockRepository.VerifyAll();
         }
     }

@@ -9,14 +9,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Exchange.Data.Sqlite.Migrations
 {
     [DbContext(typeof(ExchangeDataContext))]
-    [Migration("20210823160159_InitialCreate")]
+    [Migration("20210823194510_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "5.0.9");
+                .HasAnnotation("ProductVersion", "3.1.18");
 
             modelBuilder.Entity("Exchange.Domain.Item.Entity.Item", b =>
                 {
@@ -82,13 +82,6 @@ namespace Exchange.Data.Sqlite.Migrations
                     b.HasOne("Exchange.Domain.User.Entity.User", "User")
                         .WithMany("Items")
                         .HasForeignKey("UserId");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Exchange.Domain.User.Entity.User", b =>
-                {
-                    b.Navigation("Items");
                 });
 #pragma warning restore 612, 618
         }

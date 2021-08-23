@@ -28,6 +28,7 @@ namespace Exchange.Core.Tests.User.Service
         }
 
         [Test]
+        [Ignore("notImplemented")]
         public void GetItem_StateUnderTest_ExpectedBehavior()
         {
             // Arrange
@@ -43,6 +44,7 @@ namespace Exchange.Core.Tests.User.Service
         }
 
         [Test]
+        [Ignore("notImplemented")]
         public void FindItems_StateUnderTest_ExpectedBehavior()
         {
             // Arrange

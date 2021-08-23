@@ -11,13 +11,13 @@ namespace Exchange.Data.Sqlite.Migrations
                 name: "ItemTransactions",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    GivingUserId = table.Column<int>(type: "INTEGER", nullable: true),
-                    GivenItemId = table.Column<int>(type: "INTEGER", nullable: false),
-                    TakingUserId = table.Column<int>(type: "INTEGER", nullable: false),
-                    ExchangedItemId = table.Column<int>(type: "INTEGER", nullable: true),
-                    CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false)
+                    GivingUserId = table.Column<int>(nullable: true),
+                    GivenItemId = table.Column<int>(nullable: false),
+                    TakingUserId = table.Column<int>(nullable: false),
+                    ExchangedItemId = table.Column<int>(nullable: true),
+                    CreatedAt = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -28,9 +28,9 @@ namespace Exchange.Data.Sqlite.Migrations
                 name: "Users",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Name = table.Column<string>(type: "TEXT", nullable: true)
+                    Name = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -41,10 +41,10 @@ namespace Exchange.Data.Sqlite.Migrations
                 name: "Items",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    ItemName = table.Column<string>(type: "TEXT", nullable: true),
-                    UserId = table.Column<int>(type: "INTEGER", nullable: true)
+                    ItemName = table.Column<string>(nullable: true),
+                    UserId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
