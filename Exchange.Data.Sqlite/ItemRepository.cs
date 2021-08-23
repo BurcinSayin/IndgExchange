@@ -20,12 +20,12 @@ namespace Exchange.Data.Sqlite
         
         public IQueryable<Item> GetAll()
         {
-            return _context.Items.AsNoTracking();
+            return _context.Items.Include(item => item.User).AsNoTracking();
         }
 
         public Item Get(int itemId)
         {
-            return _context.Items.AsNoTracking().FirstOrDefault(item => item.Id == itemId);
+            return _context.Items.Include(item => item.User).AsNoTracking().FirstOrDefault(item => item.Id == itemId);
         }
 
         public Item Add(Item toAdd)
@@ -61,7 +61,7 @@ namespace Exchange.Data.Sqlite
 
         public Item FindById(int itemId, IDataTransaction transaction)
         {
-            return _context.Items.FirstOrDefault(it => it.Id == itemId);
+            return _context.Items.Include(item => item.User).FirstOrDefault(it => it.Id == itemId);
         }
     }
 }

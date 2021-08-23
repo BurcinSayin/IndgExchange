@@ -51,7 +51,7 @@ namespace Exchange.Core.Tests.Item.Strategy
                 {
                     Id = command.HolderId.Value,
                     Name = "Douglas Adams",
-                    ItemList = null
+                    Items = null
                 }
             );
             Domain.Item.Entity.Item updatedItem = null;
@@ -67,7 +67,7 @@ namespace Exchange.Core.Tests.Item.Strategy
                 command);
 
             Assert.AreEqual(command.ItemId,updatedItem.Id);
-            Assert.AreEqual(command.HolderId.Value,updatedItem.Holder.Id);
+            Assert.AreEqual(command.HolderId.Value,updatedItem.User.Id);
             Assert.AreEqual(command.ItemName,updatedItem.ItemName);
             this.mockRepository.VerifyAll();
         }

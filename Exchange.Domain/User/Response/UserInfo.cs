@@ -23,7 +23,7 @@ namespace Exchange.Domain.User.Response
             {
                 Id = toMap.Id,
                 Name = toMap.Name,
-                ItemList = toMap.ItemList != null ? toMap.ItemList.Select(ItemInfo.MapToInfo).ToList() : null
+                ItemList = toMap.Items != null ? toMap.Items.Select(ItemInfo.MapToInfo).ToList() : null
             };
         }
     }

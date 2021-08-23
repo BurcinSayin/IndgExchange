@@ -27,7 +27,7 @@ namespace Exchange.Data.Sqlite.Tests
         {
             testDataContext = new ExchangeDataContext();
 
-            testItem = new Item() { ItemName = "TestItem" };
+            testItem = new Item() { ItemName = "TestItem" ,User = null};
             testUser = new User() { Name = "TestUser" };
 
             ItemRepository itemRepository = new ItemRepository(testDataContext);
@@ -55,6 +55,10 @@ namespace Exchange.Data.Sqlite.Tests
             Console.WriteLine(result.Id);
 
             var tranList = toTest.GetAll().ToList();
+
+            var itemList = testDataContext.Items.ToList();
+            
+            var userList = testDataContext.Users.ToList();
 
             foreach (ItemTransaction tran in tranList)
             {

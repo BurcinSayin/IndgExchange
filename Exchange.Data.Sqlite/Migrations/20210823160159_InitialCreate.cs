@@ -44,23 +44,23 @@ namespace Exchange.Data.Sqlite.Migrations
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     ItemName = table.Column<string>(type: "TEXT", nullable: true),
-                    HolderId = table.Column<int>(type: "INTEGER", nullable: true)
+                    UserId = table.Column<int>(type: "INTEGER", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Items", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Items_Users_HolderId",
-                        column: x => x.HolderId,
+                        name: "FK_Items_Users_UserId",
+                        column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Items_HolderId",
+                name: "IX_Items_UserId",
                 table: "Items",
-                column: "HolderId");
+                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

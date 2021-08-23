@@ -83,11 +83,11 @@ namespace Exchange.Core.ItemTransaction.Strategy
 
             var retVal = transactionRepository.Add(toCreate);
 
-            fromItem.Holder = toUser;
+            fromItem.User = toUser;
             itemRepository.Update(fromItem);
             if (toItem != null)
             {
-                toItem.Holder = fromUser;
+                toItem.User = fromUser;
                 itemRepository.Update(toItem);
             }
             

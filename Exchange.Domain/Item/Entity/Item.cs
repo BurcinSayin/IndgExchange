@@ -7,6 +7,7 @@ namespace Exchange.Domain.Item.Entity
         public int Id { get; set; }
         public string ItemName { get; set; }
         
-        public User.Entity.User Holder { get; set; }
+        public int? UserId { get; set; }
+        public User.Entity.User User { get; set; }
     }
 }

@@ -22,15 +22,15 @@ namespace Exchange.Data.Sqlite.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("HolderId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<string>("ItemName")
                         .HasColumnType("TEXT");
 
+                    b.Property<int?>("UserId")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("HolderId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Items");
                 });
@@ -77,16 +77,16 @@ namespace Exchange.Data.Sqlite.Migrations
 
             modelBuilder.Entity("Exchange.Domain.Item.Entity.Item", b =>
                 {
-                    b.HasOne("Exchange.Domain.User.Entity.User", "Holder")
-                        .WithMany("ItemList")
-                        .HasForeignKey("HolderId");
+                    b.HasOne("Exchange.Domain.User.Entity.User", "User")
+                        .WithMany("Items")
+                        .HasForeignKey("UserId");
 
-                    b.Navigation("Holder");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Exchange.Domain.User.Entity.User", b =>
                 {
-                    b.Navigation("ItemList");
+                    b.Navigation("Items");
                 });
 #pragma warning restore 612, 618
         }

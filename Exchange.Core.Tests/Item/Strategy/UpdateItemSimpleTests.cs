@@ -66,7 +66,7 @@ namespace Exchange.Core.Tests.Item.Strategy
 
             // Assert
             Assert.AreEqual(command.ItemId,updatedItem.Id);
-            Assert.AreEqual(command.HolderId.Value,updatedItem.Holder.Id);
+            Assert.AreEqual(command.HolderId.Value,updatedItem.User.Id);
             Assert.AreEqual(command.ItemName,updatedItem.ItemName);
             this.mockRepository.VerifyAll();
         }

@@ -21,7 +21,7 @@ namespace Exchange.Core.Item.Strategy
 
             if (command.HolderId.HasValue)
             {
-                targetItem.Holder = userRepository.FindById(command.HolderId.Value, transaction);
+                targetItem.User = userRepository.FindById(command.HolderId.Value, transaction);
             }
 
             targetItem.ItemName = command.ItemName;

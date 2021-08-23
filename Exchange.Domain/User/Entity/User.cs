@@ -10,7 +10,7 @@ namespace Exchange.Domain.User.Entity
         
         
         
-        public List<Item.Entity.Item> ItemList { get; set; }
+        public List<Item.Entity.Item> Items { get; set; }
 
     }
 }

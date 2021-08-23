@@ -35,7 +35,8 @@ namespace Exchange.Core.User.Service
             }
             
             var count = resultList.Count();
-            var result = resultList.OrderBy(it=>it.Id).Skip((query.PageNumber - 1) * query.PageSize).Take(query.PageSize)
+            var result = resultList.OrderBy(it=>it.Id).Skip((query.PageNumber - 1) * query.PageSize)
+                .Take(query.PageSize)
                 .Select(usr => UserInfo.MapToInfo(usr))
                 .ToList();
 

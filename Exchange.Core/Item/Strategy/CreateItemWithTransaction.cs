@@ -19,7 +19,7 @@ namespace Exchange.Core.Item.Strategy
 
             Domain.Item.Entity.Item toCreate = new Domain.Item.Entity.Item()
             {
-                Holder = itemOwner,
+                User = itemOwner,
                 ItemName = command.ItemName
             };
 

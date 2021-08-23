@@ -46,7 +46,7 @@ namespace Exchange.Core.Tests.Item.Strategy
                 {
                     Id = command.OwnerId.Value,
                     Name = "Douglas Adams",
-                    ItemList = null
+                    Items = null
                 }
             );
             mockItemRepository.Setup(ir => ir.Add(It.IsAny<Domain.Item.Entity.Item>()))
@@ -92,7 +92,7 @@ namespace Exchange.Core.Tests.Item.Strategy
             this.mockRepository.VerifyAll();
             // Assert
             Assert.AreEqual(command.ItemName,addedObject.ItemName);
-            Assert.IsNull(addedObject.Holder);
+            Assert.IsNull(addedObject.User);
         }
     }
 }

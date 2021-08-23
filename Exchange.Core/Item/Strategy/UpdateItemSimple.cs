@@ -18,7 +18,7 @@ namespace Exchange.Core.Item.Strategy
 
             if (command.HolderId.HasValue)
             {
-                targetItem.Holder = userRepository.Get(command.HolderId.Value);
+                targetItem.User = userRepository.Get(command.HolderId.Value);
             }
 
             targetItem.ItemName = command.ItemName;

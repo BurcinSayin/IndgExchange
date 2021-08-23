@@ -41,7 +41,7 @@ namespace Exchange.Core.Item.Service
             
             if (query.OwnerId.HasValue)
             {
-                fullData = fullData.Where(it => it.Holder != null && it.Holder.Id == query.OwnerId.Value);
+                fullData = fullData.Where(it => it.User != null && it.User.Id == query.OwnerId.Value);
             }
 
             if (!string.IsNullOrWhiteSpace(query.ItemName))
@@ -53,11 +53,15 @@ namespace Exchange.Core.Item.Service
 
 
             var count = fullData.Count();
-            var result = fullData.OrderBy(it=>it.Id).Skip((query.PageNumber - 1) * query.PageSize).Take(query.PageSize)
-                .Select(it =>ItemInfo.MapToInfo(it))
+            var result = fullData.OrderBy(it=>it.Id).Skip((query.PageNumber - 1) * query.PageSize)
+                .Take(query.PageSize)
+                .Select(it => new {it,it.User})
+                .Select(arg => ItemInfo.MapToInfo(arg.it))
                 .ToList();
 
-            return new PagedList<ItemInfo>(result, query.PageNumber, query.PageSize, count);
+
+            
+            return new PagedList<ItemInfo>(result.ToList(), query.PageNumber, query.PageSize, count);
         }
     }
 }

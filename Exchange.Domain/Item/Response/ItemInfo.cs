@@ -18,7 +18,7 @@
             {
                 Id = toMap.Id,
                 ItemName = toMap.ItemName,
-                Owner = toMap.Holder != null ? toMap.Holder.Name : null
+                Owner = toMap.User != null ? toMap.User.Name : null
             };
         }
     }

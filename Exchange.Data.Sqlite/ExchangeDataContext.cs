@@ -1,4 +1,5 @@
-﻿using Exchange.Domain.DataInterfaces;
+﻿using System.Reflection;
+using Exchange.Domain.DataInterfaces;
 using Exchange.Domain.Item.Entity;
 using Exchange.Domain.ItemTransaction.Entity;
 using Exchange.Domain.User.Entity;
@@ -29,6 +30,14 @@ namespace Exchange.Data.Sqlite
         
         protected override void OnConfiguring(DbContextOptionsBuilder options)
             => options.UseSqlite($"Data Source=exchange.db");
+        
+        
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
+            base.OnModelCreating(builder);
+        }
         
     }
 }
