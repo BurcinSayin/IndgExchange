@@ -4,6 +4,12 @@ terraform {
       source = "hashicorp/azurerm"
     }
   }
+  backend "azurerm" {
+    resource_group_name  = "VisualStudioOnline-1188FA4DC40248DEA6EF7F63C4DFC797"
+    storage_account_name = "burcinterrastorage"
+    container_name       = "terrablob"
+    key                  = "terraform.tfstate"
+  }
 }
 
 provider "azurerm" {
