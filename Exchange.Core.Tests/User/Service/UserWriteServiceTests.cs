@@ -48,7 +48,8 @@ namespace Exchange.Core.Tests.User.Service
             var service = this.CreateService();
             CreateUserCommand createCommand = new CreateUserCommand()
             {
-                UserName = "TestUSer"
+                UserName = "TestUSer",
+                Password = "pass"
             };
             mockCreateStrategy.Setup(stategy => stategy.Create(It.IsAny<IItemRepository>(),
                 It.IsAny<IUserRepository>(),
@@ -88,7 +89,8 @@ namespace Exchange.Core.Tests.User.Service
             var service = this.CreateService();
             UpdateUserCommand command = new UpdateUserCommand()
             {
-                UserId = 42
+                UserId = 42,
+                
             };
             mockUpdateStratgy.Setup(stategy => stategy.Update(It.IsAny<IItemRepository>(),
                 It.IsAny<IUserRepository>(),

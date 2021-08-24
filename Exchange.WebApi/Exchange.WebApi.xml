@@ -56,12 +56,26 @@
             <param name="readService"></param>
             <param name="writeService"></param>
         </member>
+        <member name="M:Exchange.WebApi.Controllers.ItemTransactionsController.Get(System.Int32)">
+            <summary>
+            Get transaction with given Id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Exchange.WebApi.Controllers.ItemTransactionsController.GetAll(Exchange.Domain.ItemTransaction.Query.GetItemTransactionsWithPagingQuery)">
+            <summary>
+            Search Item TRansactions
+            </summary>
+            <param name="query"></param>
+            <returns>Paged List</returns>
+        </member>
         <member name="T:Exchange.WebApi.Controllers.TokenController">
             <summary>
             
             </summary>
         </member>
-        <member name="M:Exchange.WebApi.Controllers.TokenController.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+        <member name="M:Exchange.WebApi.Controllers.TokenController.#ctor(Microsoft.Extensions.Configuration.IConfiguration,Exchange.Domain.DataInterfaces.IUserRepository)">
             <summary>
             
             </summary>
@@ -69,7 +83,7 @@
         </member>
         <member name="M:Exchange.WebApi.Controllers.TokenController.GetToken(Exchange.Domain.Common.Command.CreateTokenCommand)">
             <summary>
-            
+            A very simple JWT toke authentication
             </summary>
             <param name="tokenCommand"></param>
             <returns></returns>
@@ -88,28 +102,35 @@
         </member>
         <member name="M:Exchange.WebApi.Controllers.UserController.Get(System.Int32)">
             <summary>
-            Gets the Exchange User with the given Id
+            Gets the User with the given Id
             </summary>
             <param name="id">User Id to get</param>
             <returns>Exchange User</returns>
         </member>
+        <member name="M:Exchange.WebApi.Controllers.UserController.Delete(System.Int32)">
+            <summary>
+            Delete User with the given Id
+            </summary>
+            <param name="id">User Id to delete</param>
+            <returns>Exchange User</returns>
+        </member>
         <member name="M:Exchange.WebApi.Controllers.UserController.GetAll(Exchange.Domain.User.Query.GetUsersWithPagingQuery)">
             <summary>
-            Gets Exchange users matching query
+            Gets users matching query
             </summary>
             <param name="query"></param>
             <returns>List of Exchange users with pagination</returns>
         </member>
         <member name="M:Exchange.WebApi.Controllers.UserController.Create(Exchange.Domain.User.Command.CreateUserCommand)">
             <summary>
-            Creates an Exchange User
+            Creates an User
             </summary>
             <param name="command"></param>
             <returns>Created Exchange User</returns>
         </member>
         <member name="M:Exchange.WebApi.Controllers.UserController.Update(Exchange.Domain.User.Command.UpdateUserCommand)">
             <summary>
-            Updates Exchange User
+            Updates User
             </summary>
             <param name="command"></param>
             <returns>Updated Exchange User</returns>

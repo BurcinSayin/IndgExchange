@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Exchange.Core.Shared;
 using Exchange.Domain.Common.Response;
 using Exchange.Domain.Item.Command;
 using Exchange.Domain.Item.Query;
@@ -14,7 +15,7 @@ namespace Exchange.WebApi.Controllers
     /// <summary>
     /// 
     /// </summary>
-    //[Authorize]
+    [Authorize]
     [ApiController]
     [Route("[controller]")]
     public class ItemsController : ControllerBase
@@ -42,9 +43,19 @@ namespace Exchange.WebApi.Controllers
         [HttpGet("{id}")]
         public ActionResult<ItemInfo> Get(int id)
         {
-            var retVal = _itemReadService.GetItem(new GetItemQuery(){ItemId = id});
+            try{
+                var retVal = _itemReadService.GetItem(new GetItemQuery() { ItemId = id });
 
-            return Ok(retVal);
+                return Ok(retVal);
+            }
+            catch(NotFoundException nfe)
+            {
+                return NotFound(nfe.Message);
+            }
+            catch(Exception ex)
+            {
+                return BadRequest();
+            }
         }
 
         /// <summary>
@@ -55,7 +66,17 @@ namespace Exchange.WebApi.Controllers
         [HttpGet]
         public ActionResult<PagedList<ItemInfo>> GetAll([FromQuery] GetItemsWithPagingQuery query)
         {
-            return Ok(_itemReadService.GetItems(query));
+            try{
+                return Ok(_itemReadService.GetItems(query));
+            }
+            catch(NotFoundException nfe)
+            {
+                return NotFound(nfe.Message);
+            }
+            catch(Exception ex)
+            {
+                return BadRequest();
+            }
         }
         
         /// <summary>
@@ -71,9 +92,13 @@ namespace Exchange.WebApi.Controllers
                 var resultItem = _itemWriteService.CreateItem(command);
                 return this.CreatedAtAction("Get",new {id = resultItem.Id},resultItem);
             }
-            catch (Exception ex)
+            catch(NotFoundException nfe)
             {
-                return BadRequest(ex.Message);
+                return NotFound(nfe.Message);
+            }
+            catch(Exception ex)
+            {
+                return BadRequest();
             }
         }
 
@@ -85,9 +110,19 @@ namespace Exchange.WebApi.Controllers
         [HttpPut]
         public ActionResult<ItemInfo> Update(UpdateItemCommand command)
         {
-            var updatedItem = _itemWriteService.UpdateItem(command);
+            try{
+                var updatedItem = _itemWriteService.UpdateItem(command);
 
-            return Ok(updatedItem);
+                return Ok(updatedItem);
+            }
+            catch(NotFoundException nfe)
+            {
+                return NotFound(nfe.Message);
+            }
+            catch(Exception ex)
+            {
+                return BadRequest();
+            }
         }
 
         [HttpDelete("{id}")]
@@ -98,9 +133,13 @@ namespace Exchange.WebApi.Controllers
                 _itemWriteService.DeleteItem(new DeleteItemCommand(){ItemId = id});
                 return NoContent();
             }
-            catch (Exception ex)
+            catch(NotFoundException nfe)
             {
-                return BadRequest(ex.Message);
+                return NotFound(nfe.Message);
+            }
+            catch(Exception ex)
+            {
+                return BadRequest();
             }
         }
     }

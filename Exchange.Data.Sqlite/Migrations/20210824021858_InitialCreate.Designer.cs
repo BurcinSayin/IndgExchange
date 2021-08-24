@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Exchange.Data.Sqlite.Migrations
 {
     [DbContext(typeof(ExchangeDataContext))]
-    [Migration("20210823194510_InitialCreate")]
+    [Migration("20210824021858_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -70,6 +70,9 @@ namespace Exchange.Data.Sqlite.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Password")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");

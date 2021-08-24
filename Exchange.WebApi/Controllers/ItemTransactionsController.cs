@@ -1,10 +1,12 @@
 ﻿using System;
+using Exchange.Core.Shared;
 using Exchange.Domain.Common.Response;
 using Exchange.Domain.Item.Command;
 using Exchange.Domain.ItemTransaction.Command;
 using Exchange.Domain.ItemTransaction.Query;
 using Exchange.Domain.ItemTransaction.Response;
 using Exchange.Domain.ItemTransaction.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Exchange.WebApi.Controllers
@@ -12,6 +14,7 @@ namespace Exchange.WebApi.Controllers
     /// <summary>
     /// 
     /// </summary>
+    [Authorize]
     [ApiController]
     [Route("[controller]")]
     public class ItemTransactionsController : ControllerBase
@@ -32,19 +35,49 @@ namespace Exchange.WebApi.Controllers
         
         
 
+        /// <summary>
+        /// Get transaction with given Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public ActionResult<ItemTransactionInfo> Get(int id)
         {
-            var retVal = _readService.GetItemTransaction(new GetItemTransactionQuery() { ItemTransactionId = id });
+            try{
+                var retVal = _readService.GetItemTransaction(new GetItemTransactionQuery() { ItemTransactionId = id });
 
-            return Ok(retVal);
+                return Ok(retVal);
+            }
+            catch(NotFoundException nfe)
+            {
+                return NotFound(nfe.Message);
+            }
+            catch(Exception ex)
+            {
+                return BadRequest();
+            }
         }
 
 
+        /// <summary>
+        /// Search Item TRansactions
+        /// </summary>
+        /// <param name="query"></param>
+        /// <returns>Paged List</returns>
         [HttpGet]
         public ActionResult<PagedList<ItemTransactionInfo>> GetAll([FromQuery] GetItemTransactionsWithPagingQuery query)
         {
-            return Ok(_readService.GetItemTransactions(query));
+            try{
+                return Ok(_readService.GetItemTransactions(query));
+            }
+            catch(NotFoundException nfe)
+            {
+                return NotFound(nfe.Message);
+            }
+            catch(Exception ex)
+            {
+                return BadRequest();
+            }
         }
         
 
@@ -56,9 +89,13 @@ namespace Exchange.WebApi.Controllers
                 var resultItem = _writeService.CreateItemTransaction(command);
                 return this.CreatedAtAction("Get",new {id = resultItem.Id},resultItem);
             }
-            catch (Exception ex)
+            catch(NotFoundException nfe)
             {
-                return BadRequest(ex.Message);
+                return NotFound(nfe.Message);
+            }
+            catch(Exception ex)
+            {
+                return BadRequest();
             }
         }
     }

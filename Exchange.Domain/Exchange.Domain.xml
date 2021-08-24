@@ -4,6 +4,31 @@
         <name>Exchange.Domain</name>
     </assembly>
     <members>
+        <member name="P:Exchange.Domain.Common.Command.CreateTokenCommand.UserName">
+            <summary>
+            Name of user Case Sensitive
+            </summary>
+        </member>
+        <member name="P:Exchange.Domain.Common.Command.CreateTokenCommand.Password">
+            <summary>
+            Pass Case sensitive
+            </summary>
+        </member>
+        <member name="P:Exchange.Domain.ItemTransaction.Query.GetItemTransactionQuery.ItemTransactionId">
+            <summary>
+            Transaction Id to get
+            </summary>
+        </member>
+        <member name="P:Exchange.Domain.ItemTransaction.Query.GetItemTransactionsWithPagingQuery.PageNumber">
+            <summary>
+            current page number
+            </summary>
+        </member>
+        <member name="P:Exchange.Domain.ItemTransaction.Query.GetItemTransactionsWithPagingQuery.PageSize">
+            <summary>
+            result list size
+            </summary>
+        </member>
         <member name="P:Exchange.Domain.Item.Command.CreateItemCommand.OwnerId">
             <summary>
             User Id of owner

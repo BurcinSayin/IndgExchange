@@ -17,6 +17,10 @@ namespace Exchange.Core.User.Strategy
             }
 
             targetUser.Name = command.Name;
+            if (!string.IsNullOrWhiteSpace(command.Password))
+            {
+                targetUser.Password = command.Password;
+            }
 
             return userRepository.Update(targetUser);
         }

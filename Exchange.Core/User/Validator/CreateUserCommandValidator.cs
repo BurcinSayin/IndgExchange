@@ -8,6 +8,7 @@ namespace Exchange.Core.User.Validator
         public CreateUserCommandValidator()
         {
             RuleFor(command => command.UserName).NotEmpty().NotNull().MaximumLength(100);
+            RuleFor(command => command.Password).NotNull().NotEmpty().MaximumLength(100);
         }
     }
 }

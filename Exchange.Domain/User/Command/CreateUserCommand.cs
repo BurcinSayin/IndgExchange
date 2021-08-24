@@ -9,5 +9,6 @@
         /// User name to create
         /// </summary>
         public string UserName { get; set; }
+        public string Password { get; set; }
     }
 }

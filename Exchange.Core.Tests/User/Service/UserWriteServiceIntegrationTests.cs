@@ -27,12 +27,13 @@ namespace Exchange.Core.Tests.User.Service
 
 
         [Test]
-        public void CreateUser_StateUnderTest_ExpectedBehavior()
+        public void CreateUser_AllOk_Success()
         {
             // Arrange
             CreateUserCommand command = new CreateUserCommand()
             {
-                UserName = "TestUser"
+                UserName = "TestUser",
+                Password = "pass"
             };
 
             // Act

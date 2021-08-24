@@ -108,38 +108,32 @@ namespace Exchange.WebApi
 
         private static void SetSwaggerOptions(SwaggerGenOptions generationOption)
         {
-            generationOption.SwaggerDoc("v1", new OpenApiInfo() { Title = "Image API", Version = "v1" });
+            generationOption.SwaggerDoc("v1", new OpenApiInfo() { Title = "Indg Exchange API", Version = "v1" });
             var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-            //var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-            
-
             foreach (var xmlDocFile in Directory.GetFiles(AppContext.BaseDirectory,"Exchange.*.xml"))
             {
                 generationOption.IncludeXmlComments(xmlDocFile);
             }
 
-            generationOption.AddSecurityDefinition("Jwt Token", new OpenApiSecurityScheme
-            {
-                In = ParameterLocation.Header,
+            generationOption.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme {
+                In = ParameterLocation.Header, 
                 Description = "Please insert JWT with Bearer into field",
                 Name = "Authorization",
-                Type = SecuritySchemeType.ApiKey,
-                BearerFormat = "Bearer "
+                Type = SecuritySchemeType.ApiKey 
             });
 
-            generationOption.AddSecurityRequirement(new OpenApiSecurityRequirement
-            {
-                {
-                    new OpenApiSecurityScheme
-                    {
-                        Reference = new OpenApiReference
-                        {
+            generationOption.AddSecurityRequirement(new OpenApiSecurityRequirement {
+                { 
+                    new OpenApiSecurityScheme 
+                    { 
+                        Reference = new OpenApiReference 
+                        { 
                             Type = ReferenceType.SecurityScheme,
-                            Id = "Bearer"
-                        }
+                            Id = "Bearer" 
+                        } 
                     },
-                    new string[] { }
-                }
+                    new string[] { } 
+                } 
             });
         }
 
@@ -180,8 +174,8 @@ namespace Exchange.WebApi
 
             app.UseRouting();
 
-            // app.UseAuthentication();
-            // app.UseAuthorization();
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

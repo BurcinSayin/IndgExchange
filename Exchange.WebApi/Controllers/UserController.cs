@@ -1,9 +1,11 @@
 ﻿using System;
+using Exchange.Core.Shared;
 using Exchange.Domain.Common.Response;
 using Exchange.Domain.User.Command;
 using Exchange.Domain.User.Query;
 using Exchange.Domain.User.Response;
 using Exchange.Domain.User.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Exchange.WebApi.Controllers
@@ -11,7 +13,7 @@ namespace Exchange.WebApi.Controllers
     /// <summary>
     /// 
     /// </summary>
-    //[Authorize]
+    [Authorize]
     [ApiController]
     [Route("[controller]")]
     public class UserController : ControllerBase
@@ -32,31 +34,74 @@ namespace Exchange.WebApi.Controllers
         }
         
         /// <summary>
-        /// Gets the Exchange User with the given Id
+        /// Gets the User with the given Id
         /// </summary>
         /// <param name="id">User Id to get</param>
         /// <returns>Exchange User</returns>
         [HttpGet("{id}")]
         public ActionResult<UserInfo> Get(int id)
         {
-            var retVal = _userReadService.GetUser(new GetUserQuery(){UserId = id});
+            try{
+                var retVal = _userReadService.GetUser(new GetUserQuery() { UserId = id });
 
-            return Ok(retVal);
+                return Ok(retVal);
+            }
+            catch(NotFoundException nfe)
+            {
+                return NotFound(nfe.Message);
+            }
+            catch(Exception ex)
+            {
+                return BadRequest();
+            }
         }
         
         /// <summary>
-        /// Gets Exchange users matching query
+        /// Delete User with the given Id
+        /// </summary>
+        /// <param name="id">User Id to delete</param>
+        /// <returns>Exchange User</returns>
+        [HttpDelete("{id}")]
+        public ActionResult<UserInfo> Delete(int id)
+        {
+             try
+             {
+                 _userWriteService.DeleteUser(new DeleteUserCommand() { UserId = id });
+                 return NoContent();
+             }
+             catch(NotFoundException nfe)
+             {
+                 return NotFound(nfe.Message);
+             }
+             catch(Exception ex)
+             {
+                 return BadRequest();
+             }
+        }
+        
+        /// <summary>
+        /// Gets users matching query
         /// </summary>
         /// <param name="query"></param>
         /// <returns>List of Exchange users with pagination</returns>
         [HttpGet]
-        public PagedList<UserInfo> GetAll([FromQuery] GetUsersWithPagingQuery query)
+        public ActionResult<PagedList<UserInfo>> GetAll([FromQuery] GetUsersWithPagingQuery query)
         {
-            return _userReadService.GetUsers(query);
+            try{
+                return _userReadService.GetUsers(query);
+            }
+            catch(NotFoundException nfe)
+            {
+                return NotFound(nfe.Message);
+            }
+            catch(Exception ex)
+            {
+                return BadRequest();
+            }
         }
         
         /// <summary>
-        /// Creates an Exchange User
+        /// Creates an User
         /// </summary>
         /// <param name="command"></param>
         /// <returns>Created Exchange User</returns>
@@ -68,14 +113,18 @@ namespace Exchange.WebApi.Controllers
                 var resultItem = _userWriteService.CreateUser(command);
                 return this.CreatedAtAction("Get",new {id = resultItem.Id},resultItem);
             }
-            catch (Exception ex)
+            catch(NotFoundException nfe)
             {
-                return BadRequest(ex.Message);
+                return NotFound(nfe.Message);
+            }
+            catch(Exception ex)
+            {
+                return BadRequest();
             }
         }
         
         /// <summary>
-        /// Updates Exchange User
+        /// Updates User
         /// </summary>
         /// <param name="command"></param>
         /// <returns>Updated Exchange User</returns>
@@ -87,10 +136,15 @@ namespace Exchange.WebApi.Controllers
                 var resultItem = _userWriteService.UpdateUser(command);
                 return this.CreatedAtAction("Get",new {id = resultItem.Id},resultItem);
             }
-            catch (Exception ex)
+            catch(NotFoundException nfe)
             {
-                return BadRequest(ex.Message);
+                return NotFound(nfe.Message);
             }
+            catch(Exception ex)
+            {
+                return BadRequest();
+            }
+
         }
     }
 }

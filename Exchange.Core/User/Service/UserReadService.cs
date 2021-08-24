@@ -31,7 +31,7 @@ namespace Exchange.Core.User.Service
             if (!string.IsNullOrEmpty(query.UserName))
             {
                 resultList = resultList.Where(usr =>
-                    usr.Name.Equals(query.UserName, StringComparison.InvariantCultureIgnoreCase));
+                    query.UserName.Equals(usr.Name));
             }
             
             var count = resultList.Count();
