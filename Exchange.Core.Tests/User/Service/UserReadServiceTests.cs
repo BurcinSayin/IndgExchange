@@ -1,6 +1,9 @@
-﻿using Exchange.Core.User.Service;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Exchange.Core.User.Service;
 using Exchange.Domain.DataInterfaces;
 using Exchange.Domain.User.Query;
+using FluentValidation;
 using Moq;
 using NUnit.Framework;
 
@@ -23,39 +26,95 @@ namespace Exchange.Core.Tests.User.Service
 
         private UserReadService CreateService()
         {
-            return new UserReadService(
-                this.mockUserRepository.Object);
+            return new UserReadService(this.mockUserRepository.Object);
         }
 
         [Test]
-        [Ignore("notImplemented")]
-        public void GetItem_StateUnderTest_ExpectedBehavior()
+        public void GetItem_AllOk_Success()
         {
             // Arrange
             var service = this.CreateService();
-            GetUserQuery query = new GetUserQuery();
+            GetUserQuery query = new GetUserQuery()
+            {
+                UserId = 42
+            };
+            mockUserRepository.Setup(ur => ur.Get(It.IsAny<int>())).Returns(new Domain.User.Entity.User());
 
             // Act
             var result = service.GetUser(query);
 
             // Assert
-            Assert.Fail();
+            Assert.NotNull(result);
             this.mockRepository.VerifyAll();
         }
-
+        
         [Test]
-        [Ignore("notImplemented")]
-        public void FindItems_StateUnderTest_ExpectedBehavior()
+        public void GetItem_InvalidQuery_ThrowValidationEx()
         {
             // Arrange
             var service = this.CreateService();
-            GetUsersWithPagingQuery query = null;
+            GetUserQuery query = new GetUserQuery();
+
+            var ex = Assert.Throws<ValidationException>(() =>
+            {
+                service.GetUser(query);
+            });
+
+            // Assert
+            Assert.IsInstanceOf<ValidationException>(ex);
+            this.mockRepository.VerifyAll();
+        }
+
+
+        [Test]
+        public void FindItems_AllOk_Success()
+        {
+            // Arrange
+            var service = this.CreateService();
+            GetUsersWithPagingQuery query = new GetUsersWithPagingQuery()
+            {
+                PageSize = 10,
+                PageNumber = 1
+            };
+            List<Domain.User.Entity.User> mockResponse = new List<Domain.User.Entity.User>();
+            for (int i = 0; i < 15; i++)
+            {
+                mockResponse.Add(new Domain.User.Entity.User()
+                {
+                    Id = i+1
+                });
+            }
+            mockUserRepository.Setup(ur => ur.GetAll()).Returns(mockResponse.AsQueryable());
 
             // Act
             var result = service.GetUsers(query);
 
             // Assert
-            Assert.Fail();
+            Assert.AreEqual(15,result.TotalCount);
+            Assert.AreEqual(1,result.PageIndex);
+            Assert.IsTrue(result.HasNextPage);
+            CollectionAssert.IsNotEmpty(result.Results);
+            Assert.AreEqual(10,result.Results.Count);
+            this.mockRepository.VerifyAll();
+        }
+        
+        [Test]
+        public void FindItems_InvalidQuery_ThrowValidationEx()
+        {
+            // Arrange
+            var service = this.CreateService();
+            GetUsersWithPagingQuery query = new GetUsersWithPagingQuery()
+            {
+                PageSize = -1
+            };
+
+            var ex = Assert.Throws<ValidationException>(() =>
+            {
+                service.GetUsers(query);
+            });
+
+            // Assert
+            Assert.IsInstanceOf<ValidationException>(ex);
             this.mockRepository.VerifyAll();
         }
     }

@@ -47,7 +47,7 @@ namespace Exchange.Core.Item.Service
             if (!string.IsNullOrWhiteSpace(query.ItemName))
             {
                 fullData = fullData.Where(it =>
-                    it.ItemName.Equals(query.ItemName, StringComparison.InvariantCultureIgnoreCase));
+                    it.ItemName.Equals(query.ItemName));
             }
 
 

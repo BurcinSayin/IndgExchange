@@ -55,7 +55,7 @@ namespace Exchange.WebApi.Controllers
             }
             catch(Exception ex)
             {
-                return BadRequest();
+                return BadRequest(ex.Message);
             }
         }
 
@@ -81,12 +81,16 @@ namespace Exchange.WebApi.Controllers
             }
             catch(Exception ex)
             {
-                return BadRequest();
+                return BadRequest(ex.Message);
             }
         }
         
 
-        
+        /// <summary>
+        /// Create an Item exchange whose effects are reflected on the related items
+        /// </summary>
+        /// <param name="command"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult<ItemTransactionInfo> Create(CreateItemTransactionCommand command)
         {
@@ -105,7 +109,7 @@ namespace Exchange.WebApi.Controllers
             }
             catch(Exception ex)
             {
-                return BadRequest();
+                return BadRequest(ex.Message);
             }
         }
     }

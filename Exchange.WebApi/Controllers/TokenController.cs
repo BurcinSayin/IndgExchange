@@ -76,7 +76,7 @@ namespace Exchange.WebApi.Controllers
                 }
                 else
                 {
-                    return BadRequest("Invalid credentials");
+                    return Unauthorized("Invalid credentials");
                 }
             }
             else

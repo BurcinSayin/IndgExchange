@@ -60,7 +60,7 @@ namespace Exchange.WebApi.Controllers
             }
             catch(Exception ex)
             {
-                return BadRequest();
+                return BadRequest(ex.Message);
             }
         }
 
@@ -85,7 +85,7 @@ namespace Exchange.WebApi.Controllers
             }
             catch(Exception ex)
             {
-                return BadRequest();
+                return BadRequest(ex.Message);
             }
         }
         
@@ -113,7 +113,7 @@ namespace Exchange.WebApi.Controllers
             }
             catch(Exception ex)
             {
-                return BadRequest();
+                return BadRequest(ex.Message);
             }
         }
 
@@ -140,7 +140,7 @@ namespace Exchange.WebApi.Controllers
             }
             catch(Exception ex)
             {
-                return BadRequest();
+                return BadRequest(ex.Message);
             }
         }
 
@@ -167,7 +167,7 @@ namespace Exchange.WebApi.Controllers
             }
             catch(Exception ex)
             {
-                return BadRequest();
+                return BadRequest(ex.Message);
             }
         }
     }

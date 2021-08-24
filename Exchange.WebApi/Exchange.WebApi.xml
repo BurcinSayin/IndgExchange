@@ -77,6 +77,13 @@
             <param name="query"></param>
             <returns>Paged List</returns>
         </member>
+        <member name="M:Exchange.WebApi.Controllers.ItemTransactionsController.Create(Exchange.Domain.ItemTransaction.Command.CreateItemTransactionCommand)">
+            <summary>
+            Create an Item exchange whose effects are reflected on the related items
+            </summary>
+            <param name="command"></param>
+            <returns></returns>
+        </member>
         <member name="T:Exchange.WebApi.Controllers.TokenController">
             <summary>
             
