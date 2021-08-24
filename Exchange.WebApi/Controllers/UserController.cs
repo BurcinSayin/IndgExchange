@@ -5,6 +5,7 @@ using Exchange.Domain.User.Command;
 using Exchange.Domain.User.Query;
 using Exchange.Domain.User.Response;
 using Exchange.Domain.User.Service;
+using FluentValidation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -50,6 +51,10 @@ namespace Exchange.WebApi.Controllers
             {
                 return NotFound(nfe.Message);
             }
+            catch (ValidationException vex)
+            {
+                return BadRequest(vex.Message);
+            }
             catch(Exception ex)
             {
                 return BadRequest();
@@ -73,6 +78,10 @@ namespace Exchange.WebApi.Controllers
              {
                  return NotFound(nfe.Message);
              }
+             catch (ValidationException vex)
+             {
+                 return BadRequest(vex.Message);
+             }
              catch(Exception ex)
              {
                  return BadRequest();
@@ -93,6 +102,10 @@ namespace Exchange.WebApi.Controllers
             catch(NotFoundException nfe)
             {
                 return NotFound(nfe.Message);
+            }
+            catch (ValidationException vex)
+            {
+                return BadRequest(vex.Message);
             }
             catch(Exception ex)
             {
@@ -117,6 +130,10 @@ namespace Exchange.WebApi.Controllers
             {
                 return NotFound(nfe.Message);
             }
+            catch (ValidationException vex)
+            {
+                return BadRequest(vex.Message);
+            }
             catch(Exception ex)
             {
                 return BadRequest();
@@ -139,6 +156,10 @@ namespace Exchange.WebApi.Controllers
             catch(NotFoundException nfe)
             {
                 return NotFound(nfe.Message);
+            }
+            catch (ValidationException vex)
+            {
+                return BadRequest(vex.Message);
             }
             catch(Exception ex)
             {

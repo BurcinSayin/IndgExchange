@@ -6,6 +6,7 @@ using Exchange.Domain.ItemTransaction.Command;
 using Exchange.Domain.ItemTransaction.Query;
 using Exchange.Domain.ItemTransaction.Response;
 using Exchange.Domain.ItemTransaction.Service;
+using FluentValidation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -74,6 +75,10 @@ namespace Exchange.WebApi.Controllers
             {
                 return NotFound(nfe.Message);
             }
+            catch (ValidationException vex)
+            {
+                return BadRequest(vex.Message);
+            }
             catch(Exception ex)
             {
                 return BadRequest();
@@ -93,6 +98,10 @@ namespace Exchange.WebApi.Controllers
             catch(NotFoundException nfe)
             {
                 return NotFound(nfe.Message);
+            }
+            catch (ValidationException vex)
+            {
+                return BadRequest(vex.Message);
             }
             catch(Exception ex)
             {

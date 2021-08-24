@@ -51,8 +51,6 @@ namespace Exchange.Core.ItemTransaction.Strategy
                 throw new NotFoundException("Taking User Not Found.");
             }            
 
-
-
             if (fromUser != null && toItem == null)
             {
                 dbTransaction.Rollback();
@@ -62,6 +60,12 @@ namespace Exchange.Core.ItemTransaction.Strategy
             {
                 dbTransaction.Rollback();
                 throw new NotFoundException("Exchanged User Not Found.");
+            }
+
+            if (fromUser == toUser)
+            {
+                dbTransaction.Rollback();
+                throw new NotFoundException("Nothing to exchange");
             }
 
             Domain.ItemTransaction.Entity.ItemTransaction toCreate = new Domain.ItemTransaction.Entity.ItemTransaction()

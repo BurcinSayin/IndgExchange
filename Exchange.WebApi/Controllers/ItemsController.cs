@@ -7,6 +7,7 @@ using Exchange.Domain.Item.Command;
 using Exchange.Domain.Item.Query;
 using Exchange.Domain.Item.Response;
 using Exchange.Domain.Item.Service;
+using FluentValidation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -53,6 +54,10 @@ namespace Exchange.WebApi.Controllers
             {
                 return NotFound(nfe.Message);
             }
+            catch (ValidationException vex)
+            {
+                return BadRequest(vex.Message);
+            }
             catch(Exception ex)
             {
                 return BadRequest(ex.Message);
@@ -74,6 +79,10 @@ namespace Exchange.WebApi.Controllers
             {
                 return NotFound(nfe.Message);
             }
+            catch (ValidationException vex)
+            {
+                return BadRequest(vex.Message);
+            }
             catch(Exception ex)
             {
                 return BadRequest();
@@ -92,11 +101,15 @@ namespace Exchange.WebApi.Controllers
             try
             {
                 var resultItem = _itemWriteService.CreateItem(command);
-                return this.CreatedAtAction("Get",new {id = resultItem.Id},resultItem);
+                return this.CreatedAtAction("Get", new { id = resultItem.Id }, resultItem);
             }
-            catch(NotFoundException nfe)
+            catch (NotFoundException nfe)
             {
                 return NotFound(nfe.Message);
+            }
+            catch (ValidationException vex)
+            {
+                return BadRequest(vex.Message);
             }
             catch(Exception ex)
             {
@@ -121,6 +134,10 @@ namespace Exchange.WebApi.Controllers
             {
                 return NotFound(nfe.Message);
             }
+            catch (ValidationException vex)
+            {
+                return BadRequest(vex.Message);
+            }
             catch(Exception ex)
             {
                 return BadRequest();
@@ -143,6 +160,10 @@ namespace Exchange.WebApi.Controllers
             catch(NotFoundException nfe)
             {
                 return NotFound(nfe.Message);
+            }
+            catch (ValidationException vex)
+            {
+                return BadRequest(vex.Message);
             }
             catch(Exception ex)
             {
