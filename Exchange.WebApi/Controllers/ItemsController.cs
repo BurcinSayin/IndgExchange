@@ -8,6 +8,7 @@ using Exchange.Domain.Item.Query;
 using Exchange.Domain.Item.Response;
 using Exchange.Domain.Item.Service;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Exchange.WebApi.Controllers
@@ -85,6 +86,7 @@ namespace Exchange.WebApi.Controllers
         /// <param name="command"></param>
         /// <returns></returns>
         [HttpPost]
+        [ProducesResponseType(typeof(ItemInfo),StatusCodes.Status201Created)]
         public ActionResult<ItemInfo> Create(CreateItemCommand command)
         {
             try

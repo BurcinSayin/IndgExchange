@@ -44,6 +44,13 @@
             <param name="command"></param>
             <returns></returns>
         </member>
+        <member name="M:Exchange.WebApi.Controllers.ItemsController.Delete(System.Int32)">
+            <summary>
+            Delete Item
+            </summary>
+            <param name="id">Item Id to delete</param>
+            <returns>NoContent</returns>
+        </member>
         <member name="T:Exchange.WebApi.Controllers.ItemTransactionsController">
             <summary>
             
@@ -80,6 +87,7 @@
             
             </summary>
             <param name="config"></param>
+            <param name="userRepository"></param>
         </member>
         <member name="M:Exchange.WebApi.Controllers.TokenController.GetToken(Exchange.Domain.Common.Command.CreateTokenCommand)">
             <summary>
