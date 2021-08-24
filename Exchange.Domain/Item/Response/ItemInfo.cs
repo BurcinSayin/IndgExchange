@@ -6,6 +6,7 @@
         public string ItemName { get; set; }
         
         public string Owner { get; set; }
+        public int? OwnerId { get; set; }
 
 
         public static ItemInfo MapToInfo(Entity.Item toMap)
@@ -14,12 +15,23 @@
             {
                 return null;
             }
-            return new ItemInfo()
+            var retVal = new ItemInfo()
             {
                 Id = toMap.Id,
                 ItemName = toMap.ItemName,
-                Owner = toMap.User != null ? toMap.User.Name : null
             };
+            if (toMap.User != null)
+            {
+                retVal.Owner = toMap.User.Name;
+                retVal.OwnerId = toMap.User.Id;
+            }
+            else
+            {
+                retVal.Owner = null;
+                retVal.OwnerId = null;
+            }
+
+            return retVal;
         }
     }
 }
