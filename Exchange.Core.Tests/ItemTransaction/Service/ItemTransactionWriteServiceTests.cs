@@ -53,7 +53,7 @@ namespace Exchange.Core.Tests.ItemTransaction.Service
             var service = this.CreateService();
             CreateItemTransactionCommand createCommand = new CreateItemTransactionCommand()
             {
-                GivenItemId = 42,
+                TakenItemId = 42,
                 TakingUserId = 42
             };
             mockCreateStrategy.Setup(stategy => stategy.Create(It.IsAny<IItemRepository>(),
@@ -75,7 +75,7 @@ namespace Exchange.Core.Tests.ItemTransaction.Service
             var service = this.CreateService();
             CreateItemTransactionCommand createCommand = new CreateItemTransactionCommand()
             {
-                GivenItemId = 42,
+                TakenItemId = 42,
                 TakingUserId = 42,
                 ExchangedItemId = -1
             };

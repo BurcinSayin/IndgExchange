@@ -41,13 +41,13 @@ namespace Exchange.Core.Tests.ItemTransaction.Strategy
             var strategy = this.CreateStrategy();
             CreateItemTransactionCommand command = new CreateItemTransactionCommand()
             {
-                GivenItemId = 42,
+                TakenItemId = 42,
                 TakingUserId = 42
             };
             var repoResult = new Domain.ItemTransaction.Entity.ItemTransaction()
             {
                 Id = 42,
-                GivenItemId = command.GivenItemId,
+                TakenItemId = command.TakenItemId,
                 TakingUserId = command.TakingUserId
             };
 
@@ -63,7 +63,7 @@ namespace Exchange.Core.Tests.ItemTransaction.Strategy
             mockItemRepository.Setup(ur => ur.FindById(It.IsAny<int>(), It.IsAny<IDataTransaction>())).Returns(
                 new Domain.Item.Entity.Item()
                 {
-                    Id = command.GivenItemId,
+                    Id = command.TakenItemId,
                     ItemName = "Digital Watch",
                 }
             );

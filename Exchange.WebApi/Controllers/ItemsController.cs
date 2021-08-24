@@ -54,7 +54,7 @@ namespace Exchange.WebApi.Controllers
             }
             catch(Exception ex)
             {
-                return BadRequest();
+                return BadRequest(ex.Message);
             }
         }
 
@@ -125,6 +125,11 @@ namespace Exchange.WebApi.Controllers
             }
         }
 
+        /// <summary>
+        /// Delete Item
+        /// </summary>
+        /// <param name="id">Item Id to delete</param>
+        /// <returns>NoContent</returns>
         [HttpDelete("{id}")]
         public ActionResult Delete(int id)
         {

@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 namespace Exchange.Data.Sqlite.Tests
 {
     [TestFixture]
+    [Ignore("Integration TEst")]
     public class ItemTransactionRepositoryIntegrationTests
     {
         private ExchangeDataContext testDataContext;
@@ -45,7 +46,7 @@ namespace Exchange.Data.Sqlite.Tests
             var testTRansaction = new ItemTransaction()
             {
                 CreatedAt = DateTime.Now,
-                GivenItemId = testItem.Id,
+                TakenItemId = testItem.Id,
                 TakingUserId = testUser.Id
             };
 

@@ -14,7 +14,7 @@ namespace Exchange.Data.Sqlite.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     GivingUserId = table.Column<int>(nullable: true),
-                    GivenItemId = table.Column<int>(nullable: false),
+                    TakenItemId = table.Column<int>(nullable: false),
                     TakingUserId = table.Column<int>(nullable: false),
                     ExchangedItemId = table.Column<int>(nullable: true),
                     CreatedAt = table.Column<DateTime>(nullable: false)

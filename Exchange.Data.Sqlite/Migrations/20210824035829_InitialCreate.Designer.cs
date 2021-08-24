@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Exchange.Data.Sqlite.Migrations
 {
     [DbContext(typeof(ExchangeDataContext))]
-    [Migration("20210824021858_InitialCreate")]
+    [Migration("20210824035829_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -49,10 +49,10 @@ namespace Exchange.Data.Sqlite.Migrations
                     b.Property<int?>("ExchangedItemId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("GivenItemId")
+                    b.Property<int?>("GivingUserId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("GivingUserId")
+                    b.Property<int>("TakenItemId")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("TakingUserId")

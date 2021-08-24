@@ -15,7 +15,7 @@ namespace Exchange.Core.ItemTransaction.Strategy
 
             Domain.Item.Entity.Item fromItem = null;
 
-            fromItem = itemRepository.FindById(command.GivenItemId, dbTransaction);
+            fromItem = itemRepository.FindById(command.TakenItemId, dbTransaction);
             if (fromItem == null)
             {
                 dbTransaction.Rollback();
@@ -67,7 +67,7 @@ namespace Exchange.Core.ItemTransaction.Strategy
             Domain.ItemTransaction.Entity.ItemTransaction toCreate = new Domain.ItemTransaction.Entity.ItemTransaction()
             {
                 CreatedAt = DateTime.Now,
-                GivenItemId = fromItem.Id,
+                TakenItemId = fromItem.Id,
                 TakingUserId = toUser.Id
             };
 

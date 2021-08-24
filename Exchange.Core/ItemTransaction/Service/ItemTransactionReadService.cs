@@ -44,9 +44,9 @@ namespace Exchange.Core.ItemTransaction.Service
             {
                 fullData = fullData.Where(tr => tr.TakingUserId == query.TakingUserId.Value);
             }
-            if (query.GivenItemId.HasValue)
+            if (query.TakenItemId.HasValue)
             {
-                fullData = fullData.Where(tr => tr.GivenItemId == query.GivenItemId.Value);
+                fullData = fullData.Where(tr => tr.TakenItemId == query.TakenItemId.Value);
             }
             if (query.ExchangedItemId.HasValue)
             {

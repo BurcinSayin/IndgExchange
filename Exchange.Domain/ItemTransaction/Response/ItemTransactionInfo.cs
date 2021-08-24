@@ -4,7 +4,7 @@ namespace Exchange.Domain.ItemTransaction.Response
 {
     public class ItemTransactionInfo
     {
-        public int GivenItemId  { get; set; }
+        public int TakenItemId  { get; set; }
         public int GivingUserId { get; set; }
         public int ExchangedItemId { get; set; }
         public int TakingUserId { get; set; }
@@ -21,7 +21,7 @@ namespace Exchange.Domain.ItemTransaction.Response
             return new ItemTransactionInfo()
             {
                 Id = toMap.Id,
-                GivenItemId = toMap.GivenItemId,
+                TakenItemId = toMap.TakenItemId,
                 GivingUserId = toMap.GivingUserId.GetValueOrDefault(0) ,
                 ExchangedItemId = toMap.ExchangedItemId.GetValueOrDefault(0),
                 TakingUserId = toMap.TakingUserId

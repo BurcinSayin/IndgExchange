@@ -30,13 +30,13 @@ namespace Exchange.Core.ItemTransaction.Validator
                     }
                 }
             });
-            RuleFor(query => query.GivenItemId).Custom((i, context) =>
+            RuleFor(query => query.TakenItemId).Custom((i, context) =>
             {
                 if (i.HasValue)
                 {
                     if (i.Value <= 0)
                     {
-                        context.AddFailure("GivenItemId should be greater than 0 if not null");
+                        context.AddFailure("TakenItemId should be greater than 0 if not null");
                     }
                 }
             });

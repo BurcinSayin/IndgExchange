@@ -8,7 +8,7 @@ namespace Exchange.Core.ItemTransaction.Validator
     {
         public CreateItemTransactionCommandValidator()
         {
-            RuleFor(command => command.GivenItemId).NotNull().GreaterThan(0);
+            RuleFor(command => command.TakenItemId).NotNull().GreaterThan(0);
             RuleFor(command => command.TakingUserId).NotNull().GreaterThan(0);
             RuleFor(command => command.ExchangedItemId).Custom((i, context) =>
             {

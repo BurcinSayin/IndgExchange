@@ -47,10 +47,10 @@ namespace Exchange.Data.Sqlite.Migrations
                     b.Property<int?>("ExchangedItemId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("GivenItemId")
+                    b.Property<int?>("GivingUserId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("GivingUserId")
+                    b.Property<int>("TakenItemId")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("TakingUserId")
