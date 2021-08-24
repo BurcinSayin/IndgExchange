@@ -25,6 +25,9 @@
 
   <ItemGroup>
     <None Remove="exchange.db" />
+    <None Update="Exchange.WebApi.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
