@@ -11,9 +11,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Exchange.Data.Sqlite", "Exc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Exchange.Data.Sqlite.Tests", "Exchange.Data.Sqlite.Tests\Exchange.Data.Sqlite.Tests.csproj", "{388C15B7-14FC-49AA-A005-B92780CB5770}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exchange.Core", "Exchange.Core\Exchange.Core.csproj", "{C71AE428-22B1-416A-A395-BF6A9BB29655}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Exchange.Core", "Exchange.Core\Exchange.Core.csproj", "{C71AE428-22B1-416A-A395-BF6A9BB29655}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exchange.Core.Tests", "Exchange.Core.Tests\Exchange.Core.Tests.csproj", "{D13877CB-11D6-4371-A451-D13B17A062C7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Exchange.Core.Tests", "Exchange.Core.Tests\Exchange.Core.Tests.csproj", "{D13877CB-11D6-4371-A451-D13B17A062C7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{D76FE17C-A13E-4BF1-B870-D2F70A49BD6D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{47F59BED-688C-4373-A2BC-69D9E15269D3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{3F2BB5FE-CF00-4B66-B212-6AFEEDE2A613}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -48,6 +54,13 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3E88CA32-F14D-47B4-A07E-A9BF1C2B4DD0} = {D76FE17C-A13E-4BF1-B870-D2F70A49BD6D}
+		{081C7761-2527-44B7-A26B-99C72A818754} = {47F59BED-688C-4373-A2BC-69D9E15269D3}
+		{388C15B7-14FC-49AA-A005-B92780CB5770} = {3F2BB5FE-CF00-4B66-B212-6AFEEDE2A613}
+		{C71AE428-22B1-416A-A395-BF6A9BB29655} = {47F59BED-688C-4373-A2BC-69D9E15269D3}
+		{D13877CB-11D6-4371-A451-D13B17A062C7} = {3F2BB5FE-CF00-4B66-B212-6AFEEDE2A613}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1F4612B3-8D64-411C-A288-47262E15B218}
