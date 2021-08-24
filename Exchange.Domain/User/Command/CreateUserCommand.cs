@@ -1,7 +1,7 @@
 ﻿namespace Exchange.Domain.User.Command
 {
     /// <summary>
-    /// Create Exchange User Command
+    /// Create User Command
     /// </summary>
     public class CreateUserCommand
     {
@@ -9,6 +9,9 @@
         /// User name to create
         /// </summary>
         public string UserName { get; set; }
+        /// <summary>
+        /// User password
+        /// </summary>
         public string Password { get; set; }
     }
 }

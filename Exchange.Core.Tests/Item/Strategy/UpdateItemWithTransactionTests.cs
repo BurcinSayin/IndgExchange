@@ -15,6 +15,7 @@ namespace Exchange.Core.Tests.Item.Strategy
 
         private Mock<IItemRepository> mockItemRepository;
         private Mock<IUserRepository> mockUserRepository;
+        private Mock<IItemTransactionRepository> mockItemTransactionRepository; 
         private Mock<IDataTransaction> mockTransaction;
 
         [SetUp]
@@ -24,6 +25,7 @@ namespace Exchange.Core.Tests.Item.Strategy
 
             mockItemRepository = mockRepository.Create<IItemRepository>();
             mockUserRepository = mockRepository.Create<IUserRepository>();
+            mockItemTransactionRepository = mockRepository.Create<IItemTransactionRepository>();
             mockTransaction = mockRepository.Create<IDataTransaction>();
         }
 
@@ -54,6 +56,9 @@ namespace Exchange.Core.Tests.Item.Strategy
                     Items = null
                 }
             );
+            mockItemTransactionRepository.Setup(repository =>
+                    repository.Add(It.IsAny<Domain.ItemTransaction.Entity.ItemTransaction>()))
+                .Returns(new Domain.ItemTransaction.Entity.ItemTransaction());
             Domain.Item.Entity.Item updatedItem = null;
             mockItemRepository.Setup(ir => ir.Update(It.IsAny<Domain.Item.Entity.Item>()))
                 .Returns(new Domain.Item.Entity.Item())
@@ -64,6 +69,7 @@ namespace Exchange.Core.Tests.Item.Strategy
             var result = updateItemWithTransaction.Update(
                 mockItemRepository.Object,
                 mockUserRepository.Object,
+                mockItemTransactionRepository.Object,
                 command);
 
             Assert.AreEqual(command.ItemId,updatedItem.Id);
@@ -95,6 +101,7 @@ namespace Exchange.Core.Tests.Item.Strategy
                 updateItemWithTransaction.Update(
                     mockItemRepository.Object,
                     mockUserRepository.Object,
+                    mockItemTransactionRepository.Object,
                     command);
             });
 

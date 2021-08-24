@@ -16,6 +16,7 @@ namespace Exchange.Core.Tests.Item.Strategy
 
         private Mock<IItemRepository> mockItemRepository;
         private Mock<IUserRepository> mockUserRepository;
+        private Mock<IItemTransactionRepository> mockItemTransactionRepository; 
 
         [SetUp]
         public void SetUp()
@@ -24,6 +25,7 @@ namespace Exchange.Core.Tests.Item.Strategy
 
             mockItemRepository = mockRepository.Create<IItemRepository>();
             mockUserRepository = mockRepository.Create<IUserRepository>();
+            mockItemTransactionRepository = mockRepository.Create<IItemTransactionRepository>();
         }
 
         private UpdateItemSimple CreateUpdateItemSimple()
@@ -62,6 +64,7 @@ namespace Exchange.Core.Tests.Item.Strategy
             var result = updateItemSimple.Update(
                 mockItemRepository.Object,
                 mockUserRepository.Object,
+                mockItemTransactionRepository.Object,
                 command);
 
             // Assert
@@ -90,6 +93,7 @@ namespace Exchange.Core.Tests.Item.Strategy
                 updateItemSimple.Update(
                     mockItemRepository.Object,
                     mockUserRepository.Object,
+                    mockItemTransactionRepository.Object,
                     command);
             });
             

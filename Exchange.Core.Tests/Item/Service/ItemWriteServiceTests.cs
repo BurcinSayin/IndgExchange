@@ -16,6 +16,7 @@ namespace Exchange.Core.Tests.Item.Service
 
         private Mock<IItemRepository> mockItemRepository;
         private Mock<IUserRepository> mockUserRepository;
+        private Mock<IItemTransactionRepository> mockItemTransactionRepository;
         
         private Mock<ICreateItemStrategy> mockCreateStrategy;
         private Mock<IUpdateItemStrategy> mockUpdateStratgy;
@@ -28,6 +29,8 @@ namespace Exchange.Core.Tests.Item.Service
 
             this.mockItemRepository = this.mockRepository.Create<IItemRepository>();
             this.mockUserRepository = this.mockRepository.Create<IUserRepository>();
+            this.mockItemTransactionRepository = this.mockRepository.Create<IItemTransactionRepository>();
+            
             mockCreateStrategy = mockRepository.Create<ICreateItemStrategy>();
             mockUpdateStratgy = mockRepository.Create<IUpdateItemStrategy>();
             mockDeleteStrategy = mockRepository.Create<IDeleteItemStrategy>();
@@ -43,7 +46,8 @@ namespace Exchange.Core.Tests.Item.Service
             return new ItemWriteService(
                 strategySet,
                 this.mockItemRepository.Object,
-                this.mockUserRepository.Object);
+                this.mockUserRepository.Object,
+                mockItemTransactionRepository.Object);
         }
 
         [Test]
@@ -97,6 +101,7 @@ namespace Exchange.Core.Tests.Item.Service
             };
             mockUpdateStratgy.Setup(stategy => stategy.Update(It.IsAny<IItemRepository>(),
                 It.IsAny<IUserRepository>(),
+                It.IsAny<IItemTransactionRepository>(),
                 It.IsAny<UpdateItemCommand>())).Returns(new Domain.Item.Entity.Item());
 
             // Act

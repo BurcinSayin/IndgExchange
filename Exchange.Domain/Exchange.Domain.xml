@@ -14,6 +14,26 @@
             Pass Case sensitive
             </summary>
         </member>
+        <member name="P:Exchange.Domain.ItemTransaction.Command.CreateItemTransactionCommand.TakenItemId">
+            <summary>
+            Item whose owner is changing
+            </summary>
+        </member>
+        <member name="P:Exchange.Domain.ItemTransaction.Command.CreateItemTransactionCommand.GivingUserId">
+            <summary>
+            User who gives the taken item if any
+            </summary>
+        </member>
+        <member name="P:Exchange.Domain.ItemTransaction.Command.CreateItemTransactionCommand.ExchangedItemId">
+            <summary>
+            Item given in exchange of Taken item
+            </summary>
+        </member>
+        <member name="P:Exchange.Domain.ItemTransaction.Command.CreateItemTransactionCommand.TakingUserId">
+            <summary>
+            User who takes the item
+            </summary>
+        </member>
         <member name="P:Exchange.Domain.ItemTransaction.Query.GetItemTransactionQuery.ItemTransactionId">
             <summary>
             Transaction Id to get
@@ -31,7 +51,7 @@
         </member>
         <member name="P:Exchange.Domain.Item.Command.CreateItemCommand.OwnerId">
             <summary>
-            User Id of owner
+            User Id of owner if any
             </summary>
         </member>
         <member name="P:Exchange.Domain.Item.Command.CreateItemCommand.ItemName">
@@ -39,14 +59,39 @@
             Item Name
             </summary>
         </member>
+        <member name="T:Exchange.Domain.Item.Command.UpdateItemCommand">
+            <summary>
+            Update Item Command
+            </summary>
+        </member>
+        <member name="P:Exchange.Domain.Item.Command.UpdateItemCommand.ItemId">
+            <summary>
+            Target Item id
+            </summary>
+        </member>
+        <member name="P:Exchange.Domain.Item.Command.UpdateItemCommand.HolderId">
+            <summary>
+            New Item Owner if any
+            </summary>
+        </member>
+        <member name="P:Exchange.Domain.Item.Command.UpdateItemCommand.ItemName">
+            <summary>
+            New item name
+            </summary>
+        </member>
         <member name="T:Exchange.Domain.User.Command.CreateUserCommand">
             <summary>
-            Create Exchange User Command
+            Create User Command
             </summary>
         </member>
         <member name="P:Exchange.Domain.User.Command.CreateUserCommand.UserName">
             <summary>
             User name to create
+            </summary>
+        </member>
+        <member name="P:Exchange.Domain.User.Command.CreateUserCommand.Password">
+            <summary>
+            User password
             </summary>
         </member>
     </members>

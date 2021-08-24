@@ -7,7 +7,7 @@ namespace Exchange.Core.Item.Strategy
 {
     public class UpdateItemSimple:IUpdateItemStrategy
     {
-        public Domain.Item.Entity.Item Update(IItemRepository itemRepository, IUserRepository userRepository, UpdateItemCommand command)
+        public Domain.Item.Entity.Item Update(IItemRepository itemRepository, IUserRepository userRepository,IItemTransactionRepository transactionRepository, UpdateItemCommand command)
         {
             var targetItem = itemRepository.Get(command.ItemId);
 

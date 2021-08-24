@@ -20,7 +20,8 @@ namespace Exchange.Core.Tests.Item.Service
                 new DeleteItemSimple()
             );
             ExchangeDataContext testDbContext = new ExchangeDataContext();
-            testService = new ItemWriteService(strategySet,new ItemRepository(testDbContext) ,new UserRepository(testDbContext));
+            testService = new ItemWriteService(strategySet,new ItemRepository(testDbContext) ,
+                new UserRepository(testDbContext),new ItemTransactionRepository(testDbContext));
         }
 
 
@@ -38,7 +39,7 @@ namespace Exchange.Core.Tests.Item.Service
         
         
         [Test]
-        public void CreateItem_WithOwner_Fail()
+        public void CreateItem_WithOwner_Success()
         {
             var command = new CreateItemCommand()
             {
@@ -48,6 +49,25 @@ namespace Exchange.Core.Tests.Item.Service
             var res = testService.CreateItem(command);
             
             Assert.Greater(res.Id,0);
+        }
+        
+        [Test]
+        public void UdateItem_WithOwner_Success()
+        {
+            var command = new CreateItemCommand()
+            {
+                ItemName = "TestItesm",
+            };
+            var createResponse = testService.CreateItem(command);
+
+            var updateResponse = testService.UpdateItem(new UpdateItemCommand()
+            {
+                HolderId = 1,
+                ItemId = createResponse.Id,
+                ItemName = "After Update"
+            });
+            
+            Assert.Greater(updateResponse.Id,0);
         }
 
     }

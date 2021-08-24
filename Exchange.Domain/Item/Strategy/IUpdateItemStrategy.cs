@@ -5,6 +5,6 @@ namespace Exchange.Domain.Item.Strategy
 {
     public interface IUpdateItemStrategy
     {
-        Entity.Item Update(IItemRepository itemRepository, IUserRepository userRepository,UpdateItemCommand command);
+        Entity.Item Update(IItemRepository itemRepository, IUserRepository userRepository,IItemTransactionRepository transactionRepository,UpdateItemCommand command);
     }
 }

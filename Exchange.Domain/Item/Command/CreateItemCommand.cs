@@ -3,7 +3,7 @@
     public class CreateItemCommand
     {
         /// <summary>
-        /// User Id of owner
+        /// User Id of owner if any
         /// </summary>
         public int? OwnerId { get; set; }
         /// <summary>

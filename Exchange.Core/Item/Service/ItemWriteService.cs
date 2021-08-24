@@ -14,20 +14,16 @@ namespace Exchange.Core.Item.Service
     {
         private IItemRepository _itemRepository;
         private IUserRepository _userRepository;
-
-        // private ICreateItemStrategy createStrategy;
-        // private IUpdateItemStrategy updateStratgy;
-        // private IDeleteItemStrategy deleteStrategy;
-
+        private IItemTransactionRepository _itemTransactionRepository;
+        
         private ItemWriteStrategySet _writeStrategySet;
 
-        public ItemWriteService(ItemWriteStrategySet strategySet,IItemRepository itemRepository, IUserRepository userRepository)
+        public ItemWriteService(ItemWriteStrategySet strategySet,IItemRepository itemRepository,
+             IUserRepository userRepository,IItemTransactionRepository itemTransactionRepository)
         {
             _itemRepository = itemRepository;
             _userRepository = userRepository;
-            // createStrategy = new CreateItemWithTransaction();
-            // updateStratgy = new UpdateItemWithTransaction();
-            // deleteStrategy = new DeleteItemSimple();
+            _itemTransactionRepository = itemTransactionRepository;
 
             _writeStrategySet = strategySet;
         }
@@ -45,7 +41,7 @@ namespace Exchange.Core.Item.Service
             UpdateItemCommandValidator validator = new UpdateItemCommandValidator();
             validator.ValidateAndThrow(command);
             
-            return _writeStrategySet.Update(_itemRepository,_userRepository, command).ToItemInfo();
+            return _writeStrategySet.Update(_itemRepository,_userRepository,_itemTransactionRepository, command).ToItemInfo();
         }
 
         public void DeleteItem(DeleteItemCommand command)

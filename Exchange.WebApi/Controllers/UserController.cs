@@ -132,7 +132,7 @@ namespace Exchange.WebApi.Controllers
             }
             catch (ValidationException vex)
             {
-                return BadRequest(vex.Message);
+                return BadRequest(vex);
             }
             catch(Exception ex)
             {

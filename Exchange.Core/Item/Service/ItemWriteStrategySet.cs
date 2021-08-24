@@ -28,12 +28,12 @@ namespace Exchange.Core.Item.Service
             return createStrategy.Create(itemRepository, userRepository, createCommand);
         }
 
-        public Domain.Item.Entity.Item Update(IItemRepository itemRepository, IUserRepository userRepository, UpdateItemCommand command)
+        public Domain.Item.Entity.Item Update(IItemRepository itemRepository, IUserRepository userRepository,IItemTransactionRepository itemTransactionRepository, UpdateItemCommand command)
         {
             UpdateItemCommandValidator validator = new UpdateItemCommandValidator();
             validator.ValidateAndThrow(command);
             
-            return updateStratgy.Update(itemRepository, userRepository, command);
+            return updateStratgy.Update(itemRepository, userRepository,itemTransactionRepository, command);
         }
 
         public bool Delete(IItemRepository itemRepository, IUserRepository userRepository, DeleteItemCommand command)
